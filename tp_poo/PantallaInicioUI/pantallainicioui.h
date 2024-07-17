@@ -8,7 +8,6 @@ class PantallaInicioUI : public QWidget
     Q_OBJECT
 public:
     explicit PantallaInicioUI(QWidget *parent = nullptr);
-
 signals:
 };
 
