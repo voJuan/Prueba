@@ -6,43 +6,83 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1938</width>
-    <height>903</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>2000</width>
-    <height>2000</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
-    <widget class="QLabel" name="label">
-     <property name="maximumSize">
-      <size>
-       <width>2000</width>
-       <height>2000</height>
-      </size>
+    <widget class="QWidget" name="Fondo" native="true">
+     <property name="styleSheet">
+      <string notr="true">#Fondo{
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondo_principal.jpg);
+}</string>
      </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="../recursos.qrc">:/recursos/imagenes/Recursos/Imagenes/fondo_principal.jpg</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,2">
+      <property name="spacing">
+       <number>100</number>
+      </property>
+      <property name="leftMargin">
+       <number>300</number>
+      </property>
+      <property name="topMargin">
+       <number>200</number>
+      </property>
+      <property name="rightMargin">
+       <number>300</number>
+      </property>
+      <property name="bottomMargin">
+       <number>100</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="iniciarJuegoBoton">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Iniciar Juego</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="SalirJuegoBoton">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Salir</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../recursos.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
