@@ -15,7 +15,7 @@ public:
     explicit PantallaInicioUI(QWidget *parent = nullptr);
     ~PantallaInicioUI();
 signals:
-
+    void iniciarJuegoClicked();
 private:
     Ui::PantallaInicioUI *ui;
 protected:
