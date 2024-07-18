@@ -22,5 +22,7 @@ public:
     PantallaInicioUI *pantallaInicio;
 private:
     Ui::MainWindow *ui;
+    void AnadirPantallas();
+    void iraPantallaInicio();
 };
 #endif // MAINWINDOW_H
