@@ -7,6 +7,7 @@ PantallaInicioUI::PantallaInicioUI(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->SalirJuegoBoton, &QPushButton::clicked, qApp, &QApplication::quit);
+     connect(ui->iniciarJuegoBoton, &QPushButton::clicked, this, &PantallaInicioUI::iniciarJuegoClicked);
 }
 
 PantallaInicioUI::~PantallaInicioUI()
