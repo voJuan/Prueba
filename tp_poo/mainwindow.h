@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include "PantallaInicioUI/pantallainicioui.h"
+#include "pantallaJuego/pantallajuego.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,9 +21,11 @@ public:
     ~MainWindow();
     QStackedWidget *pantallas;
     PantallaInicioUI *pantallaInicio;
+    pantallajuego *pantallaJugar;
 private:
     Ui::MainWindow *ui;
     void AnadirPantallas();
     void iraPantallaInicio();
+    void iraPantallaJuego();
 };
 #endif // MAINWINDOW_H

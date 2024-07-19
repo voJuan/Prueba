@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/recursos/imagenes">
         <file>Recursos/Imagenes/fondo_principal.jpg</file>
+        <file>Recursos/Imagenes/fondoPersona.jpg</file>
     </qresource>
 </RCC>
