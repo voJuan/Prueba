@@ -2,5 +2,8 @@
     <qresource prefix="/recursos/imagenes">
         <file>Recursos/Imagenes/fondo_principal.jpg</file>
         <file>Recursos/Imagenes/fondoPersona.jpg</file>
+        <file>Recursos/Imagenes/descarga.png</file>
+        <file>Recursos/Imagenes/aprobado-boton.png</file>
+        <file>Recursos/Imagenes/remove.png</file>
     </qresource>
 </RCC>
