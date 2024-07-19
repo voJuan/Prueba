@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 //ir a pantalla de juego
 connect(pantallaInicio, &PantallaInicioUI::iniciarJuegoClicked, this, &MainWindow::iraPantallaJuego);
 }
-
+//..
 MainWindow::~MainWindow()
 {
     delete ui;
