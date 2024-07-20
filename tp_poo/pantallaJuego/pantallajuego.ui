@@ -2,13 +2,19 @@
 <ui version="4.0">
  <class>pantallajuego</class>
  <widget class="QWidget" name="pantallajuego">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>921</width>
-    <height>507</height>
+    <width>764</width>
+    <height>561</height>
    </rect>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::PreventContextMenu</enum>
   </property>
   <property name="acceptDrops">
    <bool>false</bool>
@@ -17,32 +23,92 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#pantallaPersona{
+   <string notr="true">
+background-color: rgb(0, 0, 0);</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="1" column="3" rowspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QWidget" name="imagen" native="true">
+       <property name="styleSheet">
+        <string notr="true">#imagen {
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/descarga.png);
+}</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <property name="bottomMargin">
+         <number>100</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="rechazar">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#rechazar {
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/remove.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="aceptar">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#aceptar{
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/aprobado-boton.png);
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="2">
+    <widget class="QWidget" name="widget_2" native="true"/>
+   </item>
+   <item row="1" column="2">
+    <widget class="QWidget" name="fondopersona" native="true">
+     <property name="styleSheet">
+      <string notr="true">#fondopersona{
 	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondoPersona.jpg);
 }</string>
-  </property>
-  <widget class="QWidget" name="gridLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>-1</x>
-     <y>9</y>
-     <width>501</width>
-     <height>271</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="pantallaPersona">
-    <property name="sizeConstraint">
-     <enum>QLayout::SetMaximumSize</enum>
-    </property>
-    <item row="0" column="0">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
