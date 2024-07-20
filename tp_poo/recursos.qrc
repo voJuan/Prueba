@@ -3,7 +3,9 @@
         <file>Recursos/Imagenes/fondo_principal.jpg</file>
         <file>Recursos/Imagenes/fondoPersona.jpg</file>
         <file>Recursos/Imagenes/descarga.png</file>
-        <file>Recursos/Imagenes/aprobado-boton.png</file>
-        <file>Recursos/Imagenes/remove.png</file>
+        <file>Recursos/Imagenes/aceptar.png</file>
+        <file>Recursos/Imagenes/check (1).png</file>
+        <file>Recursos/Imagenes/delete.png</file>
+        <file>Recursos/Imagenes/disapprove.png</file>
     </qresource>
 </RCC>
