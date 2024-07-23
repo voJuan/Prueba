@@ -7,7 +7,17 @@
         <file>Recursos/Imagenes/check (1).png</file>
         <file>Recursos/Imagenes/delete.png</file>
         <file>Recursos/Imagenes/disapprove.png</file>
-        <file>Recursos/Imagenes/personaje1.jpg</file>
-        <file>Recursos/Imagenes/imagenes-personajes.txt</file>
+        <file>Recursos/Imagenes/fondoje.jpg</file>
+        <file>Recursos/Imagenes/marco.jpg</file>
+        <file>Recursos/Imagenes/escritorio.jpg</file>
+        <file>Recursos/Imagenes/marco1.jpg</file>
+        <file>Recursos/Imagenes/radio.jpg</file>
+        <file>Recursos/Imagenes/carpincho.jpg</file>
+        <file>Recursos/Imagenes/salir.jpg</file>
+        <file>Recursos/Imagenes/aldeano.png</file>
+        <file>Recursos/Imagenes/aceptar1.png</file>
+        <file>Recursos/Imagenes/aceptarAbajo.png</file>
+        <file>Recursos/Imagenes/rechazarAbajo.png</file>
+        <file>Recursos/Imagenes/rachazar.png</file>
     </qresource>
 </RCC>

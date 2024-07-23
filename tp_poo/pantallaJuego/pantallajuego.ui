@@ -48,7 +48,8 @@ background-color: rgb(0, 0, 0);</string>
       <widget class="QWidget" name="imagen" native="true">
        <property name="styleSheet">
         <string notr="true">#imagen {
-	border-image: url(:/recursos/imagenes/Recursos/Imagenes/descarga.png);
+	
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/escritorio.jpg);
 }
 </string>
        </property>
@@ -77,15 +78,15 @@ background-color: rgb(0, 0, 0);</string>
           </property>
           <property name="icon">
            <iconset resource="../recursos.qrc">
-            <normaloff>:/recursos/imagenes/Recursos/Imagenes/delete.png</normaloff>
-            <normalon>:/recursos/imagenes/Recursos/Imagenes/delete.png</normalon>
-            <disabledoff>:/recursos/imagenes/Recursos/Imagenes/disapprove.png</disabledoff>
-            <disabledon>:/recursos/imagenes/Recursos/Imagenes/disapprove.png</disabledon>:/recursos/imagenes/Recursos/Imagenes/delete.png</iconset>
+            <normaloff>:/recursos/imagenes/Recursos/Imagenes/rachazar.png</normaloff>
+            <normalon>:/recursos/imagenes/Recursos/Imagenes/rachazar.png</normalon>
+            <disabledoff>:/recursos/imagenes/Recursos/Imagenes/rechazarAbajo.png</disabledoff>
+            <disabledon>:/recursos/imagenes/Recursos/Imagenes/rechazarAbajo.png</disabledon>:/recursos/imagenes/Recursos/Imagenes/rachazar.png</iconset>
           </property>
           <property name="iconSize">
            <size>
-            <width>100</width>
-            <height>100</height>
+            <width>170</width>
+            <height>170</height>
            </size>
           </property>
           <property name="checkable">
@@ -114,15 +115,15 @@ background-color: rgb(0, 0, 0);</string>
           </property>
           <property name="icon">
            <iconset resource="../recursos.qrc">
-            <normaloff>:/recursos/imagenes/Recursos/Imagenes/aceptar.png</normaloff>
-            <normalon>:/recursos/imagenes/Recursos/Imagenes/aceptar.png</normalon>
-            <disabledoff>:/recursos/imagenes/Recursos/Imagenes/check (1).png</disabledoff>
-            <disabledon>:/recursos/imagenes/Recursos/Imagenes/check (1).png</disabledon>:/recursos/imagenes/Recursos/Imagenes/aceptar.png</iconset>
+            <normaloff>:/recursos/imagenes/Recursos/Imagenes/aceptar1.png</normaloff>
+            <normalon>:/recursos/imagenes/Recursos/Imagenes/aceptar1.png</normalon>
+            <disabledoff>:/recursos/imagenes/Recursos/Imagenes/aceptarAbajo.png</disabledoff>
+            <disabledon>:/recursos/imagenes/Recursos/Imagenes/aceptarAbajo.png</disabledon>:/recursos/imagenes/Recursos/Imagenes/aceptar1.png</iconset>
           </property>
           <property name="iconSize">
            <size>
-            <width>100</width>
-            <height>100</height>
+            <width>170</width>
+            <height>170</height>
            </size>
           </property>
           <property name="checkable">
@@ -135,17 +136,37 @@ background-color: rgb(0, 0, 0);</string>
      </item>
     </layout>
    </item>
-   <item row="1" column="2">
-    <widget class="QWidget" name="fondopersona" native="true">
+   <item row="2" column="2">
+    <widget class="QWidget" name="radio" native="true">
      <property name="styleSheet">
-      <string notr="true">#fondopersona{
-	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondoPersona.jpg);
+      <string notr="true">#radio {
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/radio.jpg);
 }</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="2">
-    <widget class="QWidget" name="fondoDocumento" native="true"/>
+   <item row="1" column="2">
+    <widget class="QWidget" name="marcoPersona" native="true">
+     <property name="styleSheet">
+      <string notr="true">#marcoPersona{
+	
+	
+	background-color: rgb(24, 24, 24);
+}</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QWidget" name="fondopersona" native="true">
+        <property name="styleSheet">
+         <string notr="true">#fondopersona{
+	
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondoje.jpg);
+}</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
