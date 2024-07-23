@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <QString>
+#include <QVBoxLayout>
+#include "../PersonajeUI/personajeui.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class pantallajuego;
@@ -21,7 +24,15 @@ signals:
 private:
     Ui::pantallajuego *ui;
     QTimer *deshabilitarBoton;
+    PersonajeUI *personaje;
+
+    QVBoxLayout *layoutPersonaje;
+
+    void anadirPersonaje(QWidget *parent);
+
 protected:
+public slots:
+    void iniciarAnimacionPersonaje(int deltaX);
 private slots:
     void cooldownBotones();
     void activarBotones();

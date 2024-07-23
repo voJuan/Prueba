@@ -135,9 +135,6 @@ background-color: rgb(0, 0, 0);</string>
      </item>
     </layout>
    </item>
-   <item row="2" column="2">
-    <widget class="QWidget" name="widget_2" native="true"/>
-   </item>
    <item row="1" column="2">
     <widget class="QWidget" name="fondopersona" native="true">
      <property name="styleSheet">
@@ -146,6 +143,9 @@ background-color: rgb(0, 0, 0);</string>
 }</string>
      </property>
     </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QWidget" name="fondoDocumento" native="true"/>
    </item>
   </layout>
  </widget>

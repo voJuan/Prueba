@@ -1,0 +1,6 @@
+:/recursos/imagenes/Recursos/Imagenes/personaje1.jpg
+:/recursos/imagenes/Recursos/Imagenes/disapprove.png
+:/recursos/imagenes/Recursos/Imagenes/delete.png
+:/recursos/imagenes/Recursos/Imagenes/check (1).png
+:/recursos/imagenes/Recursos/Imagenes/aceptar.png
+:/recursos/imagenes/Recursos/Imagenes/descarga.png

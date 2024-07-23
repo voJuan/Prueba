@@ -7,5 +7,7 @@
         <file>Recursos/Imagenes/check (1).png</file>
         <file>Recursos/Imagenes/delete.png</file>
         <file>Recursos/Imagenes/disapprove.png</file>
+        <file>Recursos/Imagenes/personaje1.jpg</file>
+        <file>Recursos/Imagenes/imagenes-personajes.txt</file>
     </qresource>
 </RCC>
