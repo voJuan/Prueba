@@ -48,7 +48,8 @@ background-color: rgb(0, 0, 0);</string>
       <widget class="QWidget" name="imagen" native="true">
        <property name="styleSheet">
         <string notr="true">#imagen {
-	border-image: url(:/recursos/imagenes/Recursos/Imagenes/descarga.png);
+	
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/escritorio.jpg);
 }
 </string>
        </property>
@@ -136,15 +137,35 @@ background-color: rgb(0, 0, 0);</string>
     </layout>
    </item>
    <item row="2" column="2">
-    <widget class="QWidget" name="widget_2" native="true"/>
-   </item>
-   <item row="1" column="2">
-    <widget class="QWidget" name="fondopersona" native="true">
+    <widget class="QWidget" name="radio" native="true">
      <property name="styleSheet">
-      <string notr="true">#fondopersona{
-	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondoPersona.jpg);
+      <string notr="true">#radio {
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/radio.jpg);
 }</string>
      </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QWidget" name="marcoPersona" native="true">
+     <property name="styleSheet">
+      <string notr="true">#marcoPersona{
+	
+	
+	background-color: rgb(24, 24, 24);
+}</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QWidget" name="fondopersona" native="true">
+        <property name="styleSheet">
+         <string notr="true">#fondopersona{
+	
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondoje.jpg);
+}</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
