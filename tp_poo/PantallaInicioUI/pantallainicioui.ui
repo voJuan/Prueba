@@ -33,7 +33,8 @@
     <widget class="QWidget" name="Fondo" native="true">
      <property name="styleSheet">
       <string notr="true">#Fondo{
-	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondo_principal.jpg);
+	
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/carpincho.jpg);
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,2">
