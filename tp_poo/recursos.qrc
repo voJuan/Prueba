@@ -12,5 +12,7 @@
         <file>Recursos/Imagenes/escritorio.jpg</file>
         <file>Recursos/Imagenes/marco1.jpg</file>
         <file>Recursos/Imagenes/radio.jpg</file>
+        <file>Recursos/Imagenes/carpincho.jpg</file>
+        <file>Recursos/Imagenes/salir.jpg</file>
     </qresource>
 </RCC>
