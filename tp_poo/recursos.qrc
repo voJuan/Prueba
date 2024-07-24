@@ -20,4 +20,7 @@
         <file>Recursos/Imagenes/rechazarAbajo.png</file>
         <file>Recursos/Imagenes/rachazar.png</file>
     </qresource>
+    <qresource prefix="/archivos.txt">
+        <file>Recursos/Imagenes/imagenes-personajes.txt</file>
+    </qresource>
 </RCC>

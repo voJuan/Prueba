@@ -53,13 +53,13 @@ void pantallajuego::activarBotones()
 void pantallajuego::on_aceptar_clicked()
 {
     cooldownBotones();
-    iniciarAnimacionPersonaje(500);
+    iniciarAnimacionPersonaje(ui->fondopersona->width());
 }
 
 
 void pantallajuego::on_rechazar_clicked()
 {
     cooldownBotones();
-    iniciarAnimacionPersonaje(-200);
+    iniciarAnimacionPersonaje(-ui->fondopersona->width());
 }
 

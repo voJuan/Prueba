@@ -4,7 +4,7 @@ PersonajeUI::PersonajeUI(QWidget *parent)
     : QWidget{parent},
     imagenPersonaje(new QLabel(this)),
     animacionPersonaje(new QPropertyAnimation(imagenPersonaje,"geometry")),
-    lector(new LectorArchivos(":/recursos/imagenes/Recursos/Imagenes/imagenes-personajes.txt"))
+    lector(new LectorArchivos(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt"))
 {
 }
 
@@ -24,6 +24,7 @@ void PersonajeUI::setimagenPersonaje(QWidget *parent)
         imagenPersonaje->setScaledContents(true);
         imagenPersonaje->setFixedSize(300, 300); // Asegúrate de que el QLabel tenga un tamaño fijo
         setFixedSize(700, 700);
+        imagenPersonaje->setStyleSheet("background-color: rgba(255, 255, 255, 0); border: none;");
 
         QPixmap imagen(direccionImagen);
         if (imagen.isNull()) {
