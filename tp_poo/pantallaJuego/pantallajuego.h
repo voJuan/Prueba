@@ -6,6 +6,7 @@
 #include <QString>
 #include <QVBoxLayout>
 #include "../PersonajeUI/personajeui.h"
+#include "../niveles/nivel1.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class pantallajuego;
@@ -25,7 +26,7 @@ private:
     Ui::pantallajuego *ui;
     QTimer *deshabilitarBoton;
     PersonajeUI *personaje;
-
+    nivel1 *nivel;
     QVBoxLayout *layoutPersonaje;
 
     void anadirPersonaje(QWidget *parent);
