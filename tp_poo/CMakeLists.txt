@@ -29,6 +29,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         PersonajeUI/personajeui.h PersonajeUI/personajeui.cpp
         LectordeArchivos/lectorarchivos.cpp LectordeArchivos/lectorarchivos.h
         niveles/nivel1.h niveles/nivel1.cpp niveles/nivel1.ui
+        personajes/personajeabst.h personajes/personajeabst.cpp
+        personajes/aldeano.h personajes/aldeano.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET tp_poo APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
