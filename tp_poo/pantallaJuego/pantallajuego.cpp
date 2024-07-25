@@ -8,6 +8,9 @@ pantallajuego::pantallajuego(QWidget *parent) :
 {
     ui->setupUi(this);
     anadirPersonaje(ui->fondopersona);
+   // QVBoxLayout *layout = new QVBoxLayout(this);
+    nivel1 *nivel = new nivel1(this);
+    ui->horizontalLayout->addWidget(nivel);
 }
 
 pantallajuego::~pantallajuego()
