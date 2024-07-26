@@ -34,6 +34,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         personajes/revolucionario.h personajes/revolucionario.cpp
         personajes/diplomatico.h personajes/diplomatico.cpp
         personajes/refugiadopolitico.h personajes/refugiadopolitico.cpp
+        personajes/crearPersonajeAleatorio.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET tp_poo APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

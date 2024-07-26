@@ -35,7 +35,8 @@ public:
     void setupDragAndDrop();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
     bool eventFilter(QObject *obj, QEvent *event);
-
+    QString getTipoPersonaje();
+    // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
 

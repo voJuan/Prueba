@@ -11,7 +11,7 @@ public:
     int getPuntos() const;
     int getSacarPunto() const;
     bool getDejarPasar() const;
-    static personajeAbst* crearPersonajeAleatorio();
+   static personajeAbst* crearPersonajeAleatorio();
 
 protected:
     void setTipo(const QString &tipo);

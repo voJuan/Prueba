@@ -14,10 +14,11 @@ lectorFech(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento
 lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt")),
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
 lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
- personaje(new personajeAbst())
+personaje(new personajeAbst())
 {
     ui->setupUi(this);
     // lector(new LectorArchivos(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt"))
+
 
     setupDocumentos();
     setupDragAndDrop();
@@ -60,7 +61,11 @@ void nivel1::setupDocumentos()
     layout->addWidget(estado_civil);
 
     setLayout(layout);
-    reglas->setText("Texto de prueba");
+
+    personajeAbst *personaje;
+    personaje =  personajeAbst::crearPersonajeAleatorio();
+    QString tipo=personaje->getTipo();
+    reglas->setText(tipo);
     nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
     fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
     tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
@@ -73,6 +78,7 @@ void nivel1::setupDocumentos()
 
 QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector)
 {
+
     int tope = lector->getTopeArray();
     QRandomGenerator *numRandom = QRandomGenerator::global();
     // Genera un índice aleatorio entre 0 y tope - 1
@@ -109,3 +115,6 @@ bool nivel1::eventFilter(QObject *obj, QEvent *event)
     }
     return QWidget::eventFilter(obj, event);
 }
+
+
+
