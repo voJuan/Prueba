@@ -172,6 +172,24 @@ background-color: rgb(0, 0, 0);</string>
 	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondoje.jpg);
 }</string>
         </property>
+        <widget class="QLabel" name="puntaje">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#puntaje{
+	background-color: rgb(255, 255, 255);
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
        </widget>
       </item>
      </layout>

@@ -13,15 +13,14 @@ lectorNac(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad.txt"
 lectorFech(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento.txt")),
 lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt")),
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
-lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
-personaje(new personajeAbst())
+lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt"))
+//personaje(new personajeAbst())
 {
     ui->setupUi(this);
     // lector(new LectorArchivos(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt"))
 
+   GenerarPersonajes();
 
-    setupDocumentos();
-    setupDragAndDrop();
 }
 
 nivel1::~nivel1()
@@ -53,6 +52,9 @@ void nivel1::setupDocumentos()
     duracion->setStyleSheet("background-color: lightgray; color: black;");
     estado_civil->setStyleSheet("background-color: lightgray; color: black;");
 
+
+
+
     layout->addWidget(reglas);
     layout->addWidget(nacionalidad);
     layout->addWidget(fecha_de_nacimiento);
@@ -62,11 +64,11 @@ void nivel1::setupDocumentos()
 
     setLayout(layout);
 
-    personajeAbst *personaje;
-    personaje =  personajeAbst::crearPersonajeAleatorio();
-    QString tipo=personaje->getTipo();
+   // personajeAbst *personaje;
+    //personaje =  personajeAbst::crearPersonajeAleatorio();
+    //QString tipo=personaje->getTipo();
 
-    reglas->setText(tipo);
+    reglas->setText(this->personaje->getTipo());
     nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
     fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
     tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
@@ -116,6 +118,42 @@ bool nivel1::eventFilter(QObject *obj, QEvent *event)
     }
     return QWidget::eventFilter(obj, event);
 }
+
+int nivel1::DejarPasarPuntos(){
+     if (this->personaje->getDejarPasar()==true){
+        GenerarPersonajes();
+
+        return personaje->getPuntos();
+    }
+    else {
+
+         GenerarPersonajes();
+
+        return this->personaje->getSacarPunto()*-1;
+
+    }
+}
+
+int nivel1::NoDejarPasarPuntos(){
+    if (this->personaje->getDejarPasar()==false){
+         GenerarPersonajes();
+        return personaje->getPuntos();
+    }
+    else {
+        GenerarPersonajes();
+        return this->personaje->getSacarPunto()*-1;
+    }
+
+
+}
+void nivel1::GenerarPersonajes(){
+    personajeAbst *personaje;
+    personaje =  personajeAbst::crearPersonajeAleatorio();
+    this->personaje=personaje;
+    setupDocumentos();
+    setupDragAndDrop();
+}
+
 
 
 

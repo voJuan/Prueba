@@ -28,7 +28,7 @@ private:
     PersonajeUI *personaje;
     nivel1 *nivel;
     QVBoxLayout *layoutPersonaje;
-
+    int puntaje;
     void anadirPersonaje(QWidget *parent);
 
 protected:
