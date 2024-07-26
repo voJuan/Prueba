@@ -1,8 +1,10 @@
 #include "aldeano.h"
 
-/*aldeano::aldeano() {
-    this->tipo=aldeano_;
-    this->dejarPasar=
+aldeano::aldeano() {
+    setTipo("aldeano");
+    setPuntos(10);
+    setSacarPunto(15);
+    setDejarPasar(dejarPasarAleatorio());
 
 }
-*/
+

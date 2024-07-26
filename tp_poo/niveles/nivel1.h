@@ -15,6 +15,7 @@
 #include <QVBoxLayout>
 #include <QDragEnterEvent>
 #include <QDropEvent>
+#include "../personajes/personajeabst.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class nivel1;
@@ -34,12 +35,15 @@ public:
     void setupDragAndDrop();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
     bool eventFilter(QObject *obj, QEvent *event);
+    QString getTipoPersonaje();
+    // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
 
 signals:
 private:
     Ui::nivel1 *ui;
+    personajeAbst *personaje;
     LectorArchivos *lectorReg;
     LectorArchivos *lectorNac;
     LectorArchivos *lectorFech;

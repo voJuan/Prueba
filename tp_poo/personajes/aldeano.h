@@ -2,10 +2,10 @@
 #define ALDEANO_H
 
 #include "personajeabst.h"
-/*class aldeano : public Personaje
+class aldeano : public personajeAbst
 {
 public:
     aldeano();
-};*/
+};
 
-#endif // ALDEANO_H
+#endif
