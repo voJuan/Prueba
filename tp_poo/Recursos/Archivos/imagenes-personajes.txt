@@ -1,0 +1,9 @@
+:/Recursos/Imagenes/fondo_principal.jpg
+:/Recursos/Imagenes/fondoPersona.jpg
+:/Recursos/Imagenes/descarga.png
+:/Recursos/Imagenes/aceptar.png
+:/Recursos/Imagenes/check (1).png
+:/Recursos/Imagenes/delete.png
+:/Recursos/Imagenes/disapprove.png
+:/Recursos/Imagenes/personaje1.jpg
+:/Recursos/Imagenes/imagenes-personajes.txt

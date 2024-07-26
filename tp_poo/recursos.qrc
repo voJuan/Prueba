@@ -20,4 +20,13 @@
         <file>Recursos/Imagenes/rechazarAbajo.png</file>
         <file>Recursos/Imagenes/rachazar.png</file>
     </qresource>
+    <qresource prefix="/archivos.txt">
+        <file>Recursos/Imagenes/imagenes-personajes.txt</file>
+        <file>Recursos/Archivos/duracion.txt</file>
+        <file>Recursos/Archivos/estado_civil.txt</file>
+        <file>Recursos/Archivos/fecha_nacimiento.txt</file>
+        <file>Recursos/Archivos/nacionalidad.txt</file>
+        <file>Recursos/Archivos/reglas.txt</file>
+        <file>Recursos/Archivos/tipo_visita.txt</file>
+    </qresource>
 </RCC>
