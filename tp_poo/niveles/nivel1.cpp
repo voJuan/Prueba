@@ -65,6 +65,7 @@ void nivel1::setupDocumentos()
     personajeAbst *personaje;
     personaje =  personajeAbst::crearPersonajeAleatorio();
     QString tipo=personaje->getTipo();
+
     reglas->setText(tipo);
     nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
     fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
