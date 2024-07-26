@@ -38,6 +38,16 @@ nivel1::~nivel1()
 
 void nivel1::setupDocumentos()
 {
+    if (reglas && nacionalidad && fecha_de_nacimiento && tipo_visita && duracion && estado_civil) {
+        reglas->setText(personaje->getTipo());
+        nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+        fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+        tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+        duracion->setText(obtenerLineaAleatoria(lectorDur));
+        estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+        return;
+    }
+
     QVBoxLayout *layout = new QVBoxLayout(this);
     reglas = new QLabel("Cargando...", this);
     nacionalidad = new QLabel("Cargando...", this);
