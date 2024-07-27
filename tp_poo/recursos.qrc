@@ -19,6 +19,7 @@
         <file>Recursos/Imagenes/aceptarAbajo.png</file>
         <file>Recursos/Imagenes/rechazarAbajo.png</file>
         <file>Recursos/Imagenes/rachazar.png</file>
+        <file>Recursos/Imagenes/elChe.jpg</file>
     </qresource>
     <qresource prefix="/archivos.txt">
         <file>Recursos/Imagenes/imagenes-personajes.txt</file>
@@ -28,5 +29,7 @@
         <file>Recursos/Archivos/nacionalidad.txt</file>
         <file>Recursos/Archivos/reglas.txt</file>
         <file>Recursos/Archivos/tipo_visita.txt</file>
+        <file>Recursos/Archivos/aldeano_aleatorio.txt</file>
+        <file>Recursos/Archivos/revolucionario_aleatorio.txt</file>
     </qresource>
 </RCC>

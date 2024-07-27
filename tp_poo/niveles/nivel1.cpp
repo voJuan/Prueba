@@ -126,7 +126,14 @@ bool nivel1::eventFilter(QObject *obj, QEvent *event)
             return true;
         }
     }
+
     return QWidget::eventFilter(obj, event);
+}
+
+QString nivel1::getTipoPersonaje()
+{
+    QString tipo = personaje->getTipo();
+    return tipo;
 }
 
 int nivel1::DejarPasarPuntos(){
@@ -162,6 +169,8 @@ void nivel1::GenerarPersonajes(){
     this->personaje=personaje;
     setupDocumentos();
     setupDragAndDrop();
+
+    emit personajeCambiado(personaje->getTipo());
 }
 
 

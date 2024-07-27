@@ -1,1 +1,1 @@
-:/recursos/imagenes/Recursos/Imagenes/aldeano.png
+:/recursos/imagenes/Recursos/Imagenes/aceptar.png

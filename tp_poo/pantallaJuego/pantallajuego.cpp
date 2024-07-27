@@ -10,7 +10,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
 {
     ui->setupUi(this);
     anadirPersonaje(ui->fondopersona);
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    //QVBoxLayout *layout = new QVBoxLayout(this);
 
     nivel1 *nivel = new nivel1(this);
     this->nivel=nivel;
@@ -19,6 +19,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
     ui->horizontalLayout->addWidget(nivel);
     puntaje=0;
     ui->puntaje->setText(QString("1%").arg(puntaje));
+    connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
 }
 
 pantallajuego::~pantallajuego()
@@ -31,8 +32,10 @@ void pantallajuego::anadirPersonaje(QWidget *parent)
 {
     if(personaje)
     {
+        QString imagen = nivel->getTipoPersonaje();
+        qDebug() << "tipo es:" << imagen;
         personaje->setParent(parent);
-        personaje->setimagenPersonaje(parent);
+        personaje->setimagenPersonaje(parent,imagen);
         personaje->show();
     }
 }
