@@ -113,6 +113,7 @@ bool nivel1::eventFilter(QObject *obj, QEvent *event)
             return true;
         }
     }
+
     return QWidget::eventFilter(obj, event);
 }
 

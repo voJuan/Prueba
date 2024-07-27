@@ -5,8 +5,10 @@
 #include <QTimer>
 #include <QString>
 #include <QVBoxLayout>
+#include <QLCDNumber>
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
+#include "../personajes/personajeabst.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class pantallajuego;
@@ -26,10 +28,13 @@ private:
     Ui::pantallajuego *ui;
     QTimer *deshabilitarBoton;
     PersonajeUI *personaje;
+    personajeAbst *persona;
     nivel1 *nivel;
     QVBoxLayout *layoutPersonaje;
+    int puntuacion = 0;
 
     void anadirPersonaje(QWidget *parent);
+    void actualizarPuntaje();
 
 protected:
 public slots:

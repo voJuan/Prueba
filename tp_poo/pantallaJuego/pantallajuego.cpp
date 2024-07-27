@@ -4,12 +4,16 @@
 pantallajuego::pantallajuego(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::pantallajuego),
-    personaje(new PersonajeUI(this))
+    personaje(new PersonajeUI),
+    nivel(new nivel1(this)),
+    persona(new personajeAbst)
 {
+    persona->crearPersonajeAleatorio();
+    qDebug() << "Personaje bool:" << persona->getDejarPasar();
     ui->setupUi(this);
     anadirPersonaje(ui->fondopersona);
    // QVBoxLayout *layout = new QVBoxLayout(this);
-    nivel1 *nivel = new nivel1(this);
+
     ui->horizontalLayout->addWidget(nivel);
 }
 
@@ -26,6 +30,16 @@ void pantallajuego::anadirPersonaje(QWidget *parent)
         personaje->setParent(parent);
         personaje->setimagenPersonaje(parent);
         personaje->show();
+    }
+}
+
+void pantallajuego::actualizarPuntaje()
+{
+    int puntosPersonaje = persona->getPuntos();
+    if(persona->getDejarPasar() == true){
+        puntuacion += puntosPersonaje;;
+    }else{
+        puntuacion -= puntosPersonaje;;
     }
 }
 void pantallajuego::iniciarAnimacionPersonaje(int deltaX)

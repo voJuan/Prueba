@@ -4,8 +4,10 @@ PersonajeUI::PersonajeUI(QWidget *parent)
     : QWidget{parent},
     imagenPersonaje(new QLabel(this)),
     animacionPersonaje(new QPropertyAnimation(imagenPersonaje,"geometry")),
-    lector(new LectorArchivos(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt"))
+    lector(new LectorArchivos(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt")),
+    estadoAnimacion(false)
 {
+     connect(animacionPersonaje, &QPropertyAnimation::finished, this, &PersonajeUI::gestionAnimacion);
 }
 
 void PersonajeUI::setimagenPersonaje(QWidget *parent)
@@ -41,13 +43,16 @@ void PersonajeUI::setimagenPersonaje(QWidget *parent)
 
 void PersonajeUI::iniciarAnimation(int deltaX, QWidget *parent)
 {
-    animacionPersonaje->setDuration(2000);
-    QRect propsIniciales = imagenPersonaje->geometry();
-    QRect propsFinales = propsIniciales;
-    propsFinales.translate(deltaX, 0); //translate añade int en la prop x e y
-    animacionPersonaje->setStartValue(propsIniciales);
-    animacionPersonaje->setEndValue(propsFinales);
-    animacionPersonaje->start();
+    if (!estadoAnimacion) {
+        estadoAnimacion = true;
+        animacionPersonaje->setDuration(2000);
+        QRect propsIniciales = imagenPersonaje->geometry();
+        QRect propsFinales = propsIniciales;
+        propsFinales.translate(deltaX, 0);
+        animacionPersonaje->setStartValue(propsIniciales);
+        animacionPersonaje->setEndValue(propsFinales);
+        animacionPersonaje->start();
+    }
 }
 
 QRect PersonajeUI::centrarCoords(QWidget *parent)
@@ -72,4 +77,12 @@ void PersonajeUI::resizeEvent(QResizeEvent *event)
     // Recalcular y ajustar la geometría del QLabel para centrarlo
     QRect centeredRect = centrarCoords(this); // Asumiendo que el padre es 'this'
     imagenPersonaje->setGeometry(centeredRect);
+}
+
+void PersonajeUI::gestionAnimacion()
+{
+    estadoAnimacion = false; // La animación ha terminado
+    imagenPersonaje->clear();
+    setimagenPersonaje(this);
+    // Prepara la próxima animación si es necesario, pero no la inicia automáticamente
 }

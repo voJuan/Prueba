@@ -23,6 +23,9 @@ private:
     QLabel *imagenPersonaje;
     QPropertyAnimation *animacionPersonaje;
     LectorArchivos *lector;
+    bool estadoAnimacion;
+private slots:
+    void gestionAnimacion();
 signals:
 };
 
