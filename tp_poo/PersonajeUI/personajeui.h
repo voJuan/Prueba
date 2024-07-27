@@ -14,9 +14,13 @@ class PersonajeUI : public QWidget
     Q_OBJECT
 public:
     explicit PersonajeUI(QWidget *parent = nullptr);
-    void setimagenPersonaje(QWidget *parent);
+    void setimagenPersonaje(QWidget *parent, QString tipoPj);
     void iniciarAnimation(int deltaX, QWidget *parent);
+
     QRect centrarCoords(QWidget *parent);
+
+public slots:
+    void actualizarPersonaje(QString tipoPersonaje);
 protected:
     void resizeEvent(QResizeEvent *event) override;
 private:
@@ -24,8 +28,11 @@ private:
     QPropertyAnimation *animacionPersonaje;
     LectorArchivos *lector;
     bool estadoAnimacion;
+    QString generarImagenPj(QString direccionPj);
+
 private slots:
     void gestionAnimacion();
+
 signals:
 };
 

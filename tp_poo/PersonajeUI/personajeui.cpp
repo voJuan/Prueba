@@ -7,21 +7,24 @@ PersonajeUI::PersonajeUI(QWidget *parent)
     lector(new LectorArchivos(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt")),
     estadoAnimacion(false)
 {
-     connect(animacionPersonaje, &QPropertyAnimation::finished, this, &PersonajeUI::gestionAnimacion);
+     //connect(animacionPersonaje, &QPropertyAnimation::finished, this, &PersonajeUI::gestionAnimacion);
 }
 
-void PersonajeUI::setimagenPersonaje(QWidget *parent)
+void PersonajeUI::setimagenPersonaje(QWidget *parent, QString tipoPj)
 {
-    int tope = lector->getTopeArray();
-    if (tope == 0) {
-        qWarning("No hay imágenes disponibles en el archivo.");
-        return;
+    QString direccionImagen;
+    if(tipoPj == "aldeano"){
+        direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Archivos/aldeano_aleatorio.txt");
     }
-    QRandomGenerator *numRandom = QRandomGenerator::global();
-    // Genera un índice aleatorio entre 0 y tope - 1
-    int index = numRandom->bounded(tope);
-    QString direccionImagen = lector->getArray()[index];
-
+    else if(tipoPj == "revolucionario"){
+        direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Archivos/revolucionario_aleatorio.txt");
+    }
+    else if(tipoPj == "diplomatico"){
+        direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt");
+    }
+    else if(tipoPj == "refugiado"){
+        direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt");
+    }
     if (!direccionImagen.isEmpty()) {
         imagenPersonaje->setScaledContents(true);
         imagenPersonaje->setFixedSize(300, 300); // Asegúrate de que el QLabel tenga un tamaño fijo
@@ -55,6 +58,16 @@ void PersonajeUI::iniciarAnimation(int deltaX, QWidget *parent)
     }
 }
 
+void PersonajeUI::actualizarPersonaje(QString tipoPersonaje)
+{
+    estadoAnimacion = false; // La animación ha terminado
+    imagenPersonaje->clear();
+    qDebug() << "TIPO: " << tipoPersonaje;
+    setimagenPersonaje(this, tipoPersonaje);
+    imagenPersonaje->move(-200,imagenPersonaje->y());
+    iniciarAnimation(200, this);
+}
+
 QRect PersonajeUI::centrarCoords(QWidget *parent)
 {
     // Obtener el centro del rectángulo del widget padre
@@ -79,10 +92,24 @@ void PersonajeUI::resizeEvent(QResizeEvent *event)
     imagenPersonaje->setGeometry(centeredRect);
 }
 
+QString PersonajeUI::generarImagenPj(QString direccionPj)
+{
+    LectorArchivos *lectorr = new LectorArchivos(direccionPj);
+
+    int tope = lectorr->getTopeArray();
+    if (tope == 0) {
+        qWarning("No hay imágenes disponibles en el archivo.");
+        exit(0);
+    }
+    QRandomGenerator *numRandom = QRandomGenerator::global();
+
+    int indice = numRandom->bounded(tope);
+    QString direccionIma = lectorr->getArray()[indice];
+    return direccionIma;
+}
+
 void PersonajeUI::gestionAnimacion()
 {
-    estadoAnimacion = false; // La animación ha terminado
-    imagenPersonaje->clear();
-    setimagenPersonaje(this);
+    //setimagenPersonaje(this);
     // Prepara la próxima animación si es necesario, pero no la inicia automáticamente
 }

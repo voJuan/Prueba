@@ -44,6 +44,7 @@ public:
    // void dropEvent(QDropEvent *event);
 
 signals:
+    void personajeCambiado(QString tipoPersonaje);
 private:
     Ui::nivel1 *ui;
     personajeAbst *personaje;
