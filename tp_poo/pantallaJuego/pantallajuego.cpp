@@ -4,13 +4,21 @@
 pantallajuego::pantallajuego(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::pantallajuego),
-    personaje(new PersonajeUI(this))
+    personaje(new PersonajeUI(this)),
+
+    nivel(new nivel1(this))
 {
     ui->setupUi(this);
     anadirPersonaje(ui->fondopersona);
-   // QVBoxLayout *layout = new QVBoxLayout(this);
+    QVBoxLayout *layout = new QVBoxLayout(this);
+
     nivel1 *nivel = new nivel1(this);
+    this->nivel=nivel;
+    this->puntaje=0;
+    puntaje=this->puntaje;
     ui->horizontalLayout->addWidget(nivel);
+    puntaje=0;
+    ui->puntaje->setText(QString("1%").arg(puntaje));
 }
 
 pantallajuego::~pantallajuego()
@@ -57,6 +65,13 @@ void pantallajuego::on_aceptar_clicked()
 {
     cooldownBotones();
     iniciarAnimacionPersonaje(ui->fondopersona->width());
+    puntaje=this->puntaje;
+    int puntos=this->nivel->DejarPasarPuntos();
+    puntaje+=puntos;
+    this->puntaje=puntaje;
+    QString numeroComoString = QString::number(puntaje);
+    ui->puntaje->setText(numeroComoString);
+
 }
 
 
@@ -64,5 +79,12 @@ void pantallajuego::on_rechazar_clicked()
 {
     cooldownBotones();
     iniciarAnimacionPersonaje(-ui->fondopersona->width());
+    puntaje=this->puntaje;
+    int puntos=this->nivel->NoDejarPasarPuntos();
+    puntaje+=puntos;
+    this->puntaje=puntaje;
+    QString numeroComoString = QString::number(puntaje);
+    ui->puntaje->setText(numeroComoString);
+
 }
 
