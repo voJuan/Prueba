@@ -34,6 +34,7 @@ public:
     void setupDocumentos();
     void setupDragAndDrop();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
+    QString obtenerLineaAleatoriaFake(LectorArchivos *lector);
     bool eventFilter(QObject *obj, QEvent *event);
     QString getTipoPersonaje();
     int DejarPasarPuntos();
