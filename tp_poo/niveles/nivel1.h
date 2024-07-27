@@ -36,6 +36,9 @@ public:
     QString obtenerLineaAleatoria(LectorArchivos *lector);
     bool eventFilter(QObject *obj, QEvent *event);
     QString getTipoPersonaje();
+    int DejarPasarPuntos();
+    int NoDejarPasarPuntos();
+    void GenerarPersonajes();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
