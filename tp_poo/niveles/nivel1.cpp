@@ -47,8 +47,6 @@ nivel1::~nivel1()
 
 void nivel1::setupDocumentos()
 {
-
-
     QVBoxLayout *layout = new QVBoxLayout(this);
     reglas = new QLabel("Cargando...", this);
     nacionalidad = new QLabel("Cargando...", this);
@@ -63,9 +61,6 @@ void nivel1::setupDocumentos()
     duracion->setStyleSheet("background-color: lightgray; color: black;");
     estado_civil->setStyleSheet("background-color: lightgray; color: black;");
 
-
-
-
     layout->addWidget(reglas);
     layout->addWidget(nacionalidad);
     layout->addWidget(fecha_de_nacimiento);
@@ -74,12 +69,6 @@ void nivel1::setupDocumentos()
     layout->addWidget(estado_civil);
 
     setLayout(layout);
-
-   // personajeAbst *personaje;
-    //personaje =  personajeAbst::crearPersonajeAleatorio();
-    //QString tipo=personaje->getTipo();
-   // reglas->setText(this->personaje->getTipo());
-
 
 }
 
@@ -91,14 +80,11 @@ void nivel1::SetDoc(){
         this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
         this->duracion->setText(obtenerLineaAleatoria(lectorDur));
         this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-        // mostrar_documentos();
-        // setupDragAndDrop();
         return;
     }
     else {
         this->reglas->setText("no dejar pasar");
         QRandomGenerator *numRandom = QRandomGenerator::global();
-        // Genera un índice aleatorio entre 0 y tope - 1
         int num = numRandom->bounded(5) + 1;
         switch (num) {
         case 1:
@@ -152,7 +138,6 @@ QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector)
 
     int tope = lector->getTopeArray();
     QRandomGenerator *numRandom = QRandomGenerator::global();
-    // Genera un índice aleatorio entre 0 y tope - 1
     int index = numRandom->bounded(tope);
     QString text = lector->getArray()[index];
     return text;
@@ -198,15 +183,11 @@ QString nivel1::getTipoPersonaje()
 int nivel1::DejarPasarPuntos(){
      if (this->personaje->getDejarPasar()==true){
         GenerarPersonajes();
-
         return personaje->getPuntos();
     }
     else {
-
-         GenerarPersonajes();
-
-        return this->personaje->getSacarPunto()*-1;
-
+          GenerarPersonajes();
+         return this->personaje->getSacarPunto()*-1;
     }
 }
 
@@ -228,7 +209,6 @@ void nivel1::GenerarPersonajes(){
     this->personaje=personaje;
     emit personajeCambiado(personaje->getTipo());
     SetDoc();
-
 
 }
 
