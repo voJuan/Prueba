@@ -91,3 +91,9 @@ void pantallajuego::on_rechazar_clicked()
 
 }
 
+
+void pantallajuego::on_reglas_clicked()
+{
+      QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
+}
+

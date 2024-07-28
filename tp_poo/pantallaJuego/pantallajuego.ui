@@ -30,7 +30,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">
-background-color: rgb(0, 0, 0);</string>
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -48,6 +48,56 @@ background-color: rgb(0, 0, 0);</string>
    <property name="spacing">
     <number>0</number>
    </property>
+   <item row="1" column="2">
+    <widget class="QWidget" name="marcoPersona" native="true">
+     <property name="styleSheet">
+      <string notr="true">#marcoPersona{
+	
+	
+	background-color: rgb(24, 24, 24);
+}</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QWidget" name="fondopersona" native="true">
+        <property name="styleSheet">
+         <string notr="true">#fondopersona{
+	
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondoje.jpg);
+}</string>
+        </property>
+        <widget class="QLabel" name="puntaje">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#puntaje{
+	background-color: rgb(255, 255, 255);
+}</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QWidget" name="radio" native="true">
+     <property name="styleSheet">
+      <string notr="true">#radio {
+	border-image: url(:/recursos/imagenes/Recursos/Imagenes/radio.jpg);
+}</string>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="3" rowspan="2">
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
@@ -63,6 +113,9 @@ background-color: rgb(0, 0, 0);</string>
         <property name="bottomMargin">
          <number>100</number>
         </property>
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout"/>
+        </item>
         <item row="0" column="1">
          <widget class="QPushButton" name="rechazar">
           <property name="minimumSize">
@@ -137,63 +190,29 @@ background-color: rgb(0, 0, 0);</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout"/>
+        <item row="1" column="0" colspan="3">
+         <widget class="QPushButton" name="reglas">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>REGLAS</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="2" column="2">
-    <widget class="QWidget" name="radio" native="true">
-     <property name="styleSheet">
-      <string notr="true">#radio {
-	border-image: url(:/recursos/imagenes/Recursos/Imagenes/radio.jpg);
-}</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QWidget" name="marcoPersona" native="true">
-     <property name="styleSheet">
-      <string notr="true">#marcoPersona{
-	
-	
-	background-color: rgb(24, 24, 24);
-}</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <widget class="QWidget" name="fondopersona" native="true">
-        <property name="styleSheet">
-         <string notr="true">#fondopersona{
-	
-	border-image: url(:/recursos/imagenes/Recursos/Imagenes/fondoje.jpg);
-}</string>
-        </property>
-        <widget class="QLabel" name="puntaje">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>10</y>
-           <width>81</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">#puntaje{
-	background-color: rgb(255, 255, 255);
-}</string>
-         </property>
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </widget>
-      </item>
-     </layout>
-    </widget>
    </item>
   </layout>
  </widget>

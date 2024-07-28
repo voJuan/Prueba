@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QString>
 #include <QVBoxLayout>
+#include <QMessageBox>
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
 QT_BEGIN_NAMESPACE
@@ -41,6 +42,7 @@ private slots:
 
     void on_aceptar_clicked();
     void on_rechazar_clicked();
+    void on_reglas_clicked();
 };
 
 #endif // PANTALLAJUEGO_H
