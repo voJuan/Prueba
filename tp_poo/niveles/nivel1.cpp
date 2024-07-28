@@ -38,14 +38,68 @@ nivel1::~nivel1()
 
 void nivel1::setupDocumentos()
 {
-    if (reglas && nacionalidad && fecha_de_nacimiento && tipo_visita && duracion && estado_civil) {
-        reglas->setText(personaje->getTipo());
-        nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-        fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-        tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-        duracion->setText(obtenerLineaAleatoria(lectorDur));
-        estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-        return;
+    if (reglas) {
+        if(this->personaje->getDejarPasar()==true){
+            reglas->setText("dejar pasar");
+            nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+            fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+            tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+            duracion->setText(obtenerLineaAleatoria(lectorDur));
+            estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+            // mostrar_documentos();
+            // setupDragAndDrop();
+            return;
+        }
+        else {
+            reglas->setText("no dejar pasar");
+            QRandomGenerator *numRandom = QRandomGenerator::global();
+            // Genera un índice aleatorio entre 0 y tope - 1
+            int num = numRandom->bounded(6);
+            switch (num) {
+            case 1:
+                nacionalidad->setText(obtenerLineaAleatoriaFake(lectorNac));
+                fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+                tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+                duracion->setText(obtenerLineaAleatoria(lectorDur));
+                estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+                break;
+            case 2:
+                nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+                fecha_de_nacimiento->setText(obtenerLineaAleatoriaFake(lectorFech));
+                tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+                duracion->setText(obtenerLineaAleatoria(lectorDur));
+                estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+                break;
+            case 3:
+                nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+                fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+                tipo_visita->setText(obtenerLineaAleatoriaFake(lectorTipo));
+                duracion->setText(obtenerLineaAleatoria(lectorDur));
+                estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+                break;
+            case 4:
+                nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+                fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+                tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+                duracion->setText(obtenerLineaAleatoriaFake(lectorDur));
+                estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+                break;
+            case 5:
+                nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+                fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+                tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+                duracion->setText(obtenerLineaAleatoria(lectorDur));
+                estado_civil->setText(obtenerLineaAleatoriaFake(lectorEst));
+                break;
+
+            default:
+                break;
+            }
+
+            return;
+
+    }
+
     }
 
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -77,9 +131,9 @@ void nivel1::setupDocumentos()
    // personajeAbst *personaje;
     //personaje =  personajeAbst::crearPersonajeAleatorio();
     //QString tipo=personaje->getTipo();
-    reglas->setText(this->personaje->getTipo());
+   // reglas->setText(this->personaje->getTipo());
     if(this->personaje->getDejarPasar()==true){
-
+     reglas->setText("dejar pasar");
     nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
     fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
     tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
@@ -89,6 +143,7 @@ void nivel1::setupDocumentos()
    // setupDragAndDrop();
    }
     else {
+         reglas->setText("no dejar pasar");
         QRandomGenerator *numRandom = QRandomGenerator::global();
         // Genera un índice aleatorio entre 0 y tope - 1
         int num = numRandom->bounded(6);
@@ -229,10 +284,11 @@ void nivel1::GenerarPersonajes(){
     personajeAbst *personaje;
     personaje =  personajeAbst::crearPersonajeAleatorio();
     this->personaje=personaje;
+    emit personajeCambiado(personaje->getTipo());
     setupDocumentos();
     setupDragAndDrop();
 
-    emit personajeCambiado(personaje->getTipo());
+
 }
 
 
