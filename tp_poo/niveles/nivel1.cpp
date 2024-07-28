@@ -13,7 +13,14 @@ lectorNac(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad.txt"
 lectorFech(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento.txt")),
 lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt")),
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
-lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt"))
+lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
+//lectorRegFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
+lectorNacFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad_fake.txt")),
+lectorFechFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento_fake.txt")),
+lectorTipoFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita_fake.txt")),
+lectorDurFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion_fake.txt")),
+lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt"))
+
 //personaje(new personajeAbst())
 {
     ui->setupUi(this);
@@ -57,7 +64,7 @@ void nivel1::setupDocumentos()
             int num = numRandom->bounded(6);
             switch (num) {
             case 1:
-                nacionalidad->setText(obtenerLineaAleatoriaFake(lectorNac));
+                nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
                 fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
                 tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
                 duracion->setText(obtenerLineaAleatoria(lectorDur));
@@ -65,7 +72,7 @@ void nivel1::setupDocumentos()
                 break;
             case 2:
                 nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-                fecha_de_nacimiento->setText(obtenerLineaAleatoriaFake(lectorFech));
+                fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
                 tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
                 duracion->setText(obtenerLineaAleatoria(lectorDur));
                 estado_civil->setText(obtenerLineaAleatoria(lectorEst));
@@ -73,7 +80,7 @@ void nivel1::setupDocumentos()
             case 3:
                 nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
                 fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-                tipo_visita->setText(obtenerLineaAleatoriaFake(lectorTipo));
+                tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
                 duracion->setText(obtenerLineaAleatoria(lectorDur));
                 estado_civil->setText(obtenerLineaAleatoria(lectorEst));
                 break;
@@ -81,7 +88,7 @@ void nivel1::setupDocumentos()
                 nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
                 fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
                 tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-                duracion->setText(obtenerLineaAleatoriaFake(lectorDur));
+                duracion->setText(obtenerLineaAleatoria(lectorDurFake));
                 estado_civil->setText(obtenerLineaAleatoria(lectorEst));
                 break;
             case 5:
@@ -89,7 +96,7 @@ void nivel1::setupDocumentos()
                 fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
                 tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
                 duracion->setText(obtenerLineaAleatoria(lectorDur));
-                estado_civil->setText(obtenerLineaAleatoriaFake(lectorEst));
+                estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
                 break;
 
             default:
@@ -143,13 +150,13 @@ void nivel1::setupDocumentos()
    // setupDragAndDrop();
    }
     else {
-         reglas->setText("no dejar pasar");
+        reglas->setText("no dejar pasar");
         QRandomGenerator *numRandom = QRandomGenerator::global();
         // Genera un índice aleatorio entre 0 y tope - 1
         int num = numRandom->bounded(6);
         switch (num) {
         case 1:
-            nacionalidad->setText(obtenerLineaAleatoriaFake(lectorNac));
+            nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
             fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
             tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
             duracion->setText(obtenerLineaAleatoria(lectorDur));
@@ -157,7 +164,7 @@ void nivel1::setupDocumentos()
             break;
         case 2:
             nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            fecha_de_nacimiento->setText(obtenerLineaAleatoriaFake(lectorFech));
+            fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
             tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
             duracion->setText(obtenerLineaAleatoria(lectorDur));
             estado_civil->setText(obtenerLineaAleatoria(lectorEst));
@@ -165,7 +172,7 @@ void nivel1::setupDocumentos()
         case 3:
             nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
             fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            tipo_visita->setText(obtenerLineaAleatoriaFake(lectorTipo));
+            tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
             duracion->setText(obtenerLineaAleatoria(lectorDur));
             estado_civil->setText(obtenerLineaAleatoria(lectorEst));
             break;
@@ -173,7 +180,7 @@ void nivel1::setupDocumentos()
             nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
             fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
             tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            duracion->setText(obtenerLineaAleatoriaFake(lectorDur));
+            duracion->setText(obtenerLineaAleatoria(lectorDurFake));
             estado_civil->setText(obtenerLineaAleatoria(lectorEst));
             break;
         case 5:
@@ -181,7 +188,7 @@ void nivel1::setupDocumentos()
             fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
             tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
             duracion->setText(obtenerLineaAleatoria(lectorDur));
-            estado_civil->setText(obtenerLineaAleatoriaFake(lectorEst));
+            estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
             break;
 
         default:
@@ -196,24 +203,12 @@ void nivel1::setupDocumentos()
 QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector)
 {
 
-  //  int tope = lector->getTopeArray();
+    int tope = lector->getTopeArray();
     QRandomGenerator *numRandom = QRandomGenerator::global();
     // Genera un índice aleatorio entre 0 y tope - 1
-    int index = numRandom->bounded(10);
+    int index = numRandom->bounded(tope);
     QString text = lector->getArray()[index];
     return text;
-
-}
-QString nivel1::obtenerLineaAleatoriaFake(LectorArchivos *lector)
-{
-
-   int tope = lector->getTopeArray();
-   QRandomGenerator *numRandomFake = QRandomGenerator::global();
-   int min = 11;
-
-   int index = numRandomFake->bounded(min, tope);
-   lector->getArray()[index];
-    return lector->getArray()[index];
 
 }
 

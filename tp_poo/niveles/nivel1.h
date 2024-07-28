@@ -34,7 +34,6 @@ public:
     void setupDocumentos();
     void setupDragAndDrop();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
-    QString obtenerLineaAleatoriaFake(LectorArchivos *lector);
     bool eventFilter(QObject *obj, QEvent *event);
     QString getTipoPersonaje();
     int DejarPasarPuntos();
@@ -55,6 +54,12 @@ private:
     LectorArchivos *lectorTipo;
     LectorArchivos *lectorDur;
     LectorArchivos *lectorEst;
+    LectorArchivos *lectorRegFake;
+    LectorArchivos *lectorNacFake;
+    LectorArchivos *lectorFechFake;
+    LectorArchivos *lectorTipoFake;
+    LectorArchivos *lectorDurFake;
+    LectorArchivos *lectorEstFake;
    // QQueue<std::unique_ptr<Personaje>> personajes;
     QLabel* reglas;
     QLabel*nacionalidad;
