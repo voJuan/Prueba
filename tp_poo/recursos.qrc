@@ -31,5 +31,10 @@
         <file>Recursos/Archivos/tipo_visita.txt</file>
         <file>Recursos/Archivos/aldeano_aleatorio.txt</file>
         <file>Recursos/Archivos/revolucionario_aleatorio.txt</file>
+        <file>Recursos/Archivos/duracion_fake.txt</file>
+        <file>Recursos/Archivos/estado_civil_fake.txt</file>
+        <file>Recursos/Archivos/fecha_nacimiento_fake.txt</file>
+        <file>Recursos/Archivos/nacionalidad_fake.txt</file>
+        <file>Recursos/Archivos/tipo_visita_fake.txt</file>
     </qresource>
 </RCC>

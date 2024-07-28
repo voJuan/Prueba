@@ -1,0 +1,10 @@
+chileno
+peruano
+boliviano
+ingles(alias: el que no salta)
+uruguayo
+colombiano
+dominicano
+español
+italiano
+francés

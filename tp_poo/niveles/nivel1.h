@@ -39,6 +39,7 @@ public:
     int DejarPasarPuntos();
     int NoDejarPasarPuntos();
     void GenerarPersonajes();
+    void SetDoc();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
@@ -54,6 +55,12 @@ private:
     LectorArchivos *lectorTipo;
     LectorArchivos *lectorDur;
     LectorArchivos *lectorEst;
+    LectorArchivos *lectorRegFake;
+    LectorArchivos *lectorNacFake;
+    LectorArchivos *lectorFechFake;
+    LectorArchivos *lectorTipoFake;
+    LectorArchivos *lectorDurFake;
+    LectorArchivos *lectorEstFake;
    // QQueue<std::unique_ptr<Personaje>> personajes;
     QLabel* reglas;
     QLabel*nacionalidad;
