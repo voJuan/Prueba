@@ -8,13 +8,3 @@ argentino
 brasilero
 paraguayo
 argentino
-chileno
-peruano
-boliviano
-ingles(marica)
-uruguayo
-colombiano
-dominicano
-español
-italiano
-francés

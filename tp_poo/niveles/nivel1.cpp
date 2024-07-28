@@ -13,12 +13,21 @@ lectorNac(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad.txt"
 lectorFech(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento.txt")),
 lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt")),
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
-lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt"))
+lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
+//lectorRegFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
+lectorNacFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad_fake.txt")),
+lectorFechFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento_fake.txt")),
+lectorTipoFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita_fake.txt")),
+lectorDurFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion_fake.txt")),
+lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt")),
+personaje(nullptr)
+
 //personaje(new personajeAbst())
 {
     ui->setupUi(this);
     // lector(new LectorArchivos(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt"))
-
+   setupDocumentos();
+   setupDragAndDrop();
    GenerarPersonajes();
 
 }
@@ -38,16 +47,6 @@ nivel1::~nivel1()
 
 void nivel1::setupDocumentos()
 {
-    if (reglas && nacionalidad && fecha_de_nacimiento && tipo_visita && duracion && estado_civil) {
-        reglas->setText(personaje->getTipo());
-        nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-        fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-        tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-        duracion->setText(obtenerLineaAleatoria(lectorDur));
-        estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-        return;
-    }
-
     QVBoxLayout *layout = new QVBoxLayout(this);
     reglas = new QLabel("Cargando...", this);
     nacionalidad = new QLabel("Cargando...", this);
@@ -62,9 +61,6 @@ void nivel1::setupDocumentos()
     duracion->setStyleSheet("background-color: lightgray; color: black;");
     estado_civil->setStyleSheet("background-color: lightgray; color: black;");
 
-
-
-
     layout->addWidget(reglas);
     layout->addWidget(nacionalidad);
     layout->addWidget(fecha_de_nacimiento);
@@ -74,18 +70,66 @@ void nivel1::setupDocumentos()
 
     setLayout(layout);
 
-   // personajeAbst *personaje;
-    //personaje =  personajeAbst::crearPersonajeAleatorio();
-    //QString tipo=personaje->getTipo();
+}
 
-    reglas->setText(this->personaje->getTipo());
-    nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-    fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-    tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-    duracion->setText(obtenerLineaAleatoria(lectorDur));
-    estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-   // mostrar_documentos();
-   // setupDragAndDrop();
+void nivel1::SetDoc(){
+    if(this->personaje->getDejarPasar()==true){
+        this->reglas->setText("dejar pasar");
+        this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+        this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+        this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+        this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+        this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+        return;
+    }
+    else {
+        this->reglas->setText("no dejar pasar");
+        QRandomGenerator *numRandom = QRandomGenerator::global();
+        int num = numRandom->bounded(5) + 1;
+        switch (num) {
+        case 1:
+            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
+            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+            break;
+        case 2:
+            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
+            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+            break;
+        case 3:
+            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
+            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+            break;
+        case 4:
+            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+            this->duracion->setText(obtenerLineaAleatoria(lectorDurFake));
+            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+            break;
+        case 5:
+            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+             this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+             this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+             this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+             this->estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
+            break;
+
+        default:
+            break;
+        }
+        return;
+    }
+
+
 }
 
 
@@ -94,12 +138,12 @@ QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector)
 
     int tope = lector->getTopeArray();
     QRandomGenerator *numRandom = QRandomGenerator::global();
-    // Genera un índice aleatorio entre 0 y tope - 1
     int index = numRandom->bounded(tope);
     QString text = lector->getArray()[index];
     return text;
 
 }
+
 void nivel1::setupDragAndDrop()
 {
     for (QLabel* label : {reglas, nacionalidad, fecha_de_nacimiento, tipo_visita, duracion, estado_civil}) {
@@ -139,15 +183,11 @@ QString nivel1::getTipoPersonaje()
 int nivel1::DejarPasarPuntos(){
      if (this->personaje->getDejarPasar()==true){
         GenerarPersonajes();
-
         return personaje->getPuntos();
     }
     else {
-
-         GenerarPersonajes();
-
-        return this->personaje->getSacarPunto()*-1;
-
+          GenerarPersonajes();
+         return this->personaje->getSacarPunto()*-1;
     }
 }
 
@@ -167,10 +207,9 @@ void nivel1::GenerarPersonajes(){
     personajeAbst *personaje;
     personaje =  personajeAbst::crearPersonajeAleatorio();
     this->personaje=personaje;
-    setupDocumentos();
-    setupDragAndDrop();
-
     emit personajeCambiado(personaje->getTipo());
+    SetDoc();
+
 }
 
 
