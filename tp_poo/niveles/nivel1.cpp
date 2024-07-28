@@ -19,7 +19,8 @@ lectorNacFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad_
 lectorFechFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento_fake.txt")),
 lectorTipoFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita_fake.txt")),
 lectorDurFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion_fake.txt")),
-lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt"))
+lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt")),
+personaje(nullptr)
 
 //personaje(new personajeAbst())
 {
@@ -61,7 +62,7 @@ void nivel1::setupDocumentos()
             reglas->setText("no dejar pasar");
             QRandomGenerator *numRandom = QRandomGenerator::global();
             // Genera un índice aleatorio entre 0 y tope - 1
-            int num = numRandom->bounded(6);
+            int num = numRandom->bounded(5) + 1;
             switch (num) {
             case 1:
                 nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
@@ -153,7 +154,7 @@ void nivel1::setupDocumentos()
         reglas->setText("no dejar pasar");
         QRandomGenerator *numRandom = QRandomGenerator::global();
         // Genera un índice aleatorio entre 0 y tope - 1
-        int num = numRandom->bounded(6);
+        int num = numRandom->bounded(5) + 1;
         switch (num) {
         case 1:
             nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
