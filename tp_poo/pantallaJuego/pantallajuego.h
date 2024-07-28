@@ -5,6 +5,8 @@
 #include <QTimer>
 #include <QString>
 #include <QVBoxLayout>
+#include <QMessageBox>
+#include <QFontDatabase>
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
 #include <QMessageBox>
@@ -30,8 +32,11 @@ private:
     nivel1 *nivel;
     QVBoxLayout *layoutPersonaje;
     int puntaje;
-    void anadirPersonaje(QWidget *parent);
+    bool textovisible = false;
 
+    void anadirPersonaje(QWidget *parent);
+    void textoVisible(QLabel *texto);
+    void agregarFuentes(QString direccionFuente, QLabel *Texto);
 protected:
 public slots:
     void iniciarAnimacionPersonaje(int deltaX);
@@ -43,6 +48,7 @@ private slots:
 
     void on_aceptar_clicked();
     void on_rechazar_clicked();
+    void on_reglas_clicked();
 };
 
 #endif // PANTALLAJUEGO_H

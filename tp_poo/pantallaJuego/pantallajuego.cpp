@@ -9,7 +9,10 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
     nivel(new nivel1(this))
 {
+
     ui->setupUi(this);
+    agregarFuentes(":/archivos.txt/Recursos/Archivos/AtariSmall.ttf", ui->reglasTxt);
+    ui->reglasTxt->hide();
     anadirPersonaje(ui->fondopersona);
     //QVBoxLayout *layout = new QVBoxLayout(this);
 
@@ -39,6 +42,25 @@ void pantallajuego::anadirPersonaje(QWidget *parent)
         personaje->setimagenPersonaje(parent,imagen);
         personaje->show();
     }
+}
+
+void pantallajuego::textoVisible(QLabel *texto)
+{
+    if(textovisible){
+        texto->hide();
+        textovisible = false;
+    }else if (textovisible == false){
+        texto->show();
+        textovisible = true;
+    }
+}
+
+void pantallajuego::agregarFuentes(QString direccionFuente, QLabel *Texto)
+{
+    int id = QFontDatabase::addApplicationFont(direccionFuente);
+    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+    QFont fuente(family);
+    Texto->setFont(fuente);
 }
 void pantallajuego::iniciarAnimacionPersonaje(int deltaX)
 {
@@ -117,5 +139,12 @@ void pantallajuego::mostrarMensajePerdida()
         // Por defecto, no se hace nada
         break;
     }
+}
+
+
+void pantallajuego::on_reglas_clicked()
+{
+    textoVisible(ui->reglasTxt);
+    //QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
 }
 
