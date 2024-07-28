@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
+#include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class pantallajuego;
@@ -37,6 +38,7 @@ public slots:
 private slots:
     void cooldownBotones();
     void activarBotones();
+    void mostrarMensajePerdida();
     void ActualizarPuntaje(int puntos);
 
     void on_aceptar_clicked();
