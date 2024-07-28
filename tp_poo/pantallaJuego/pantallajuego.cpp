@@ -9,6 +9,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
     nivel(new nivel1(this))
 {
     ui->setupUi(this);
+    ui->reglasTxt->hide();
     anadirPersonaje(ui->fondopersona);
     //QVBoxLayout *layout = new QVBoxLayout(this);
 
@@ -37,6 +38,18 @@ void pantallajuego::anadirPersonaje(QWidget *parent)
         personaje->setParent(parent);
         personaje->setimagenPersonaje(parent,imagen);
         personaje->show();
+    }
+}
+
+void pantallajuego::textoVisible(QLabel *texto)
+{
+
+    if(textovisible){
+        texto->hide();
+        textovisible = false;
+    }else{
+        texto->show();
+        textovisible = true;
     }
 }
 void pantallajuego::iniciarAnimacionPersonaje(int deltaX)
@@ -70,6 +83,7 @@ void pantallajuego::on_aceptar_clicked()
     iniciarAnimacionPersonaje(ui->fondopersona->width());
     puntaje=this->puntaje;
     int puntos=this->nivel->DejarPasarPuntos();
+    qDebug() << "PUNTAJE BOTON ACEPTAR: " << puntos;
     puntaje+=puntos;
     this->puntaje=puntaje;
     QString numeroComoString = QString::number(puntaje);
@@ -84,6 +98,7 @@ void pantallajuego::on_rechazar_clicked()
     iniciarAnimacionPersonaje(-ui->fondopersona->width());
     puntaje=this->puntaje;
     int puntos=this->nivel->NoDejarPasarPuntos();
+    qDebug() << "PUNTAJE BOTON RECHAZAR: " << puntos;
     puntaje+=puntos;
     this->puntaje=puntaje;
     QString numeroComoString = QString::number(puntaje);
@@ -94,6 +109,7 @@ void pantallajuego::on_rechazar_clicked()
 
 void pantallajuego::on_reglas_clicked()
 {
-      QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
+    textoVisible(ui->reglasTxt);
+    //QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
 }
 

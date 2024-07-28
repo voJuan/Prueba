@@ -31,7 +31,8 @@ private:
     QVBoxLayout *layoutPersonaje;
     int puntaje;
     void anadirPersonaje(QWidget *parent);
-
+    void textoVisible(QLabel *texto);
+    bool textovisible = true;
 protected:
 public slots:
     void iniciarAnimacionPersonaje(int deltaX);
