@@ -8,7 +8,9 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
     nivel(new nivel1(this))
 {
+
     ui->setupUi(this);
+    agregarFuentes(":/archivos.txt/Recursos/Archivos/AtariSmall.ttf", ui->reglasTxt);
     ui->reglasTxt->hide();
     anadirPersonaje(ui->fondopersona);
     //QVBoxLayout *layout = new QVBoxLayout(this);
@@ -43,14 +45,21 @@ void pantallajuego::anadirPersonaje(QWidget *parent)
 
 void pantallajuego::textoVisible(QLabel *texto)
 {
-
     if(textovisible){
         texto->hide();
         textovisible = false;
-    }else{
+    }else if (textovisible == false){
         texto->show();
         textovisible = true;
     }
+}
+
+void pantallajuego::agregarFuentes(QString direccionFuente, QLabel *Texto)
+{
+    int id = QFontDatabase::addApplicationFont(direccionFuente);
+    QString family = QFontDatabase::applicationFontFamilies(id).at(0);
+    QFont fuente(family);
+    Texto->setFont(fuente);
 }
 void pantallajuego::iniciarAnimacionPersonaje(int deltaX)
 {
@@ -80,7 +89,6 @@ void pantallajuego::activarBotones()
 void pantallajuego::on_aceptar_clicked()
 {
     cooldownBotones();
-    iniciarAnimacionPersonaje(ui->fondopersona->width());
     puntaje=this->puntaje;
     int puntos=this->nivel->DejarPasarPuntos();
     qDebug() << "PUNTAJE BOTON ACEPTAR: " << puntos;
@@ -95,7 +103,6 @@ void pantallajuego::on_aceptar_clicked()
 void pantallajuego::on_rechazar_clicked()
 {
     cooldownBotones();
-    iniciarAnimacionPersonaje(-ui->fondopersona->width());
     puntaje=this->puntaje;
     int puntos=this->nivel->NoDejarPasarPuntos();
     qDebug() << "PUNTAJE BOTON RECHAZAR: " << puntos;

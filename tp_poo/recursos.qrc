@@ -31,5 +31,6 @@
         <file>Recursos/Archivos/tipo_visita.txt</file>
         <file>Recursos/Archivos/aldeano_aleatorio.txt</file>
         <file>Recursos/Archivos/revolucionario_aleatorio.txt</file>
+        <file>Recursos/Archivos/AtariSmall.ttf</file>
     </qresource>
 </RCC>

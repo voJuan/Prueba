@@ -6,6 +6,7 @@
 #include <QString>
 #include <QVBoxLayout>
 #include <QMessageBox>
+#include <QFontDatabase>
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
 QT_BEGIN_NAMESPACE
@@ -30,9 +31,11 @@ private:
     nivel1 *nivel;
     QVBoxLayout *layoutPersonaje;
     int puntaje;
+    bool textovisible = false;
+
     void anadirPersonaje(QWidget *parent);
     void textoVisible(QLabel *texto);
-    bool textovisible = true;
+    void agregarFuentes(QString direccionFuente, QLabel *Texto);
 protected:
 public slots:
     void iniciarAnimacionPersonaje(int deltaX);
