@@ -39,6 +39,7 @@ public:
     int DejarPasarPuntos();
     int NoDejarPasarPuntos();
     void GenerarPersonajes();
+    void SetDoc();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
