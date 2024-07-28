@@ -37,7 +37,7 @@ public slots:
 private slots:
     void cooldownBotones();
     void activarBotones();
-
+    void ActualizarPuntaje(int puntos);
 
     void on_aceptar_clicked();
     void on_rechazar_clicked();

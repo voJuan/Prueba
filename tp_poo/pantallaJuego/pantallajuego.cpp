@@ -68,12 +68,9 @@ void pantallajuego::on_aceptar_clicked()
 {
     cooldownBotones();
     iniciarAnimacionPersonaje(ui->fondopersona->width());
-    puntaje=this->puntaje;
     int puntos=this->nivel->DejarPasarPuntos();
-    puntaje+=puntos;
-    this->puntaje=puntaje;
-    QString numeroComoString = QString::number(puntaje);
-    ui->puntaje->setText(numeroComoString);
+    ActualizarPuntaje(puntos);
+
 
 }
 
@@ -82,12 +79,17 @@ void pantallajuego::on_rechazar_clicked()
 {
     cooldownBotones();
     iniciarAnimacionPersonaje(-ui->fondopersona->width());
-    puntaje=this->puntaje;
     int puntos=this->nivel->NoDejarPasarPuntos();
+    ActualizarPuntaje(puntos);
+
+}
+void pantallajuego::ActualizarPuntaje(int puntos){
+    puntaje=this->puntaje;
     puntaje+=puntos;
+    if(puntaje<0){
+        puntaje=0;
+    }
     this->puntaje=puntaje;
     QString numeroComoString = QString::number(puntaje);
     ui->puntaje->setText(numeroComoString);
-
 }
-
