@@ -22,7 +22,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
     puntaje=this->puntaje;
     ui->horizontalLayout->addWidget(nivel);
     puntaje=0;
-    ui->puntaje->setText(QString("1%").arg(puntaje));
+    ui->puntaje->setText(QString("0").arg(puntaje));
     connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
 }
 
@@ -109,8 +109,14 @@ void pantallajuego::on_rechazar_clicked()
 void pantallajuego::ActualizarPuntaje(int puntos){
     puntaje=this->puntaje;
     puntaje+=puntos;
-    if(puntaje<0){
+    int multas=this->nivel->GetMultas();
+    if(multas>this->MaxMulta && multas<4){
+    this->MaxMulta=multas;
+     mostrarMensajeMulta();
+    }
+    if((puntaje<0) || (multas==4)) {
         puntaje=0;
+        this->nivel->SetMulta();
         mostrarMensajePerdida();
     }
     this->puntaje=puntaje;
@@ -140,7 +146,29 @@ void pantallajuego::mostrarMensajePerdida()
         break;
     }
 }
+void pantallajuego::mostrarMensajeMulta()
+{
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setWindowTitle("multa");
+    msgBox.setText("sumaste una multa");
+    msgBox.setInformativeText("recuerda que con 4 multas pierdes");
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.setDefaultButton(QMessageBox::Ok);
 
+    // Mostrar el mensaje de advertencia
+    int ret = msgBox.exec();
+
+    // Puedes manejar la respuesta del usuario si es necesario
+    switch (ret) {
+    case QMessageBox::Ok:
+        // Aquí puedes hacer algo si el usuario presiona OK
+        break;
+    default:
+        // Por defecto, no se hace nada
+        break;
+    }
+}
 
 void pantallajuego::on_reglas_clicked()
 {

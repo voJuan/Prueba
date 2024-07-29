@@ -195,7 +195,11 @@ int nivel1::DejarPasarPuntos(){
     }
     else {
           GenerarPersonajes();
+        int multas=this->multa;
+        qDebug() << "cant mult" << multas;
+        this->multa=multas +1;
          return this->personaje->getSacarPunto()*-1;
+
     }
 }
 
@@ -206,10 +210,20 @@ int nivel1::NoDejarPasarPuntos(){
     }
     else {
         GenerarPersonajes();
+        int multas=this->multa;
+        qDebug() << "cant mult" << multas;
+        this->multa=multas +1;
         return this->personaje->getSacarPunto()*-1;
+
     }
 
 
+}
+void nivel1::SetMulta(){
+    this->multa=0;
+}
+int nivel1::GetMultas(){
+    return this->multa;
 }
 void nivel1::GenerarPersonajes(){
     personajeAbst *personaje;

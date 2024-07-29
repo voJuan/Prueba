@@ -42,6 +42,8 @@ public:
     int NoDejarPasarPuntos();
     void GenerarPersonajes();
     void SetDoc();
+    int GetMultas();
+    void SetMulta();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
@@ -50,6 +52,7 @@ signals:
     void personajeCambiado(QString tipoPersonaje);
 protected:
     Ui::nivel1 *ui;
+    int multa = 0;
     personajeAbst *personaje;
     LectorArchivos *lectorReg;
     LectorArchivos *lectorNac;
