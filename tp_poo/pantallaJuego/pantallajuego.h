@@ -32,6 +32,7 @@ private:
     nivel1 *nivel;
     QVBoxLayout *layoutPersonaje;
     int puntaje;
+    int MaxMulta = 0;
     bool textovisible = false;
 
     void anadirPersonaje(QWidget *parent);
@@ -44,6 +45,7 @@ private slots:
     void cooldownBotones();
     void activarBotones();
     void mostrarMensajePerdida();
+    void mostrarMensajeMulta();
     void ActualizarPuntaje(int puntos);
 
     void on_aceptar_clicked();
