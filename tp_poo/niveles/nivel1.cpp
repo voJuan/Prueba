@@ -74,7 +74,7 @@ void nivel1::setupDocumentos()
 
 void nivel1::SetDoc(){
     if(this->personaje->getDejarPasar()==true){
-        this->reglas->setText("dejar pasar");
+        this->reglas->setText("...");
         this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
         this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
         this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
@@ -83,7 +83,7 @@ void nivel1::SetDoc(){
         return;
     }
     else {
-        this->reglas->setText("no dejar pasar");
+        this->reglas->setText("..");
         QRandomGenerator *numRandom = QRandomGenerator::global();
         int num = numRandom->bounded(5) + 1;
         switch (num) {
