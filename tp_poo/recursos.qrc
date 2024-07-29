@@ -20,6 +20,8 @@
         <file>Recursos/Imagenes/rechazarAbajo.png</file>
         <file>Recursos/Imagenes/rachazar.png</file>
         <file>Recursos/Imagenes/elChe.jpg</file>
+        <file>Recursos/Imagenes/adorni.png</file>
+        <file>Recursos/Imagenes/trump.png</file>
     </qresource>
     <qresource prefix="/archivos.txt">
         <file>Recursos/Imagenes/imagenes-personajes.txt</file>
@@ -37,5 +39,7 @@
         <file>Recursos/Archivos/fecha_nacimiento_fake.txt</file>
         <file>Recursos/Archivos/nacionalidad_fake.txt</file>
         <file>Recursos/Archivos/tipo_visita_fake.txt</file>
+        <file>Recursos/Archivos/diplomatico.txt</file>
+        <file>Recursos/Archivos/refugiado.txt</file>
     </qresource>
 </RCC>

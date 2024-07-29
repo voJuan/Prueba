@@ -20,10 +20,10 @@ void PersonajeUI::setimagenPersonaje(QWidget *parent, QString tipoPj)
         direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Archivos/revolucionario_aleatorio.txt");
     }
     else if(tipoPj == "diplomatico"){
-        direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt");
+        direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Archivos/diplomatico.txt");
     }
     else if(tipoPj == "refugiado"){
-        direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt");
+        direccionImagen = generarImagenPj(":/archivos.txt/Recursos/Archivos/refugiado.txt");
     }
     if (!direccionImagen.isEmpty()) {
         imagenPersonaje->setScaledContents(true);
