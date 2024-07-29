@@ -19,16 +19,19 @@ lectorNacFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad_
 lectorFechFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento_fake.txt")),
 lectorTipoFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita_fake.txt")),
 lectorDurFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion_fake.txt")),
-lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt")),
-personaje(nullptr)
-
+lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt"))
 //personaje(new personajeAbst())
 {
     ui->setupUi(this);
-    // lector(new LectorArchivos(":/archivos.txt/Recursos/Imagenes/imagenes-personajes.txt"))
-   setupDocumentos();
-   setupDragAndDrop();
-   GenerarPersonajes();
+    personaje = nullptr;
+
+    nacionalidades = lectorNac->getArray();
+    topeNac = lectorNac->getTopeArray();
+
+
+    setupDocumentos();
+    setupDragAndDrop();
+    GenerarPersonajes();
 
 }
 
@@ -133,9 +136,14 @@ void nivel1::SetDoc(){
 }
 
 
-QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector)
+QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector) //QString * lista, int TopeLista,
 {
-
+    /*
+    QRandomGenerator numRandom;
+    int indice = numRandom.bounded(TopeLista);
+    return lista[indice];
+    */
+    // ############ EJEMPLO ####################
     int tope = lector->getTopeArray();
     QRandomGenerator *numRandom = QRandomGenerator::global();
     int index = numRandom->bounded(tope);

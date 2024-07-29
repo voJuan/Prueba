@@ -15,7 +15,9 @@
 #include <QVBoxLayout>
 #include <QDragEnterEvent>
 #include <QDropEvent>
+#include <QLabel>
 #include "../personajes/personajeabst.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class nivel1;
@@ -46,7 +48,7 @@ public:
 
 signals:
     void personajeCambiado(QString tipoPersonaje);
-private:
+protected:
     Ui::nivel1 *ui;
     personajeAbst *personaje;
     LectorArchivos *lectorReg;
@@ -61,6 +63,10 @@ private:
     LectorArchivos *lectorTipoFake;
     LectorArchivos *lectorDurFake;
     LectorArchivos *lectorEstFake;
+
+    QString * nacionalidades;
+    int topeNac;
+
    // QQueue<std::unique_ptr<Personaje>> personajes;
     QLabel* reglas;
     QLabel*nacionalidad;
@@ -71,12 +77,6 @@ private:
     QMouseEvent* mouseEvent;
     QMouseEvent* event;
     QVBoxLayout *layout;
-protected:
-public slots:
-
-private slots:
-
-
 };
 
 #endif // NIVEL1_H
