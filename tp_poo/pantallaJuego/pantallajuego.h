@@ -45,7 +45,7 @@ private slots:
     void activarBotones();
     void mostrarMensajePerdida();
     void ActualizarPuntaje(int puntos);
-
+    void PasarNivel();
     void on_aceptar_clicked();
     void on_rechazar_clicked();
     void on_reglas_clicked();

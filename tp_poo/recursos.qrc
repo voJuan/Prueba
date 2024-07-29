@@ -37,5 +37,9 @@
         <file>Recursos/Archivos/fecha_nacimiento_fake.txt</file>
         <file>Recursos/Archivos/nacionalidad_fake.txt</file>
         <file>Recursos/Archivos/tipo_visita_fake.txt</file>
+        <file>Recursos/Archivos/residencia.txt</file>
+        <file>Recursos/Archivos/residencia_fake.txt</file>
+        <file>Recursos/Archivos/proposito.txt</file>
+        <file>Recursos/Archivos/proposito_fake.txt</file>
     </qresource>
 </RCC>

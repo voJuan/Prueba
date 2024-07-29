@@ -1,6 +1,6 @@
 #include "pantallajuego.h"
 #include "ui_pantallajuego.h"
-
+#include "../niveles/nivel2.h"
 
 pantallajuego::pantallajuego(QWidget *parent) :
     QWidget(parent),
@@ -16,13 +16,13 @@ pantallajuego::pantallajuego(QWidget *parent) :
     anadirPersonaje(ui->fondopersona);
     //QVBoxLayout *layout = new QVBoxLayout(this);
 
-    nivel1 *nivel = new nivel1(this);
+    nivel1 *nivel = new nivel2(this);
     this->nivel=nivel;
     this->puntaje=0;
     puntaje=this->puntaje;
-    ui->horizontalLayout->addWidget(nivel);
+    ui->horizontalLayout->addWidget(this->nivel);
     puntaje=0;
-    ui->puntaje->setText(QString("1%").arg(puntaje));
+    ui->puntaje->setText(QString("0").arg(puntaje));
     connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
 }
 
@@ -92,6 +92,7 @@ void pantallajuego::on_aceptar_clicked()
     cooldownBotones();
     iniciarAnimacionPersonaje(ui->fondopersona->width());
     int puntos=this->nivel->DejarPasarPuntos();
+   // PasarNivel();
     ActualizarPuntaje(puntos);
 
 
@@ -103,8 +104,19 @@ void pantallajuego::on_rechazar_clicked()
     cooldownBotones();
     iniciarAnimacionPersonaje(-ui->fondopersona->width());
     int puntos=this->nivel->NoDejarPasarPuntos();
+    //PasarNivel();
     ActualizarPuntaje(puntos);
 
+
+}
+
+void pantallajuego::PasarNivel(){
+    if(this->puntaje==50){
+        delete this->nivel;
+        this->nivel=new nivel2();
+
+        ui->horizontalLayout->addWidget(this->nivel);
+    }
 }
 void pantallajuego::ActualizarPuntaje(int puntos){
     puntaje=this->puntaje;
