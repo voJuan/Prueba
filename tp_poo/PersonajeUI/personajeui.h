@@ -24,14 +24,14 @@ public slots:
 protected:
     void resizeEvent(QResizeEvent *event) override;
 private:
-    QLabel *imagenPersonaje;
-    QPropertyAnimation *animacionPersonaje;
-    LectorArchivos *lector;
-    bool estadoAnimacion;
+    QLabel *imagenPersonaje; //guardara la imagen del personaje.
+    QPropertyAnimation *animacionPersonaje; //contiene los metodos para animar la imagen.
+    LectorArchivos *lector; //Contiene los metodos para leer archivos.
+    bool estadoAnimacion; //Bandera para saber cuando hay una animacion en ejecucion
     QString generarImagenPj(QString direccionPj);
 
 private slots:
-    void gestionAnimacion();
+
 
 signals:
 };

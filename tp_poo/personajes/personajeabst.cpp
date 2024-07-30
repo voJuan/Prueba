@@ -6,18 +6,18 @@
 
 personajeAbst::personajeAbst() : puntos(0), sacarPunto(0), dejarPasar(dejarPasarAleatorio()) {}
 
-QString personajeAbst::getTipo() const { return tipo; }
-int personajeAbst::getPuntos() const { return puntos; }
-int personajeAbst::getSacarPunto() const { return sacarPunto; }
-bool personajeAbst::getDejarPasar() const { return dejarPasar; }
+QString personajeAbst::getTipo() const { return tipo; } //Para que otras clases obtengan el tipo del personaje.
+int personajeAbst::getPuntos() const { return puntos; } //Para que otras clases obtengan los puntos a ganar
+int personajeAbst::getSacarPunto() const { return sacarPunto; } //Para que otras clases obtengan los puntos a perder
+bool personajeAbst::getDejarPasar() const { return dejarPasar; } //Para que otras clases obtengan el bool F = Se debe rechazar, V = Se debe aceptar
 
 
-void personajeAbst::setTipo(const QString &tipo) { this->tipo = tipo; }
-void personajeAbst::setPuntos(int puntos) { this->puntos = puntos; }
-void personajeAbst::setSacarPunto(int sacarPunto) { this->sacarPunto = sacarPunto; }
-void personajeAbst::setDejarPasar(bool dejarPasar) { this->dejarPasar = dejarPasar; }
+void personajeAbst::setTipo(const QString &tipo) { this->tipo = tipo; } //Para establecer el tipo
+void personajeAbst::setPuntos(int puntos) { this->puntos = puntos; } //Para establecer el tipo
+void personajeAbst::setSacarPunto(int sacarPunto) { this->sacarPunto = sacarPunto; } //Para establecer el tipo
+void personajeAbst::setDejarPasar(bool dejarPasar) { this->dejarPasar = dejarPasar; } //Para establecer el tipo
 
-
+//Este metodo de forma aleatoria desreferencia de la clase base a la clase derivada (Downcasting)
 personajeAbst* personajeAbst::crearPersonajeAleatorio() {
     int tipoPersonaje = QRandomGenerator::global()->bounded(4);
 
@@ -29,7 +29,7 @@ personajeAbst* personajeAbst::crearPersonajeAleatorio() {
     default: return nullptr; // Esto no debería ocurrir
     }
 }
-
+//Se elige de forma aleatoria si el personaje debera pasar o no por el control fronterizo.
 bool personajeAbst::dejarPasarAleatorio(){
    int dejarPasar = QRandomGenerator::global()->bounded(2);
     switch (dejarPasar) {

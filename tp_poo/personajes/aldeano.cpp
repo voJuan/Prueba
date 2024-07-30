@@ -1,10 +1,8 @@
 #include "aldeano.h"
 
 aldeano::aldeano() {
-    setTipo("aldeano");
-    setPuntos(10);
-    setSacarPunto(15);
-    setDejarPasar(dejarPasarAleatorio());
-
+    setTipo("aldeano"); //Se settea el tipo que corresponde.
+    setPuntos(10); //Los puntos que se ganaran.
+    setSacarPunto(15); //Los puntos que se perderan.
+    setDejarPasar(dejarPasarAleatorio()); //Booleano que determina si tiene los documentos en regla o no.
 }
-

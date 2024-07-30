@@ -2,6 +2,7 @@
 #define PERSONAJEABST_H
 #include <QString>
 #include <QRandomGenerator>
+//CLASE BASE, LAS CLASES DERIVADAS HEREDARAN LOS ATRIBUTOS QUE CONFORMAN EL PERSONAJE Y SUS METODOS.
 class personajeAbst
 {
 public:
