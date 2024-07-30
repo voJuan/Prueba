@@ -46,8 +46,9 @@ nivel1::~nivel1()
     delete ui;
 
 }
+//############ funciones para documentos ###############################
 
-
+// Crear la etiquetas para documentos
 void nivel1::setupDocumentos()
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -74,10 +75,12 @@ void nivel1::setupDocumentos()
     setLayout(layout);
 
 }
-
+// setear texto dependiendo el bool de dejarPasar llamando la funcion obtenerLineaAleatoria(),
+//en el caso que sea falso pasarle un puntero a Lector de Archivo que contenga datos incorrectos,
+// elegir aleatoriamente que dato va a estar incorrecto
 void nivel1::SetDoc(){
     if(this->personaje->getDejarPasar()==true){
-        this->reglas->setText("dejar pasar");
+        this->reglas->setText("DOCUMENTOS:");
         this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
         this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
         this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
@@ -86,7 +89,7 @@ void nivel1::SetDoc(){
         return;
     }
     else {
-        this->reglas->setText("no dejar pasar");
+        this->reglas->setText("DOCUMENTOS:");
         QRandomGenerator *numRandom = QRandomGenerator::global();
         int num = numRandom->bounded(5) + 1;
         switch (num) {
@@ -135,7 +138,7 @@ void nivel1::SetDoc(){
 
 }
 
-
+// dado un puntero a LectorArchivos elegir una linea aleatoriamente
 QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector) //QString * lista, int TopeLista,
 {
     /*
@@ -151,7 +154,9 @@ QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector) //QString * lista,
     return text;
 
 }
-
+//############ configuracion de las etiquetas #######################
+// función que configura la funcionalidad de arrastrar y
+//soltar (drag and drop) para las etiquetas de cada documento
 void nivel1::setupDragAndDrop()
 {
     for (QLabel* label : {reglas, nacionalidad, fecha_de_nacimiento, tipo_visita, duracion, estado_civil}) {
@@ -159,7 +164,7 @@ void nivel1::setupDragAndDrop()
         label->installEventFilter(this);
     }
 }
-
+// interceptar eventos del Mouse en las etiquetas de la clase
 bool nivel1::eventFilter(QObject *obj, QEvent *event)
 {
     QLabel *label = qobject_cast<QLabel *>(obj);
@@ -181,19 +186,35 @@ bool nivel1::eventFilter(QObject *obj, QEvent *event)
 
     return QWidget::eventFilter(obj, event);
 }
+//################################################################
+//######################################################################################
 
+//########################## funciones para personajes #################################
+// Get para saber el tipo del personaje creado
 QString nivel1::getTipoPersonaje()
 {
     QString tipo = personaje->getTipo();
     return tipo;
 }
+// generar personaje de forma aleatoria y llamar a la funcio para setear documentos
+void nivel1::GenerarPersonajes(){
+    personajeAbst *personaje;
+    personaje =  personajeAbst::crearPersonajeAleatorio();
+    this->personaje=personaje;
+    emit personajeCambiado(personaje->getTipo());
+    SetDoc();
 
+}
+//#####################################################################################
+//###################### logica para sumar puntos #####################################
+
+//Verifica que el bool de dejarPasar sea true para sumar puntos y en el caso que no restar puntos
 int nivel1::DejarPasarPuntos(){
      if (this->personaje->getDejarPasar()==true){
         GenerarPersonajes();
         return personaje->getPuntos();
     }
-    else {
+     else {
           GenerarPersonajes();
         int multas=this->multa;
         qDebug() << "cant mult" << multas;
@@ -202,7 +223,7 @@ int nivel1::DejarPasarPuntos(){
 
     }
 }
-
+//Verifica que el bool de NoDejarPasar sea false para sumar puntos y en el caso que no restar puntos
 int nivel1::NoDejarPasarPuntos(){
     if (this->personaje->getDejarPasar()==false){
          GenerarPersonajes();
@@ -219,20 +240,17 @@ int nivel1::NoDejarPasarPuntos(){
 
 
 }
+//#######################################################################################
+// ########################### manejo de multas #########################################
+// Setear multa en 0
 void nivel1::SetMulta(){
     this->multa=0;
 }
+// Get para saber cuantas multas hay acumuladas
 int nivel1::GetMultas(){
     return this->multa;
 }
-void nivel1::GenerarPersonajes(){
-    personajeAbst *personaje;
-    personaje =  personajeAbst::crearPersonajeAleatorio();
-    this->personaje=personaje;
-    emit personajeCambiado(personaje->getTipo());
-    SetDoc();
-
-}
+//#######################################################################################
 
 
 
