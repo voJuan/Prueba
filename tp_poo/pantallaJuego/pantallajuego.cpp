@@ -14,7 +14,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
     agregarFuentes(":/archivos.txt/Recursos/Archivos/AtariSmall.ttf", ui->reglasTxt);
     ui->reglasTxt->hide();
     anadirPersonaje(ui->fondopersona);
-    //QVBoxLayout *layout = new QVBoxLayout(this);
+
 
     nivel1 *nivel = new nivel1(this);
     this->nivel=nivel;
@@ -31,7 +31,8 @@ pantallajuego::~pantallajuego()
     delete personaje;
     delete ui;
 }
-
+//############### Mostrar personajes y textos en pantalla ############################
+//Cambiar imagen segun su tipo
 void pantallajuego::anadirPersonaje(QWidget *parent)
 {
     if(personaje)
@@ -43,7 +44,7 @@ void pantallajuego::anadirPersonaje(QWidget *parent)
         personaje->show();
     }
 }
-
+// mostrar texto
 void pantallajuego::textoVisible(QLabel *texto)
 {
     if(textovisible){
@@ -54,7 +55,7 @@ void pantallajuego::textoVisible(QLabel *texto)
         textovisible = true;
     }
 }
-
+// Agregar fuentes para el texto
 void pantallajuego::agregarFuentes(QString direccionFuente, QLabel *Texto)
 {
     int id = QFontDatabase::addApplicationFont(direccionFuente);
@@ -62,6 +63,7 @@ void pantallajuego::agregarFuentes(QString direccionFuente, QLabel *Texto)
     QFont fuente(family);
     Texto->setFont(fuente);
 }
+// llamar a animacion del personaje
 void pantallajuego::iniciarAnimacionPersonaje(int deltaX)
 {
     if(personaje){
@@ -69,43 +71,48 @@ void pantallajuego::iniciarAnimacionPersonaje(int deltaX)
     }
     else return;
 }
-
+//###############################################################################
+//####### metodos botones #######################################################
+// desabilitar botones
 void pantallajuego::cooldownBotones()
 {
     deshabilitarBoton=new QTimer(this);
     connect(deshabilitarBoton, &QTimer::timeout, this, &pantallajuego::activarBotones);
-    deshabilitarBoton->start(2000); // 2000 ms = 2 segundos
+    deshabilitarBoton->start(2000);
     ui->aceptar->setEnabled(false);
     ui->rechazar->setEnabled(false);
 }
-
+// activar botones
 void pantallajuego::activarBotones()
 {
     ui->aceptar->setEnabled(true);
     ui->rechazar->setEnabled(true);
     deshabilitarBoton->stop();
-    deshabilitarBoton->deleteLater(); // Limpiar el timer después de su uso
+    deshabilitarBoton->deleteLater();
 }
-
+//#### Llamar a funciones para actualizar puntaje y generar nuevos personajes ####
 void pantallajuego::on_aceptar_clicked()
 {
     cooldownBotones();
     iniciarAnimacionPersonaje(ui->fondopersona->width());
-    int puntos=this->nivel->DejarPasarPuntos();
+    int puntos=this->nivel->DejarPasarPuntos();//verificar si coincide la accion de dejar pasar con el bool de personaje(true)
     ActualizarPuntaje(puntos);
 
 
 }
 
-
+// Llamar a funciones para actualizar puntaje y generar nuevos personajes ###
 void pantallajuego::on_rechazar_clicked()
 {
     cooldownBotones();
     iniciarAnimacionPersonaje(-ui->fondopersona->width());
-    int puntos=this->nivel->NoDejarPasarPuntos();
+    int puntos=this->nivel->NoDejarPasarPuntos();//verificar si coincide la accion de dejar pasar con el bool de personaje(false)
     ActualizarPuntaje(puntos);
 
 }
+//################################################################################
+//############### actualizar puntajes y multas ###################################
+//actualizar puntaje en pantalla y llamar a funciones para mostrar multas y mostrar mensaje de juego terminado
 void pantallajuego::ActualizarPuntaje(int puntos){
     puntaje=this->puntaje;
     puntaje+=puntos;
@@ -123,6 +130,7 @@ void pantallajuego::ActualizarPuntaje(int puntos){
     QString numeroComoString = QString::number(puntaje);
     ui->puntaje->setText(numeroComoString);
 }
+// mostrar mensaje al perder
 void pantallajuego::mostrarMensajePerdida()
 {
     QMessageBox msgBox;
@@ -146,6 +154,7 @@ void pantallajuego::mostrarMensajePerdida()
         break;
     }
 }
+// Motrar mensaje al obtener una multa
 void pantallajuego::mostrarMensajeMulta()
 {
     QMessageBox msgBox;
@@ -158,18 +167,16 @@ void pantallajuego::mostrarMensajeMulta()
 
     // Mostrar el mensaje de advertencia
     int ret = msgBox.exec();
-
-    // Puedes manejar la respuesta del usuario si es necesario
     switch (ret) {
     case QMessageBox::Ok:
-        // Aquí puedes hacer algo si el usuario presiona OK
+
         break;
     default:
-        // Por defecto, no se hace nada
         break;
     }
 }
-
+//#############################################################################
+// Hacer visible texto de reglas
 void pantallajuego::on_reglas_clicked()
 {
     textoVisible(ui->reglasTxt);
