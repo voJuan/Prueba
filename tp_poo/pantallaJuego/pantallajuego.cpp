@@ -31,7 +31,8 @@ pantallajuego::~pantallajuego()
     delete personaje;
     delete ui;
 }
-
+//############### Mostrar personajes y textos en pantalla ############################
+//
 void pantallajuego::anadirPersonaje(QWidget *parent)
 {
     if(personaje)
@@ -69,12 +70,13 @@ void pantallajuego::iniciarAnimacionPersonaje(int deltaX)
     }
     else return;
 }
-
+//###############################################################################
+//####### metodos botones #######################################################
 void pantallajuego::cooldownBotones()
 {
     deshabilitarBoton=new QTimer(this);
     connect(deshabilitarBoton, &QTimer::timeout, this, &pantallajuego::activarBotones);
-    deshabilitarBoton->start(2000); // 2000 ms = 2 segundos
+    deshabilitarBoton->start(2000);
     ui->aceptar->setEnabled(false);
     ui->rechazar->setEnabled(false);
 }
@@ -84,9 +86,9 @@ void pantallajuego::activarBotones()
     ui->aceptar->setEnabled(true);
     ui->rechazar->setEnabled(true);
     deshabilitarBoton->stop();
-    deshabilitarBoton->deleteLater(); // Limpiar el timer después de su uso
+    deshabilitarBoton->deleteLater();
 }
-
+//#### Llamar a funciones para actualizar puntaje y generar nuevos personajes ####
 void pantallajuego::on_aceptar_clicked()
 {
     cooldownBotones();
@@ -97,7 +99,7 @@ void pantallajuego::on_aceptar_clicked()
 
 }
 
-
+// Llamar a funciones para actualizar puntaje y generar nuevos personajes
 void pantallajuego::on_rechazar_clicked()
 {
     cooldownBotones();
@@ -106,6 +108,9 @@ void pantallajuego::on_rechazar_clicked()
     ActualizarPuntaje(puntos);
 
 }
+//################################################################################
+//############### actualizar puntajes y multas ###################################
+//actualizar puntaje en pantalla y llamar a funciones para mostrar multas y mostrar mensaje de juego terminado
 void pantallajuego::ActualizarPuntaje(int puntos){
     puntaje=this->puntaje;
     puntaje+=puntos;
@@ -123,6 +128,7 @@ void pantallajuego::ActualizarPuntaje(int puntos){
     QString numeroComoString = QString::number(puntaje);
     ui->puntaje->setText(numeroComoString);
 }
+// mostrar mensaje al perder
 void pantallajuego::mostrarMensajePerdida()
 {
     QMessageBox msgBox;
@@ -146,6 +152,7 @@ void pantallajuego::mostrarMensajePerdida()
         break;
     }
 }
+// Motrar mensaje al obtener una multa
 void pantallajuego::mostrarMensajeMulta()
 {
     QMessageBox msgBox;
@@ -158,18 +165,16 @@ void pantallajuego::mostrarMensajeMulta()
 
     // Mostrar el mensaje de advertencia
     int ret = msgBox.exec();
-
-    // Puedes manejar la respuesta del usuario si es necesario
     switch (ret) {
     case QMessageBox::Ok:
-        // Aquí puedes hacer algo si el usuario presiona OK
+
         break;
     default:
-        // Por defecto, no se hace nada
         break;
     }
 }
-
+//#############################################################################
+// Hacer visible texto de reglas
 void pantallajuego::on_reglas_clicked()
 {
     textoVisible(ui->reglasTxt);
