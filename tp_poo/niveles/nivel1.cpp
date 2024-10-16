@@ -1,4 +1,4 @@
-#include "nivel1.h"
+#include "nivel1.h" //hola
 #include "ui_nivel1.h"
 #include <QDrag>
 #include <QMimeData>
