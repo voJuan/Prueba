@@ -18,7 +18,7 @@ nivel2::nivel2(QWidget *parent)
 }
 
 void nivel2::setupDocumentos(){
-    nivel1::setupDocumentos(); // Llama al método base para configurar etiquetas
+     // Llama al método base para configurar etiquetas
 
     equipo = new QLabel("Cargando...", this);
     equipo->setStyleSheet("background-color: lightgray; color: black;");

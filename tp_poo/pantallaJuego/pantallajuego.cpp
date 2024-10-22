@@ -14,18 +14,21 @@ pantallajuego::pantallajuego(QWidget *parent) :
     ui->setupUi(this);
     agregarFuentes(":/archivos.txt/Recursos/Archivos/AtariSmall.ttf", ui->reglasTxt);
     ui->reglasTxt->hide();
-    anadirPersonaje(ui->fondopersona);
+
 
 
 
     int numeroNivel=2;
     cambiarNivel(numeroNivel);
+
+
     this->puntaje=0;
     puntaje=this->puntaje;
 
     puntaje=0;
     ui->puntaje->setText(QString("0").arg(puntaje));
-
+    connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
+    anadirPersonaje(ui->fondopersona);
 }
 
 pantallajuego::~pantallajuego()
@@ -56,7 +59,7 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
          // Asegurarse de que se ajuste el espacio
 
         // Conectar señales y slots nuevamente si es necesario
-        connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
+
     }
 }
 
