@@ -33,7 +33,7 @@ public:
     int DejarPasar();
     int NoDejarPasar();
    // virtual void mostrar_documentos();
-    void setupDocumentos();
+    virtual void setupDocumentos();
     void setupDragAndDrop();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
     bool eventFilter(QObject *obj, QEvent *event);
@@ -41,7 +41,7 @@ public:
     int DejarPasarPuntos();
     int NoDejarPasarPuntos();
     void GenerarPersonajes();
-    void SetDoc();
+    virtual void SetDoc();
     int GetMultas();
     void SetMulta();
     // *personajeAbst crearPersonajeAleatorio();

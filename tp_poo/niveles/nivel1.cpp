@@ -5,7 +5,7 @@
 
 nivel1::nivel1(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::nivel1)
+
    ,
 
 lectorReg(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
@@ -22,7 +22,7 @@ lectorDurFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion_fake
 lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt"))
 //personaje(new personajeAbst())
 {
-    ui->setupUi(this);
+   layout = new QVBoxLayout(this);
     personaje = nullptr;
 
     nacionalidades = lectorNac->getArray();
@@ -51,28 +51,28 @@ nivel1::~nivel1()
 // Crear la etiquetas para documentos
 void nivel1::setupDocumentos()
 {
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    reglas = new QLabel("Cargando...", this);
-    nacionalidad = new QLabel("Cargando...", this);
-    fecha_de_nacimiento = new QLabel("Cargando...", this);
-    tipo_visita = new QLabel("Cargando...", this);
-    duracion = new QLabel("Cargando...", this);
-    estado_civil = new QLabel("Cargando...", this);
-    reglas->setStyleSheet("background-color: lightgray; color: black;");
-    nacionalidad->setStyleSheet("background-color: lightgray; color: black;");
-    fecha_de_nacimiento->setStyleSheet("background-color: lightgray; color: black;");
-    tipo_visita->setStyleSheet("background-color: lightgray; color: black;");
-    duracion->setStyleSheet("background-color: lightgray; color: black;");
-    estado_civil->setStyleSheet("background-color: lightgray; color: black;");
+    // Asumiendo que reglas es un puntero a QLabel
+        reglas = new QLabel("Cargando...", this);
+        nacionalidad = new QLabel("Cargando...", this);
+        fecha_de_nacimiento = new QLabel("Cargando...", this);
+        tipo_visita = new QLabel("Cargando...", this);
+        duracion = new QLabel("Cargando...", this);
+        estado_civil = new QLabel("Cargando...", this);
+        reglas->setStyleSheet("background-color: lightgray; color: black;");
+        nacionalidad->setStyleSheet("background-color: lightgray; color: black;");
+        fecha_de_nacimiento->setStyleSheet("background-color: lightgray; color: black;");
+        tipo_visita->setStyleSheet("background-color: lightgray; color: black;");
+        duracion->setStyleSheet("background-color: lightgray; color: black;");
+        estado_civil->setStyleSheet("background-color: lightgray; color: black;");
 
-    layout->addWidget(reglas);
-    layout->addWidget(nacionalidad);
-    layout->addWidget(fecha_de_nacimiento);
-    layout->addWidget(tipo_visita);
-    layout->addWidget(duracion);
-    layout->addWidget(estado_civil);
+        layout->addWidget(reglas);
+        layout->addWidget(nacionalidad);
+        layout->addWidget(fecha_de_nacimiento);
+        layout->addWidget(tipo_visita);
+        layout->addWidget(duracion);
+        layout->addWidget(estado_civil);
+        setLayout(layout);
 
-    setLayout(layout);
 
 }
 // setear texto dependiendo el bool de dejarPasar llamando la funcion obtenerLineaAleatoria(),
