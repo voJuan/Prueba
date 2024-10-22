@@ -18,7 +18,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
 
 
-    int numeroNivel=1;
+    int numeroNivel=2;
     cambiarNivel(numeroNivel);
 
 
