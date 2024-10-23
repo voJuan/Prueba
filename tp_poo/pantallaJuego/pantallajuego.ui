@@ -111,7 +111,7 @@
       <item>
        <widget class="QLabel" name="reglasTxt">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Nacionalidad permitida: &lt;/span&gt;&lt;span style=&quot; font-size:14pt; color:#448da3;&quot;&gt;argentino&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:14pt; color:#1ab509;&quot;&gt;brasilero&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt; y &lt;/span&gt;&lt;span style=&quot; font-size:14pt; color:#b80404;&quot;&gt;paraguayo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Fecha de nacimiento: persona mayores de edad al &lt;/span&gt;&lt;span style=&quot; font-size:14pt; color:#ffffff;&quot;&gt;01/07/24&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Tipo de visita: &lt;/span&gt;&lt;span style=&quot; font-size:14pt; color:#00065f;&quot;&gt;trabajo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Duración de la estancia: &lt;/span&gt;&lt;span style=&quot; font-size:14pt; color:#0b005b;&quot;&gt;mas de 1 semana&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Estado civil: &lt;/span&gt;&lt;span style=&quot; font-size:14pt; color:#00025e;&quot;&gt;casado divorciado o viudo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Nacionalidad permitida: &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#448da3;&quot;&gt;argentino&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#1ab509;&quot;&gt;brasilero&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; y &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#b80404;&quot;&gt;paraguayo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Fecha de nacimiento: persona mayores de edad al &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;01/07/24&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Tipo de visita: &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#00065f;&quot;&gt;trabajo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Duración de la estancia: &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#0b005b;&quot;&gt;mas de 1 semana&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Estado civil: &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#00025e;&quot;&gt;casado divorciado o viudo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -134,9 +134,6 @@
          <number>100</number>
         </property>
         <item row="0" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout"/>
-        </item>
-        <item row="0" column="1">
          <widget class="QPushButton" name="rechazar">
           <property name="minimumSize">
            <size>
@@ -176,6 +173,9 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout"/>
+        </item>
         <item row="0" column="2">
          <widget class="QPushButton" name="aceptar">
           <property name="minimumSize">
@@ -210,7 +210,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0" colspan="3">
+        <item row="3" column="0">
          <widget class="QPushButton" name="reglas">
           <property name="minimumSize">
            <size>

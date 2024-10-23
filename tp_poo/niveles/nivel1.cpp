@@ -3,6 +3,7 @@
 #include <QDrag>
 #include <QMimeData>
 #include <QFile>
+#include <QDebug>
 #include <QTextStream>
 nivel1::nivel1(QWidget *parent)
     : QWidget(parent)
@@ -167,8 +168,10 @@ void nivel1::setupDocumentos()
 //en el caso que sea falso pasarle un puntero a Lector de Archivo que contenga datos incorrectos,
 // elegir aleatoriamente que dato va a estar incorrecto
 void nivel1::SetDoc(){
-    if(this->personaje->getDejarPasar()==true){
-        this->reglas->setText("DOCUMENTOS:");
+    this->reglas->setText("DOCUMENTOS:");
+
+    // Si el personaje puede pasar, todos los documentos son verdaderos
+    if (this->personaje->getDejarPasar()) {
         this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
         this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
         this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
@@ -176,55 +179,67 @@ void nivel1::SetDoc(){
         this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
         return;
     }
-    else {
-        this->reglas->setText("DOCUMENTOS:");
-        QRandomGenerator *numRandom = QRandomGenerator::global();
-        int num = numRandom->bounded(5) + 1;
-        switch (num) {
-        case 1:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 2:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 3:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 4:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDurFake));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 5:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-             this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-             this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-             this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-             this->estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
-            break;
 
-        default:
-            break;
-        }
-        return;
+    // Si no puede pasar, asignamos documentos falsos de manera aleatoria
+    int numDocumentos = 5;
+    std::vector<int> documentosFalsos;
+    int cantidadFalsos = QRandomGenerator::global()->bounded(1, numDocumentos+1);
+    qDebug() << "Cantidad de documentos falsos seleccionados: " << cantidadFalsos;
+    // Seleccionar índices de documentos falsos
+    for (int i = 0; i < cantidadFalsos; ++i) {
+        int indiceFalso;
+        do {
+            indiceFalso = QRandomGenerator::global()->bounded(0, numDocumentos);
+        } while (std::find(documentosFalsos.begin(), documentosFalsos.end(), indiceFalso) != documentosFalsos.end());
+        documentosFalsos.push_back(indiceFalso);
     }
 
-
+    // Asignación de documentos (falsos o verdaderos según el índice)
+    for (int i = 0; i < numDocumentos; ++i) {
+        if (std::find(documentosFalsos.begin(), documentosFalsos.end(), i) != documentosFalsos.end()) {
+            // Documento falso
+            switch (i) {
+            case 0:
+                this->nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
+                break;
+            case 1:
+                this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
+                break;
+            case 2:
+                this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
+                break;
+            case 3:
+                this->duracion->setText(obtenerLineaAleatoria(lectorDurFake));
+                break;
+            case 4:
+                this->estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
+                break;
+            }
+        } else {
+            // Documento verdadero
+            switch (i) {
+            case 0:
+                this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+                break;
+            case 1:
+                this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+                break;
+            case 2:
+                this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+                break;
+            case 3:
+                this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+                break;
+            case 4:
+                this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+                break;
+            }
+        }
+    }
 }
+
+
+
 
 // dado un puntero a LectorArchivos elegir una linea aleatoriamente
 QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector) //QString * lista, int TopeLista,
