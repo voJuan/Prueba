@@ -2,7 +2,8 @@
 #include "ui_nivel1.h"
 #include <QDrag>
 #include <QMimeData>
-
+#include <QFile>
+#include <QTextStream>
 nivel1::nivel1(QWidget *parent)
     : QWidget(parent)
 
@@ -28,7 +29,7 @@ lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_
     nacionalidades = lectorNac->getArray();
     topeNac = lectorNac->getTopeArray();
 
-
+    LeerTxtNivel();
     setupDocumentos();
     setupDragAndDrop();
     GenerarPersonajes();
@@ -47,7 +48,93 @@ nivel1::~nivel1()
 
 }
 //############ funciones para documentos ###############################
+//       LEER TXT
+void nivel1::LeerTxtNivel(){
+    QFile archivo(":/archivos.txt/Recursos/Archivos/nivel1.txt");
+    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning("No se pudo abrir el archivo de reglas.");
+        return;
+    }
 
+    QTextStream in(&archivo);
+    while (!in.atEnd()) {
+        QString linea = in.readLine();
+
+        // Parsear la línea: por ejemplo "nacionalidad: 1, 2, 5"
+        QStringList partes = linea.split(":");
+        if (partes.size() < 2) continue;  // Si no hay suficientes partes, continuar
+
+        QString campo = partes[0].trimmed();
+        QStringList numeros = partes[1].split(",");
+
+        // Convertir cada número en un entero y agregarlo al vector correspondiente
+        vector<int> lineas;
+        for (const QString &num : numeros) {
+            lineas.push_back(num.trimmed().toInt());
+        }
+
+        // Guardar el vector de líneas válidas en el mapa
+        this->lineasValidas[campo] = lineas;
+    }
+
+    archivo.close();
+}
+
+
+QString nivel1::obtenerReglas(){
+    QString reglasTexto = "";
+
+    // Nacionalidad permitida
+    reglasTexto += "Nacionalidad permitida:\n";
+    if (lineasValidas.find("nacionalidad") != lineasValidas.end()) {
+        for (int indice : lineasValidas["nacionalidad"]) {
+            reglasTexto += "- " + lectorNac->getArray()[indice] + "\n"; // Usamos el índice para obtener la línea
+        }
+    }
+
+    // Fecha de nacimiento permitida
+    reglasTexto += "Fecha de nacimiento permitida:\n";
+    if (lineasValidas.find("fecha_de_nacimiento") != lineasValidas.end()) {
+        for (int indice : lineasValidas["fecha_de_nacimiento"]) {
+            reglasTexto += "- " + lectorFech->getArray()[indice] + "\n";
+        }
+    }
+
+    // Tipo de visita permitido
+    reglasTexto += "Tipo de visita permitido:\n";
+    if (lineasValidas.find("tipo_visita") != lineasValidas.end()) {
+        for (int indice : lineasValidas["tipo_visita"]) {
+            reglasTexto += "- " + lectorTipo->getArray()[indice] + "\n";
+        }
+    }
+
+    // Duración de estancia permitida
+    reglasTexto += "Duración de la estancia permitida:\n";
+    if (lineasValidas.find("duracion") != lineasValidas.end()) {
+        for (int indice : lineasValidas["duracion"]) {
+            reglasTexto += "- " + lectorDur->getArray()[indice] + "\n";
+        }
+    }
+
+    // Estado civil permitido
+    reglasTexto += "Estado civil permitido:\n";
+    if (lineasValidas.find("estado_civil") != lineasValidas.end()) {
+        for (int indice : lineasValidas["estado_civil"]) {
+            reglasTexto += "- " + lectorEst->getArray()[indice] + "\n";
+        }
+    }
+
+    return reglasTexto;
+}
+
+
+
+
+
+
+
+
+//..
 // Crear la etiquetas para documentos
 void nivel1::setupDocumentos()
 {
@@ -58,6 +145,7 @@ void nivel1::setupDocumentos()
         tipo_visita = new QLabel("Cargando...", this);
         duracion = new QLabel("Cargando...", this);
         estado_civil = new QLabel("Cargando...", this);
+
         reglas->setStyleSheet("background-color: lightgray; color: black;");
         nacionalidad->setStyleSheet("background-color: lightgray; color: black;");
         fecha_de_nacimiento->setStyleSheet("background-color: lightgray; color: black;");

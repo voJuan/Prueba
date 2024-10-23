@@ -55,7 +55,8 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
 
     if (nivel) {
         // Asegura que el widget se expanda
-        ui->horizontalLayout->addWidget(nivel); // Agregar el nuevo nivel al layout
+        ui->horizontalLayout->addWidget(nivel);     // Agregar el nuevo nivel al layout
+         this->mostrarReglas();
          // Asegurarse de que se ajuste el espacio
 
         // Conectar señales y slots nuevamente si es necesario
@@ -208,10 +209,22 @@ void pantallajuego::mostrarMensajeMulta()
     }
 }
 //#############################################################################
+//   Mostrar reglas
+void pantallajuego::mostrarReglas() {
+    if (nivel) {
+        QString reglas = nivel->obtenerReglas(); // Obtener las reglas del nivel
+        ui->reglasTxt->setText(reglas);          // Mostrar las reglas en el QLabel
+        ui->reglasTxt->show();                   // Asegurarse de que el QLabel esté visible
+    }
+}
+
+
+//
 // Hacer visible texto de reglas
 void pantallajuego::on_reglas_clicked()
 {
     textoVisible(ui->reglasTxt);
+    this->mostrarReglas();
     //QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
 }
 

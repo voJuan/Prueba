@@ -48,6 +48,7 @@ private slots:
     void activarBotones();
     void mostrarMensajePerdida();
     void mostrarMensajeMulta();
+    void mostrarReglas();
     void ActualizarPuntaje(int puntos);
 
     void on_aceptar_clicked();
