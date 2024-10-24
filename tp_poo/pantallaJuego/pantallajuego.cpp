@@ -18,7 +18,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
 
 
-    int numeroNivel=1;
+    int numeroNivel=2;
     cambiarNivel(numeroNivel);
 
 
@@ -159,6 +159,7 @@ void pantallajuego::ActualizarPuntaje(int puntos){
         this->nivel->SetMulta();
         mostrarMensajePerdida();
     }
+
     this->puntaje=puntaje;
     QString numeroComoString = QString::number(puntaje);
     ui->puntaje->setText(numeroComoString);
