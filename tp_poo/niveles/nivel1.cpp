@@ -15,13 +15,9 @@ lectorNac(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad.txt"
 lectorFech(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento.txt")),
 lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt")),
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
-lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
+lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt"))
 //lectorRegFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
-lectorNacFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad_fake.txt")),
-lectorFechFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento_fake.txt")),
-lectorTipoFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita_fake.txt")),
-lectorDurFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion_fake.txt")),
-lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt"))
+
 //personaje(new personajeAbst())
 {
    layout = new QVBoxLayout(this);
@@ -39,13 +35,13 @@ lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_
 
 nivel1::~nivel1()
 {
-    delete lectorReg;
-    delete lectorNac;
-    delete lectorFech;
-    delete lectorTipo;
-    delete lectorDur;
-    delete lectorEst;
-    delete ui;
+  //  delete lectorReg;
+    //delete lectorNac;
+    //delete lectorFech;
+   // delete lectorTipo;
+    //delete lectorDur;
+    //delete lectorEst;
+    //delete ui;
 
 }
 //############ funciones para documentos ###############################
@@ -332,13 +328,20 @@ QString nivel1::getTipoPersonaje()
 }
 // generar personaje de forma aleatoria y llamar a la funcio para setear documentos
 void nivel1::GenerarPersonajes(){
-    personajeAbst *personaje;
-    personaje =  personajeAbst::crearPersonajeAleatorio();
-    this->personaje=personaje;
-    emit personajeCambiado(personaje->getTipo());
-    SetDoc();
+    personajeAbst *personaje = personajeAbst::crearPersonajeAleatorio();
+    this->personaje = personaje;
 
+    if (personaje != nullptr) {
+        emit personajeCambiado(personaje->getTipo());
+        SetDoc();
+    } else {
+        // Manejo del caso donde personaje es nullptr
+        //std::cerr << "Error: El personaje es un puntero nulo." << std::endl;
+        // Puedes añadir lógica adicional aquí si es necesario
+    }
 }
+
+
 //#####################################################################################
 //###################### logica para sumar puntos #####################################
 

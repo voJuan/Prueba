@@ -5,7 +5,7 @@ nivel2::nivel2(QWidget *parent)
     : nivel1(parent)
 
 {
-    personaje = nullptr;
+   // personaje = nullptr;
 
     nacionalidades = lectorNac->getArray();
     topeNac = lectorNac->getTopeArray();
@@ -40,60 +40,73 @@ void nivel2::setupDocumentos(){
 
 void nivel2::SetDoc(){
     this->equipo->setText("nivel2");
-    if(this->personaje->getDejarPasar()==true){
-        this->reglas->setText("DOCUMENTOS:");
-        this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-        this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-        this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-        this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-        this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+    this->reglas->setText("DOCUMENTOS:");
+
+    // Si el personaje puede pasar, todos los documentos son verdaderos
+    if (this->personaje->getDejarPasar()) {
+        this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], false));
+        this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], false));
+        this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], false));
+        this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], false));
+        this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], false));
         return;
     }
-    else {
-        this->reglas->setText("DOCUMENTOS:");
-        QRandomGenerator *numRandom = QRandomGenerator::global();
-        int num = numRandom->bounded(5) + 1;
-        switch (num) {
-        case 1:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 2:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 3:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 4:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDurFake));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 5:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
-            break;
 
-        default:
-            break;
+    // Si no puede pasar, asignamos documentos falsos de manera aleatoria
+    int numDocumentos = 5;
+    std::vector<int> documentosFalsos;
+    int cantidadFalsos = QRandomGenerator::global()->bounded(1, numDocumentos+1);
+    qDebug() << "Cantidad de documentos falsos seleccionados: " << cantidadFalsos;
+    // Seleccionar índices de documentos falsos
+    for (int i = 0; i < cantidadFalsos; ++i) {
+        int indiceFalso;
+        do {
+            indiceFalso = QRandomGenerator::global()->bounded(0, numDocumentos);
+        } while (std::find(documentosFalsos.begin(), documentosFalsos.end(), indiceFalso) != documentosFalsos.end());
+        documentosFalsos.push_back(indiceFalso);
+    }
+
+    // Asignación de documentos (falsos o verdaderos según el índice)
+    for (int i = 0; i < numDocumentos; ++i) {
+        if (std::find(documentosFalsos.begin(), documentosFalsos.end(), i) != documentosFalsos.end()) {
+            // Documento falso
+            switch (i) {
+            case 0:
+                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true));
+                break;
+            case 1:
+                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true));
+                break;
+            case 2:
+                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true));
+                break;
+            case 3:
+                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true));
+                break;
+            case 4:
+                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true));
+                break;
+            }
+        } else {
+            // Documento verdadero
+            switch (i) {
+            case 0:
+                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], false));
+                break;
+            case 1:
+                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], false));
+                break;
+            case 2:
+                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], false));
+                break;
+            case 3:
+                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], false));
+                break;
+            case 4:
+                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], false));
+                break;
+            }
         }
-        return;
     }
 
 

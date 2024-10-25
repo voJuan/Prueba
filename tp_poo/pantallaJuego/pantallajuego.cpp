@@ -29,7 +29,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
     puntaje=0;
 
     ui->puntaje->setText(QString("0").arg(puntaje));
-    connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
+    //connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
     anadirPersonaje(ui->fondopersona);
 
     // Inicializar el temporizador para actualizar el tiempo visual en pantalla
@@ -65,14 +65,20 @@ void pantallajuego::actualizarTiempoPantalla() {
     }
 }
 void pantallajuego::verificarProgreso() {
+    // Asegúrate de que el puntaje no sea negativo antes de la verificación
+    if (this->puntaje < 0) {
+        this->puntaje = 0; // Restablecer a cero si es negativo
+    }
+
     if (this->puntaje >= 200) {
-        this->puntaje==0;
-        this->numeroNivel=2;
-        cambiarNivel(this->numeroNivel);  // Pasar al siguiente nivel si se ha alcanzado el puntaje requerido
+        this->puntaje = 0; // Reiniciar puntaje al pasar de nivel
+        this->numeroNivel = 2;
+        cambiarNivel(this->numeroNivel);  // Pasar al siguiente nivel
     } else {
         mostrarMensajePerdida();  // Mostrar el mensaje de pérdida si no se alcanzó el puntaje
     }
 }
+
 
 
 
@@ -82,9 +88,10 @@ void pantallajuego::verificarProgreso() {
 void pantallajuego::cambiarNivel(int numeroNivel) {
     if (nivel != nullptr) { // Verificar si nivel ya fue inicializado
         timerVisual->stop();
+        disconnect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
         ui->horizontalLayout->removeWidget(nivel); // Remover el nivel anterior del layout
         delete nivel; // Destruir el nivel actual
-        //nivel = nullptr; // Asegurarse de que quede en un estado seguro
+        nivel = nullptr; // Asegurarse de que quede en un estado seguro
 
     }
 
@@ -106,14 +113,14 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
         ui->horizontalLayout->addWidget(nivel);     // Agregar el nuevo nivel al layout
          this->mostrarReglas();
          // Asegurarse de que se ajuste el espacio
-
+        this->puntaje = 0;
         // Conectar señales y slots nuevamente si es necesario
          // Obtener el nuevo tiempo para el nuevo nivel
-        //tiempoRestante = 10;
+        tiempoRestante = 10;
 
          // Reiniciar el temporizador para mostrar el tiempo visual del nuevo nivel
-        //timerVisual->start(1000);
-
+        timerVisual->start(1000);
+        connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
     }
 }
 //####################################################################################
@@ -212,7 +219,8 @@ void pantallajuego::ActualizarPuntaje(int puntos){
         this->nivel->SetMulta();
         mostrarMensajePerdida();
     }
-    if(puntaje >=50){
+    if(puntaje >=50 && this->numeroNivel==1){
+        this->numeroNivel=2;
         cambiarNivel(2);
     }
 
