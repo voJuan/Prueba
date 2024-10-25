@@ -6,24 +6,29 @@ pantallajuego::pantallajuego(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::pantallajuego),
     personaje(new PersonajeUI(this)),
+     nivel(nullptr)
 
-    nivel(new nivel1(this))
+
 {
 
     ui->setupUi(this);
     agregarFuentes(":/archivos.txt/Recursos/Archivos/AtariSmall.ttf", ui->reglasTxt);
     ui->reglasTxt->hide();
-    anadirPersonaje(ui->fondopersona);
 
 
-    nivel1 *nivel = new nivel1(this);
-    this->nivel=nivel;
+
+
+    int numeroNivel=1;
+    cambiarNivel(numeroNivel);
+
+
     this->puntaje=0;
     puntaje=this->puntaje;
-    ui->horizontalLayout->addWidget(nivel);
+
     puntaje=0;
     ui->puntaje->setText(QString("0").arg(puntaje));
     connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
+    anadirPersonaje(ui->fondopersona);
 }
 
 pantallajuego::~pantallajuego()
@@ -31,11 +36,39 @@ pantallajuego::~pantallajuego()
     delete personaje;
     delete ui;
 }
+void pantallajuego::cambiarNivel(int numeroNivel) {
+    if (nivel != nullptr) { // Verificar si nivel ya fue inicializado
+        ui->horizontalLayout->removeWidget(nivel); // Remover el nivel anterior del layout
+        delete nivel; // Destruir el nivel actual
+        nivel = nullptr; // Asegurarse de que quede en un estado seguro
+    }
+
+    switch (numeroNivel) {
+    case 1:
+        nivel = new nivel1(this);
+        break;
+    case 2:
+        nivel = new nivel2(this);
+        break;
+        // Puedes agregar más niveles en el futuro
+    }
+
+    if (nivel) {
+        // Asegura que el widget se expanda
+        ui->horizontalLayout->addWidget(nivel);     // Agregar el nuevo nivel al layout
+         this->mostrarReglas();
+         // Asegurarse de que se ajuste el espacio
+
+        // Conectar señales y slots nuevamente si es necesario
+
+    }
+}
+
 //############### Mostrar personajes y textos en pantalla ############################
 //Cambiar imagen segun su tipo
 void pantallajuego::anadirPersonaje(QWidget *parent)
 {
-    if(personaje)
+    if(personaje && nivel)
     {
         QString imagen = nivel->getTipoPersonaje();
         qDebug() << "tipo es:" << imagen;
@@ -176,10 +209,22 @@ void pantallajuego::mostrarMensajeMulta()
     }
 }
 //#############################################################################
+//   Mostrar reglas
+void pantallajuego::mostrarReglas() {
+    if (nivel) {
+        QString reglas = nivel->obtenerReglas(); // Obtener las reglas del nivel
+        ui->reglasTxt->setText(reglas);          // Mostrar las reglas en el QLabel
+        ui->reglasTxt->show();                   // Asegurarse de que el QLabel esté visible
+    }
+}
+
+
+//
 // Hacer visible texto de reglas
 void pantallajuego::on_reglas_clicked()
 {
     textoVisible(ui->reglasTxt);
+    this->mostrarReglas();
     //QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
 }
 

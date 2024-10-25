@@ -41,5 +41,6 @@
         <file>Recursos/Archivos/tipo_visita_fake.txt</file>
         <file>Recursos/Archivos/diplomatico.txt</file>
         <file>Recursos/Archivos/refugiado.txt</file>
+        <file>Recursos/Archivos/nivel1.txt</file>
     </qresource>
 </RCC>

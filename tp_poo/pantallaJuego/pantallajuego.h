@@ -9,6 +9,7 @@
 #include <QFontDatabase>
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
+#include "../niveles/nivel2.h"
 #include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -38,6 +39,7 @@ private:
     void anadirPersonaje(QWidget *parent);
     void textoVisible(QLabel *texto);
     void agregarFuentes(QString direccionFuente, QLabel *Texto);
+    void cambiarNivel(int numeroNivel);
 protected:
 public slots:
     void iniciarAnimacionPersonaje(int deltaX);
@@ -46,6 +48,7 @@ private slots:
     void activarBotones();
     void mostrarMensajePerdida();
     void mostrarMensajeMulta();
+    void mostrarReglas();
     void ActualizarPuntaje(int puntos);
 
     void on_aceptar_clicked();

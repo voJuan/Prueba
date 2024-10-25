@@ -17,7 +17,12 @@
 #include <QDropEvent>
 #include <QLabel>
 #include "../personajes/personajeabst.h"
-
+#include <map>
+#include <vector>
+#include <QString>
+#include <QStringList>
+#include <QIODevice>
+#include <QDebug>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class nivel1;
@@ -33,15 +38,17 @@ public:
     int DejarPasar();
     int NoDejarPasar();
    // virtual void mostrar_documentos();
-    void setupDocumentos();
+    virtual void setupDocumentos();
     void setupDragAndDrop();
+    void LeerTxtNivel();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
     bool eventFilter(QObject *obj, QEvent *event);
     QString getTipoPersonaje();
+    QString obtenerReglas();
     int DejarPasarPuntos();
     int NoDejarPasarPuntos();
     void GenerarPersonajes();
-    void SetDoc();
+    virtual void SetDoc();
     int GetMultas();
     void SetMulta();
     // *personajeAbst crearPersonajeAleatorio();
@@ -53,6 +60,7 @@ signals:
 protected:
     Ui::nivel1 *ui;
     int multa = 0;
+    map<QString,vector<int>> lineasValidas;
     personajeAbst *personaje;
     LectorArchivos *lectorReg;
     LectorArchivos *lectorNac;
@@ -80,6 +88,7 @@ protected:
     QMouseEvent* mouseEvent;
     QMouseEvent* event;
     QVBoxLayout *layout;
+
 };
 
 #endif // NIVEL1_H

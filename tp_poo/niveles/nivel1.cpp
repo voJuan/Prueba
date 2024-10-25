@@ -2,10 +2,12 @@
 #include "ui_nivel1.h"
 #include <QDrag>
 #include <QMimeData>
-
+#include <QFile>
+#include <QDebug>
+#include <QTextStream>
 nivel1::nivel1(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::nivel1)
+
    ,
 
 lectorReg(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
@@ -22,13 +24,13 @@ lectorDurFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion_fake
 lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt"))
 //personaje(new personajeAbst())
 {
-    ui->setupUi(this);
+   layout = new QVBoxLayout(this);
     personaje = nullptr;
 
     nacionalidades = lectorNac->getArray();
     topeNac = lectorNac->getTopeArray();
 
-
+    LeerTxtNivel();
     setupDocumentos();
     setupDragAndDrop();
     GenerarPersonajes();
@@ -47,40 +49,129 @@ nivel1::~nivel1()
 
 }
 //############ funciones para documentos ###############################
+//       LEER TXT
+void nivel1::LeerTxtNivel(){
+    QFile archivo(":/archivos.txt/Recursos/Archivos/nivel1.txt");
+    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning("No se pudo abrir el archivo de reglas.");
+        return;
+    }
 
+    QTextStream in(&archivo);
+    while (!in.atEnd()) {
+        QString linea = in.readLine();
+
+        // Parsear la línea: por ejemplo "nacionalidad: 1, 2, 5"
+        QStringList partes = linea.split(":");
+        if (partes.size() < 2) continue;  // Si no hay suficientes partes, continuar
+
+        QString campo = partes[0].trimmed();
+        QStringList numeros = partes[1].split(",");
+
+        // Convertir cada número en un entero y agregarlo al vector correspondiente
+        vector<int> lineas;
+        for (const QString &num : numeros) {
+            lineas.push_back(num.trimmed().toInt());
+        }
+
+        // Guardar el vector de líneas válidas en el mapa
+        this->lineasValidas[campo] = lineas;
+    }
+
+    archivo.close();
+}
+
+
+QString nivel1::obtenerReglas(){
+    QString reglasTexto = "";
+
+    // Nacionalidad permitida
+    reglasTexto += "Nacionalidad permitida:\n";
+    if (lineasValidas.find("nacionalidad") != lineasValidas.end()) {
+        for (int indice : lineasValidas["nacionalidad"]) {
+            reglasTexto += "- " + lectorNac->getArray()[indice] + "\n"; // Usamos el índice para obtener la línea
+        }
+    }
+
+    // Fecha de nacimiento permitida
+    reglasTexto += "Fecha de nacimiento permitida:\n";
+    if (lineasValidas.find("fecha_de_nacimiento") != lineasValidas.end()) {
+        for (int indice : lineasValidas["fecha_de_nacimiento"]) {
+            reglasTexto += "- " + lectorFech->getArray()[indice] + "\n";
+        }
+    }
+
+    // Tipo de visita permitido
+    reglasTexto += "Tipo de visita permitido:\n";
+    if (lineasValidas.find("tipo_visita") != lineasValidas.end()) {
+        for (int indice : lineasValidas["tipo_visita"]) {
+            reglasTexto += "- " + lectorTipo->getArray()[indice] + "\n";
+        }
+    }
+
+    // Duración de estancia permitida
+    reglasTexto += "Duración de la estancia permitida:\n";
+    if (lineasValidas.find("duracion") != lineasValidas.end()) {
+        for (int indice : lineasValidas["duracion"]) {
+            reglasTexto += "- " + lectorDur->getArray()[indice] + "\n";
+        }
+    }
+
+    // Estado civil permitido
+    reglasTexto += "Estado civil permitido:\n";
+    if (lineasValidas.find("estado_civil") != lineasValidas.end()) {
+        for (int indice : lineasValidas["estado_civil"]) {
+            reglasTexto += "- " + lectorEst->getArray()[indice] + "\n";
+        }
+    }
+
+    return reglasTexto;
+}
+
+
+
+
+
+
+
+
+//..
 // Crear la etiquetas para documentos
 void nivel1::setupDocumentos()
 {
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    reglas = new QLabel("Cargando...", this);
-    nacionalidad = new QLabel("Cargando...", this);
-    fecha_de_nacimiento = new QLabel("Cargando...", this);
-    tipo_visita = new QLabel("Cargando...", this);
-    duracion = new QLabel("Cargando...", this);
-    estado_civil = new QLabel("Cargando...", this);
-    reglas->setStyleSheet("background-color: lightgray; color: black;");
-    nacionalidad->setStyleSheet("background-color: lightgray; color: black;");
-    fecha_de_nacimiento->setStyleSheet("background-color: lightgray; color: black;");
-    tipo_visita->setStyleSheet("background-color: lightgray; color: black;");
-    duracion->setStyleSheet("background-color: lightgray; color: black;");
-    estado_civil->setStyleSheet("background-color: lightgray; color: black;");
+    // Asumiendo que reglas es un puntero a QLabel
+        reglas = new QLabel("Cargando...", this);
+        nacionalidad = new QLabel("Cargando...", this);
+        fecha_de_nacimiento = new QLabel("Cargando...", this);
+        tipo_visita = new QLabel("Cargando...", this);
+        duracion = new QLabel("Cargando...", this);
+        estado_civil = new QLabel("Cargando...", this);
 
-    layout->addWidget(reglas);
-    layout->addWidget(nacionalidad);
-    layout->addWidget(fecha_de_nacimiento);
-    layout->addWidget(tipo_visita);
-    layout->addWidget(duracion);
-    layout->addWidget(estado_civil);
+        reglas->setStyleSheet("background-color: lightgray; color: black;");
+        nacionalidad->setStyleSheet("background-color: lightgray; color: black;");
+        fecha_de_nacimiento->setStyleSheet("background-color: lightgray; color: black;");
+        tipo_visita->setStyleSheet("background-color: lightgray; color: black;");
+        duracion->setStyleSheet("background-color: lightgray; color: black;");
+        estado_civil->setStyleSheet("background-color: lightgray; color: black;");
 
-    setLayout(layout);
+        layout->addWidget(reglas);
+        layout->addWidget(nacionalidad);
+        layout->addWidget(fecha_de_nacimiento);
+        layout->addWidget(tipo_visita);
+        layout->addWidget(duracion);
+        layout->addWidget(estado_civil);
+        setLayout(layout);
+
 
 }
 // setear texto dependiendo el bool de dejarPasar llamando la funcion obtenerLineaAleatoria(),
 //en el caso que sea falso pasarle un puntero a Lector de Archivo que contenga datos incorrectos,
 // elegir aleatoriamente que dato va a estar incorrecto
 void nivel1::SetDoc(){
-    if(this->personaje->getDejarPasar()==true){
-        this->reglas->setText("DOCUMENTOS:");
+    this->reglas->setText("DOCUMENTOS:");
+
+    // Si el personaje puede pasar, todos los documentos son verdaderos
+    if (this->personaje->getDejarPasar()) {
         this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
         this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
         this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
@@ -88,55 +179,67 @@ void nivel1::SetDoc(){
         this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
         return;
     }
-    else {
-        this->reglas->setText("DOCUMENTOS:");
-        QRandomGenerator *numRandom = QRandomGenerator::global();
-        int num = numRandom->bounded(5) + 1;
-        switch (num) {
-        case 1:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 2:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 3:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 4:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-            this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-            this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-            this->duracion->setText(obtenerLineaAleatoria(lectorDurFake));
-            this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
-            break;
-        case 5:
-            this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-             this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-             this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-             this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-             this->estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
-            break;
 
-        default:
-            break;
-        }
-        return;
+    // Si no puede pasar, asignamos documentos falsos de manera aleatoria
+    int numDocumentos = 5;
+    std::vector<int> documentosFalsos;
+    int cantidadFalsos = QRandomGenerator::global()->bounded(1, numDocumentos+1);
+    qDebug() << "Cantidad de documentos falsos seleccionados: " << cantidadFalsos;
+    // Seleccionar índices de documentos falsos
+    for (int i = 0; i < cantidadFalsos; ++i) {
+        int indiceFalso;
+        do {
+            indiceFalso = QRandomGenerator::global()->bounded(0, numDocumentos);
+        } while (std::find(documentosFalsos.begin(), documentosFalsos.end(), indiceFalso) != documentosFalsos.end());
+        documentosFalsos.push_back(indiceFalso);
     }
 
-
+    // Asignación de documentos (falsos o verdaderos según el índice)
+    for (int i = 0; i < numDocumentos; ++i) {
+        if (std::find(documentosFalsos.begin(), documentosFalsos.end(), i) != documentosFalsos.end()) {
+            // Documento falso
+            switch (i) {
+            case 0:
+                this->nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
+                break;
+            case 1:
+                this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
+                break;
+            case 2:
+                this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
+                break;
+            case 3:
+                this->duracion->setText(obtenerLineaAleatoria(lectorDurFake));
+                break;
+            case 4:
+                this->estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
+                break;
+            }
+        } else {
+            // Documento verdadero
+            switch (i) {
+            case 0:
+                this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+                break;
+            case 1:
+                this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+                break;
+            case 2:
+                this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+                break;
+            case 3:
+                this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+                break;
+            case 4:
+                this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+                break;
+            }
+        }
+    }
 }
+
+
+
 
 // dado un puntero a LectorArchivos elegir una linea aleatoriamente
 QString nivel1::obtenerLineaAleatoria(LectorArchivos *lector) //QString * lista, int TopeLista,
