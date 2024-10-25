@@ -35,7 +35,9 @@ private:
     int puntaje;
     int MaxMulta = 0;
     bool textovisible = false;
-
+    int numeroNivel;
+    int tiempoRestante;
+    QTimer *timerVisual;
     void anadirPersonaje(QWidget *parent);
     void textoVisible(QLabel *texto);
     void agregarFuentes(QString direccionFuente, QLabel *Texto);
@@ -46,6 +48,9 @@ public slots:
 private slots:
     void cooldownBotones();
     void activarBotones();
+    void actualizarTiempoPantalla();
+    void verificarProgreso();
+
     void mostrarMensajePerdida();
     void mostrarMensajeMulta();
     void mostrarReglas();

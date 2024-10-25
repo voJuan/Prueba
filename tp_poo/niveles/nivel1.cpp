@@ -172,11 +172,11 @@ void nivel1::SetDoc(){
 
     // Si el personaje puede pasar, todos los documentos son verdaderos
     if (this->personaje->getDejarPasar()) {
-        this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-        this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-        this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-        this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-        this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+        this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], false));
+        this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], false));
+        this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], false));
+        this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], false));
+        this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], false));
         return;
     }
 
@@ -200,44 +200,75 @@ void nivel1::SetDoc(){
             // Documento falso
             switch (i) {
             case 0:
-                this->nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
+                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true));
                 break;
             case 1:
-                this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
+                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true));
                 break;
             case 2:
-                this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
+                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true));
                 break;
             case 3:
-                this->duracion->setText(obtenerLineaAleatoria(lectorDurFake));
+                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true));
                 break;
             case 4:
-                this->estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
+                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true));
                 break;
             }
         } else {
             // Documento verdadero
             switch (i) {
             case 0:
-                this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], false));
                 break;
             case 1:
-                this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], false));
                 break;
             case 2:
-                this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], false));
                 break;
             case 3:
-                this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], false));
                 break;
             case 4:
-                this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], false));
                 break;
             }
         }
     }
 }
+// dado un puntero a LectorArchivos elegir una linea aleatoriamente
+QString nivel1::obtenerLinea_Archivo(LectorArchivos *lector, const vector<int>& permitidas, bool generarFalso) {
+    int tope = lector->getTopeArray();
+    QRandomGenerator *numRandom = QRandomGenerator::global();
+    int intentos = 0;
 
+    if (generarFalso) {
+        // Generar una línea que NO esté en el vector de permitidas
+        int indexFalso;
+        do {
+            indexFalso = numRandom->bounded(tope);  // Generar índice aleatorio
+            qDebug() << "Intento #" << intentos << " con indexFalso: " << indexFalso;
+            intentos++;
+            indexFalso++;
+            // Verificar si `indexFalso + 1` supera el tope y ajustarlo si es necesario
+            if (indexFalso >= tope) {
+                indexFalso = 0;  // Ajustar a un índice válido
+            }
+
+        } while (std::find(permitidas.begin(), permitidas.end(), indexFalso ) != permitidas.end());  // Repetir si está permitido
+
+        return lector->getArray()[indexFalso];
+    } else {
+        // Elegir una línea dentro de las permitidas
+        int indexPermitido = permitidas[numRandom->bounded(permitidas.size())] ;
+        return lector->getArray()[indexPermitido];
+    }
+}
+
+
+
+//
 
 
 
@@ -354,8 +385,19 @@ int nivel1::GetMultas(){
     return this->multa;
 }
 //#######################################################################################
+//########################## get de tiempo nivel ########################################
+int nivel1::getTiempo(){
+    this->tiempo=20;
+    return this->tiempo;
+}
 
-
+//#######################################################################################
+//#########################  get de puntaje #############################################
+int nivel1::getPuntaje(){
+    this->puntaje=10;
+    return this->puntaje;
+}
+//#######################################################################################
 
 
 

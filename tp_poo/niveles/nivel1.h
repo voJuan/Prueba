@@ -23,6 +23,7 @@
 #include <QStringList>
 #include <QIODevice>
 #include <QDebug>
+#include <algorithm>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class nivel1;
@@ -42,8 +43,11 @@ public:
     void setupDragAndDrop();
     void LeerTxtNivel();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
+    QString obtenerLinea_Archivo(LectorArchivos *lector, const vector<int>& permitidas, bool generarFalso);
     bool eventFilter(QObject *obj, QEvent *event);
     QString getTipoPersonaje();
+    int getTiempo();
+    int getPuntaje();
     QString obtenerReglas();
     int DejarPasarPuntos();
     int NoDejarPasarPuntos();
@@ -60,6 +64,8 @@ signals:
 protected:
     Ui::nivel1 *ui;
     int multa = 0;
+    int tiempo;
+    int puntaje;
     map<QString,vector<int>> lineasValidas;
     personajeAbst *personaje;
     LectorArchivos *lectorReg;

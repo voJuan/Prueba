@@ -1,10 +1,4 @@
 casado
 viudo
 divorciado
-casado
-viudo
-divorciado
-casado
-viudo
-divorciado
-casado
+soltero

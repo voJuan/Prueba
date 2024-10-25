@@ -6,7 +6,8 @@ pantallajuego::pantallajuego(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::pantallajuego),
     personaje(new PersonajeUI(this)),
-     nivel(nullptr)
+    nivel(nullptr)
+
 
 
 {
@@ -17,18 +18,32 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
 
 
-
-    int numeroNivel=2;
+    this->timerVisual = new QTimer(this);
+    this->numeroNivel=1;
     cambiarNivel(numeroNivel);
 
 
     this->puntaje=0;
-    puntaje=this->puntaje;
 
+    puntaje=this->puntaje;
     puntaje=0;
+
     ui->puntaje->setText(QString("0").arg(puntaje));
     connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
     anadirPersonaje(ui->fondopersona);
+
+    // Inicializar el temporizador para actualizar el tiempo visual en pantalla
+
+
+    this->tiempoRestante = nivel->getTiempo();
+    timerVisual->start(1000);
+    connect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
+
+    // Obtén el tiempo del nivel y asignarlo a `tiempoRestante`
+
+
+    // Comenzar a actualizar el tiempo visual en la pantalla cada segundo
+     // Actualización cada segundo
 }
 
 pantallajuego::~pantallajuego()
@@ -36,11 +51,40 @@ pantallajuego::~pantallajuego()
     delete personaje;
     delete ui;
 }
+//###################### Actualizat tiempo pantalla ###########################
+void pantallajuego::actualizarTiempoPantalla() {
+    if (this->tiempoRestante > 0) {
+        this->tiempoRestante--;  // Reducir solo el tiempo visual en la pantalla
+        ui->tiempoRestante->setText( QString::number(this->tiempoRestante));  // Actualizar el QLabel en la UI
+    }
+
+    // Verificar si el tiempo ha llegado a cero
+    if (this->tiempoRestante <= 0) {
+        timerVisual->stop();  // Detener el temporizador visual
+        verificarProgreso();  // Verificar si pasa al siguiente nivel o pierde
+    }
+}
+void pantallajuego::verificarProgreso() {
+    if (this->puntaje >= nivel->getPuntaje()) {
+        this->numeroNivel=2;;
+        cambiarNivel(this->numeroNivel);  // Pasar al siguiente nivel si se ha alcanzado el puntaje requerido
+    } else {
+        mostrarMensajePerdida();  // Mostrar el mensaje de pérdida si no se alcanzó el puntaje
+    }
+}
+
+
+
+
+//###########################################################################
+//################### cambiar nivel ##########################################
 void pantallajuego::cambiarNivel(int numeroNivel) {
     if (nivel != nullptr) { // Verificar si nivel ya fue inicializado
+        timerVisual->stop();
         ui->horizontalLayout->removeWidget(nivel); // Remover el nivel anterior del layout
         delete nivel; // Destruir el nivel actual
         nivel = nullptr; // Asegurarse de que quede en un estado seguro
+
     }
 
     switch (numeroNivel) {
@@ -50,6 +94,9 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
     case 2:
         nivel = new nivel2(this);
         break;
+    default:
+        qWarning() << "Nivel no válido!";
+        return;
         // Puedes agregar más niveles en el futuro
     }
 
@@ -60,10 +107,15 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
          // Asegurarse de que se ajuste el espacio
 
         // Conectar señales y slots nuevamente si es necesario
+         // Obtener el nuevo tiempo para el nuevo nivel
+       tiempoRestante = nivel->getTiempo();
 
+         // Reiniciar el temporizador para mostrar el tiempo visual del nuevo nivel
+         timerVisual->start(1000);
+       connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
     }
 }
-
+//####################################################################################
 //############### Mostrar personajes y textos en pantalla ############################
 //Cambiar imagen segun su tipo
 void pantallajuego::anadirPersonaje(QWidget *parent)
@@ -158,6 +210,9 @@ void pantallajuego::ActualizarPuntaje(int puntos){
         puntaje=0;
         this->nivel->SetMulta();
         mostrarMensajePerdida();
+    }
+    if(puntaje >=50){
+        cambiarNivel(2);
     }
 
     this->puntaje=puntaje;
