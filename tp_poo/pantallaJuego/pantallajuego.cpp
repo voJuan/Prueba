@@ -6,7 +6,8 @@ pantallajuego::pantallajuego(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::pantallajuego),
     personaje(new PersonajeUI(this)),
-     nivel(nullptr)
+     nivel(nullptr),
+    sonidoBoton(new QSoundEffect(this))
 
 
 {
@@ -163,6 +164,7 @@ void pantallajuego::ActualizarPuntaje(int puntos){
     QString numeroComoString = QString::number(puntaje);
     ui->puntaje->setText(numeroComoString);
 }
+
 // mostrar mensaje al perder
 void pantallajuego::mostrarMensajePerdida()
 {
@@ -228,3 +230,8 @@ void pantallajuego::on_reglas_clicked()
     //QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
 }
 
+void pantallajuego::configurarSonidoBoton(QString url){
+        sonidoBoton->setSource(QUrl::fromLocalFile(url));
+        sonidoBoton->setVolume(1);
+        sonidoBoton->play();
+}
