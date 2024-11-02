@@ -37,7 +37,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
     this->tiempoRestante = nivel->getTiempo();
     timerVisual->start(1000);
-    connect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
+    //connect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
 
     // Obtén el tiempo del nivel y asignarlo a `tiempoRestante`
 
@@ -75,7 +75,13 @@ void pantallajuego::verificarProgreso() {
         this->numeroNivel = 2;
         cambiarNivel(this->numeroNivel);  // Pasar al siguiente nivel
     } else {
-        mostrarMensajePerdida();  // Mostrar el mensaje de pérdida si no se alcanzó el puntaje
+        mostrarMensajePerdida();
+        this->puntaje = 0;        // Mostrar el mensaje de pérdida si no se alcanzó el puntaje
+        ActualizarPuntaje(0);
+        this->tiempoRestante = nivel->getTiempo();
+        actualizarTiempoPantalla();
+        timerVisual->start(1000);
+        //connect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
     }
 }
 
