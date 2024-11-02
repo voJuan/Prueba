@@ -113,14 +113,16 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
         ui->horizontalLayout->addWidget(nivel);     // Agregar el nuevo nivel al layout
         this->mostrarReglas();
          // Asegurarse de que se ajuste el espacio
-        this->puntaje = 0;
+
+        ActualizarPuntaje(0);
         // Conectar señales y slots nuevamente si es necesario
          // Obtener el nuevo tiempo para el nuevo nivel
-        tiempoRestante = 10;
-
+        this->tiempoRestante = nivel->getTiempo();
+        actualizarTiempoPantalla();
          // Reiniciar el temporizador para mostrar el tiempo visual del nuevo nivel
         timerVisual->start(1000);
         connect(nivel, &nivel1::personajeCambiado, personaje, &PersonajeUI::actualizarPersonaje);
+        connect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
     }
 }
 //####################################################################################
