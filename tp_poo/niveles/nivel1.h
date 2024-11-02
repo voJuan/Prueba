@@ -49,7 +49,7 @@ public:
     QString getTipoPersonaje();
     int getTiempo();
     int getPuntaje();
-    QString obtenerReglas();
+    virtual QString obtenerReglas();
     int DejarPasarPuntos();
     int NoDejarPasarPuntos();
     void GenerarPersonajes();
@@ -84,7 +84,7 @@ protected:
     LectorArchivos *lectorTipoFake;
     LectorArchivos *lectorDurFake;
     LectorArchivos *lectorEstFake;
-
+    LectorArchivos *lectorProp;
     QString * nacionalidades;
     int topeNac;
 

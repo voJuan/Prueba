@@ -15,7 +15,8 @@ lectorNac(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad.txt"
 lectorFech(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento.txt")),
 lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt")),
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
-lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt"))
+lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
+lectorProp(new LectorArchivos(":/archivos.txt/Recursos/Archivos/proposito.txt"))
 //lectorRegFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
 
 //personaje(new personajeAbst())

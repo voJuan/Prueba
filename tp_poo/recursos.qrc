@@ -43,5 +43,6 @@
         <file>Recursos/Archivos/refugiado.txt</file>
         <file>Recursos/Archivos/nivel1.txt</file>
         <file>Recursos/Archivos/nivel2.txt</file>
+        <file>Recursos/Archivos/proposito.txt</file>
     </qresource>
 </RCC>
