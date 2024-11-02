@@ -9,13 +9,17 @@ nivel2::nivel2(QWidget *parent)
 
     nacionalidades = lectorNac->getArray();
     topeNac = lectorNac->getTopeArray();
-
-
+    SetNivel();
+    SetDireccion();
     setupDocumentos();
     setupDragAndDrop();
     GenerarPersonajes();
 
 }
+void nivel2::SetNivel(){
+    this->nivel=2;
+}
+
 
 void nivel2::setupDocumentos(){
      // Llama al método base para configurar etiquetas

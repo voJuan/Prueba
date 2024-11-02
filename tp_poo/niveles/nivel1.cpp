@@ -25,8 +25,8 @@ lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt"
 
     nacionalidades = lectorNac->getArray();
     topeNac = lectorNac->getTopeArray();
-
-    LeerTxtNivel();
+    SetNivel();
+    SetDireccion();
     setupDocumentos();
     setupDragAndDrop();
     GenerarPersonajes();
@@ -46,8 +46,18 @@ nivel1::~nivel1()
 }
 //############ funciones para documentos ###############################
 //       LEER TXT
-void nivel1::LeerTxtNivel(){
-    QFile archivo(":/archivos.txt/Recursos/Archivos/nivel1.txt");
+void nivel1::SetDireccion(){
+    if (this->nivel == 1) {
+        this->direccion = ":/archivos.txt/Recursos/Archivos/nivel1.txt";
+    } else if (this->nivel == 2) {
+        this->direccion = ":/archivos.txt/Recursos/Archivos/nivel2.txt";
+    }
+    LeerTxtNivel(this->direccion);
+}
+
+
+void nivel1::LeerTxtNivel(QString direcc){
+    QFile archivo(direcc);
     if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning("No se pudo abrir el archivo de reglas.");
         return;
@@ -403,6 +413,8 @@ int nivel1::getPuntaje(){
     return this->puntaje;
 }
 //#######################################################################################
+void nivel1::SetNivel(){
 
-
+    this->nivel=1;
+}
 

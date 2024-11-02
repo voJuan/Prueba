@@ -41,7 +41,8 @@ public:
    // virtual void mostrar_documentos();
     virtual void setupDocumentos();
     void setupDragAndDrop();
-    void LeerTxtNivel();
+    void LeerTxtNivel(QString direcc);
+    void SetDireccion();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
     QString obtenerLinea_Archivo(LectorArchivos *lector, const vector<int>& permitidas, bool generarFalso);
     bool eventFilter(QObject *obj, QEvent *event);
@@ -55,6 +56,7 @@ public:
     virtual void SetDoc();
     int GetMultas();
     void SetMulta();
+    virtual void SetNivel();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
@@ -66,6 +68,8 @@ protected:
     int multa = 0;
     int tiempo;
     int puntaje;
+    int nivel;
+    QString direccion;
     map<QString,vector<int>> lineasValidas;
     personajeAbst *personaje;
     LectorArchivos *lectorReg;

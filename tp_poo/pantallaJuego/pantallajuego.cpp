@@ -111,7 +111,7 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
     if (nivel) {
         // Asegura que el widget se expanda
         ui->horizontalLayout->addWidget(nivel);     // Agregar el nuevo nivel al layout
-         this->mostrarReglas();
+        this->mostrarReglas();
          // Asegurarse de que se ajuste el espacio
         this->puntaje = 0;
         // Conectar señales y slots nuevamente si es necesario

@@ -18,6 +18,7 @@ public:
     explicit nivel2(QWidget *parent = nullptr);
     void  setupDocumentos() override;
     void SetDoc() override;
+    virtual void SetNivel();
     ~nivel2();
 
 private:
