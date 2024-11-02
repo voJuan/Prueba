@@ -35,7 +35,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
     // Inicializar el temporizador para actualizar el tiempo visual en pantalla
 
 
-    this->tiempoRestante = 20;
+    this->tiempoRestante = nivel->getTiempo();
     timerVisual->start(1000);
     connect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
 
@@ -55,7 +55,7 @@ pantallajuego::~pantallajuego()
 void pantallajuego::actualizarTiempoPantalla() {
     if (this->tiempoRestante > 0) {
         this->tiempoRestante--;  // Reducir solo el tiempo visual en la pantalla
-        ui->tiempoRestante->setText( QString::number(this->tiempoRestante));  // Actualizar el QLabel en la UI
+        ui->tiempoRestante->setText( "          "+QString::number(this->tiempoRestante));  // Actualizar el QLabel en la UI
     }
 
     // Verificar si el tiempo ha llegado a cero
@@ -70,7 +70,7 @@ void pantallajuego::verificarProgreso() {
         this->puntaje = 0; // Restablecer a cero si es negativo
     }
 
-    if (this->puntaje >= 200) {
+    if (this->puntaje >= nivel->getPuntaje()) {
         this->puntaje = 0; // Reiniciar puntaje al pasar de nivel
         this->numeroNivel = 2;
         cambiarNivel(this->numeroNivel);  // Pasar al siguiente nivel
@@ -219,10 +219,10 @@ void pantallajuego::ActualizarPuntaje(int puntos){
         this->nivel->SetMulta();
         mostrarMensajePerdida();
     }
-    if(puntaje >=50 && this->numeroNivel==1){
+    /*if(puntaje >=200 && this->numeroNivel==1){
         this->numeroNivel=2;
         cambiarNivel(2);
-    }
+    }*/
 
     this->puntaje=puntaje;
     QString numeroComoString = QString::number(puntaje);
