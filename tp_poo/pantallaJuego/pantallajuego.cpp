@@ -6,14 +6,17 @@ pantallajuego::pantallajuego(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::pantallajuego),
     personaje(new PersonajeUI(this)),
-    nivel(nullptr)
+     nivel(nullptr),
+    sonidoBoton(new QSoundEffect(this))
 
 
 
 {
-
+    nivel->borrarLogs();
     ui->setupUi(this);
     agregarFuentes(":/archivos.txt/Recursos/Archivos/AtariSmall.ttf", ui->reglasTxt);
+    configurarSonidoBoton();
+    ui->reglas->hide();
     ui->reglasTxt->hide();
 
 
@@ -203,10 +206,23 @@ void pantallajuego::activarBotones()
 //#### Llamar a funciones para actualizar puntaje y generar nuevos personajes ####
 void pantallajuego::on_aceptar_clicked()
 {
+    nivel->escribirLog("Registro de evento: Pulso Aceptar");
     cooldownBotones();
+    qDebug() << "Reproduciendo sonido...";
+    sonidoBoton->play();
+    if(!sonidoBoton->isPlaying()){
+        qDebug() << "NO SE ESTA REPRODUCIENDO";
+    }
     iniciarAnimacionPersonaje(ui->fondopersona->width());
     int puntos=this->nivel->DejarPasarPuntos();//verificar si coincide la accion de dejar pasar con el bool de personaje(true)
+    if(puntos > 0){
+        nivel->escribirLog("Registro Evento: Acertaste");
+    }else{
+        nivel->escribirLog("Registro Evento: Pifiaste");
+        nivel->escribirLogs(nivel->getFallos());
+    }
     ActualizarPuntaje(puntos);
+
 
 
 }
@@ -214,9 +230,18 @@ void pantallajuego::on_aceptar_clicked()
 // Llamar a funciones para actualizar puntaje y generar nuevos personajes ###
 void pantallajuego::on_rechazar_clicked()
 {
+    nivel->escribirLog("Registro de evento: Pulso Rechazar");
+
     cooldownBotones();
+    sonidoBoton->play();
     iniciarAnimacionPersonaje(-ui->fondopersona->width());
     int puntos=this->nivel->NoDejarPasarPuntos();//verificar si coincide la accion de dejar pasar con el bool de personaje(false)
+    if(puntos > 0){
+        nivel->escribirLog("Registro Evento: Acertaste");
+    }else{
+        nivel->escribirLog("Registro Evento: Pifiaste");
+        nivel->escribirLogs(nivel->getFallos());
+    }
     ActualizarPuntaje(puntos);
 
 }
@@ -228,7 +253,7 @@ void pantallajuego::ActualizarPuntaje(int puntos){
     puntaje+=puntos;
     int multas=this->nivel->GetMultas();
     if(multas>this->MaxMulta && multas<4){
-    this->MaxMulta=multas;
+     this->MaxMulta=multas;
      mostrarMensajeMulta();
     }
     if((puntaje<0) || (multas==4)) {
@@ -245,6 +270,7 @@ void pantallajuego::ActualizarPuntaje(int puntos){
     QString numeroComoString = QString::number(puntaje);
     ui->puntaje->setText(numeroComoString);
 }
+
 // mostrar mensaje al perder
 void pantallajuego::mostrarMensajePerdida()
 {
@@ -310,3 +336,8 @@ void pantallajuego::on_reglas_clicked()
     //QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
 }
 
+void pantallajuego::configurarSonidoBoton(){
+    static QUrl url = QString("qrc:/sonidos/Recursos/Sonidos/stamp.wav");
+    sonidoBoton->setSource(url);
+    sonidoBoton->setVolume(0.5);
+}

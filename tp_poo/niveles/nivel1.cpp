@@ -211,19 +211,25 @@ void nivel1::SetDoc(){
             // Documento falso
             switch (i) {
             case 0:
+
                 this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorNac));
                 break;
             case 1:
                 this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorFech));
                 break;
             case 2:
                 this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorTipo));
                 break;
             case 3:
                 this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorDur));
                 break;
             case 4:
                 this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorEst));
                 break;
             }
         } else {
@@ -397,6 +403,37 @@ int nivel1::NoDejarPasarPuntos(){
 // Setear multa en 0
 void nivel1::SetMulta(){
     this->multa=0;
+}
+
+void nivel1::escribirLogs(QVector<QString> &mensajes)
+{
+    static QString ruta = "C:/Users/usuario/OneDrive/Escritorio/Carpeta de prueba/Prueba/tp_poo/Recursos/Archivos/registro_logs.txt";
+    QFile archivo(ruta);
+    archivo.open(QIODevice::Append | QIODevice::Text);
+    QTextStream salida(&archivo);
+    for(auto& mensaje : mensajes){
+        salida << mensaje << Qt::endl;
+    }
+    archivo.close();
+    mensajes.clear();
+}
+
+void nivel1::escribirLog(const QString& mensaje)
+{
+    static QString ruta = "C:/Users/usuario/OneDrive/Escritorio/Carpeta de prueba/Prueba/tp_poo/Recursos/Archivos/registro_logs.txt";
+    QFile archivo(ruta);
+    archivo.open(QIODevice::Append | QIODevice::Text);
+    QTextStream salida(&archivo);
+    salida << mensaje << Qt::endl;
+    archivo.close();
+}
+
+void nivel1::borrarLogs()
+{
+    static QString ruta = "C:/Users/usuario/OneDrive/Escritorio/Carpeta de prueba/Prueba/tp_poo/Recursos/Archivos/registro_logs.txt";
+    QFile archivo(ruta);
+    archivo.open(QIODevice::WriteOnly | QIODevice::Text);
+    archivo.close();
 }
 // Get para saber cuantas multas hay acumuladas
 int nivel1::GetMultas(){

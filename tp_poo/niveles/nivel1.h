@@ -19,6 +19,7 @@
 #include "../personajes/personajeabst.h"
 #include <map>
 #include <vector>
+#include <QVector>
 #include <QString>
 #include <QStringList>
 #include <QIODevice>
@@ -57,6 +58,10 @@ public:
     virtual int PasarNivel();
     int GetMultas();
     void SetMulta();
+    void escribirLog(const QString& mensaje);
+    void escribirLogs(QVector<QString> &mensajes);
+    void borrarLogs();
+    QVector<QString>& getFallos() {return this->fallos;}
     virtual void SetNivel();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
@@ -85,6 +90,7 @@ protected:
     LectorArchivos *lectorTipoFake;
     LectorArchivos *lectorDurFake;
     LectorArchivos *lectorEstFake;
+    QVector<QString> fallos;
     LectorArchivos *lectorProp;
     LectorArchivos *lectorInt;
     LectorArchivos *lectorOcup;

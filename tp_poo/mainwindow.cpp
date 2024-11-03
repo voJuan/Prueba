@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 //..
 //ir a pantalla de juego
 connect(pantallaInicio, &PantallaInicioUI::iniciarJuegoClicked, this, &MainWindow::iraPantallaJuego);
+connect(pantallaInicio, &PantallaInicioUI::iniciarJuegoClicked, this, &MainWindow::stopMusica);
 }
 //..
 MainWindow::~MainWindow()
@@ -40,4 +41,10 @@ void MainWindow::iraPantallaInicio()
 void MainWindow::iraPantallaJuego()
 {
     pantallas->setCurrentWidget(pantallaJugar);
+}
+
+void MainWindow::stopMusica()
+{
+    static QSoundEffect *musica = pantallaInicio->getMusicaFondo();
+    musica->stop();
 }
