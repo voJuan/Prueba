@@ -87,6 +87,8 @@ protected:
     LectorArchivos *lectorEstFake;
     LectorArchivos *lectorProp;
     LectorArchivos *lectorInt;
+    LectorArchivos *lectorOcup;
+    LectorArchivos *lectorVac;
     QString * nacionalidades;
     int topeNac;
 

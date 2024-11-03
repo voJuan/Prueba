@@ -17,7 +17,9 @@ lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt"
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
 lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
 lectorProp(new LectorArchivos(":/archivos.txt/Recursos/Archivos/proposito.txt")),
-lectorInt(new LectorArchivos(":/archivos.txt/Recursos/Archivos/integrantes.txt"))
+lectorInt(new LectorArchivos(":/archivos.txt/Recursos/Archivos/integrantes.txt")),
+lectorOcup(new LectorArchivos(":/archivos.txt/Recursos/Archivos/ocupacion.txt")),
+lectorVac(new LectorArchivos(":/archivos.txt/Recursos/Archivos/vacunacion.txt"))
 //lectorRegFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
 
 //personaje(new personajeAbst())
@@ -422,5 +424,5 @@ void nivel1::SetNivel(){
 }
 
 int nivel1::PasarNivel(){
-    return 2;
+    return 5;
 }

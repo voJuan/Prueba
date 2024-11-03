@@ -1,30 +1,31 @@
-#include "nivel3.h"
-#include "ui_nivel3.h"
+#include "nivel4.h"
+//#include "ui_nivel4.h"
 
-nivel3::nivel3(QWidget *parent)
+nivel4::nivel4(QWidget *parent)
     : nivel1(parent)
 
 {
-  //  nacionalidades = lectorNac->getArray();
-   // topeNac = lectorNac->getTopeArray();
     SetNivel();
     SetDireccion();
     setupDocumentos();
     setupDragAndDrop();
     GenerarPersonajes();
 
+
+
 }
-void nivel3::SetNivel(){
-    this->nivel=3;
+
+void nivel4::SetNivel(){
+    this->nivel=4;
 }
-void nivel3::SetDireccion(){
-    if (this->nivel == 3) {
-        this->direccion = ":/archivos.txt/Recursos/Archivos/nivel3.txt";
+void nivel4::SetDireccion(){
+    if (this->nivel == 4) {
+        this->direccion = ":/archivos.txt/Recursos/Archivos/nivel4.txt";
     }
 
     LeerTxtNivel(this->direccion);
 }
-QString nivel3::obtenerReglas(){
+QString nivel4::obtenerReglas(){
     QString reglasTexto = "";
 
     // Nacionalidad permitida
@@ -83,16 +84,27 @@ QString nivel3::obtenerReglas(){
     }
 
 
+
+    reglasTexto += "ocupaciones permitidas :\n";
+    if (lineasValidas.find("ocupacion") != lineasValidas.end()) {
+        for (int indice : lineasValidas["ocupacion"]) {
+            reglasTexto += "- " + lectorOcup->getArray()[indice] + "\n";
+        }
+    }
+
+
     return reglasTexto;
 }
 
-void nivel3::setupDocumentos(){
+void nivel4::setupDocumentos(){
     // Llama al método base para configurar etiquetas
 
     proposito = new QLabel("Cargando...", this);
     integrantes = new QLabel("Cargando...", this);
+    ocupacion = new QLabel("Cargando...", this);
     proposito->setStyleSheet("background-color: lightgray; color: black;");
     integrantes->setStyleSheet("background-color: lightgray; color: black;");
+    ocupacion->setStyleSheet("background-color: lightgray; color: black;");
     // Obtener el layout actual y añadir el nuevo widget
     QLayout *currentLayout = this->layout; // Obtén el puntero a layout
     if (currentLayout) {
@@ -100,6 +112,7 @@ void nivel3::setupDocumentos(){
         if (vboxLayout) {
             vboxLayout->addWidget(proposito); // Añadir la nueva etiqueta al layout existente
             vboxLayout->addWidget(integrantes);
+            vboxLayout->addWidget(ocupacion);
             vboxLayout->addStretch(); // Opcional: añadir espacio extra después de agregar nuevo widget
         } else {
             qWarning() << "El layout no es un QVBoxLayout.";
@@ -108,12 +121,13 @@ void nivel3::setupDocumentos(){
         qWarning() << "No se pudo obtener el layout de nivel2.";
     }
 }
-void nivel3::SetDoc(){
+void nivel4::SetDoc(){
     //this->proposito->setText("nivel2");
     this->reglas->setText("DOCUMENTOS:");
 
     // Si el personaje puede pasar, todos los documentos son verdaderos
     if (this->personaje->getDejarPasar()) {
+        this->ocupacion->setText(obtenerLinea_Archivo(lectorOcup, lineasValidas["ocupacion"], false));
         this->integrantes->setText(obtenerLinea_Archivo(lectorInt, lineasValidas["integrante"], false));
         this->proposito->setText(obtenerLinea_Archivo(lectorProp, lineasValidas["proposito"], false));
         this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], false));
@@ -125,7 +139,7 @@ void nivel3::SetDoc(){
     }
 
     // Si no puede pasar, asignamos documentos falsos de manera aleatoria
-    int numDocumentos = 7;
+    int numDocumentos = 8;
     std::vector<int> documentosFalsos;
     int cantidadFalsos = QRandomGenerator::global()->bounded(1, numDocumentos-1);
     qDebug() << "Cantidad de documentos falsos seleccionados: " << cantidadFalsos;
@@ -164,6 +178,10 @@ void nivel3::SetDoc(){
             case 6:
                 this->integrantes->setText(obtenerLinea_Archivo(lectorInt, lineasValidas["integrante"], true));
                 break;
+            case 7:
+                this->ocupacion->setText(obtenerLinea_Archivo(lectorOcup, lineasValidas["ocupacion"], true));
+                break;
+
             }
         } else {
             // Documento verdadero
@@ -189,6 +207,9 @@ void nivel3::SetDoc(){
             case 6:
                 this->integrantes->setText(obtenerLinea_Archivo(lectorInt, lineasValidas["integrante"], false));
                 break;
+            case 7:
+                this->ocupacion->setText(obtenerLinea_Archivo(lectorOcup, lineasValidas["ocupacion"], false));
+                break;
             }
         }
     }
@@ -196,11 +217,8 @@ void nivel3::SetDoc(){
 
 }
 
-int nivel3::PasarNivel(){
-    return 4;
+int nivel4::PasarNivel(){
+    return -1;
 }
 
-nivel3::~nivel3()
-{
-  //  delete ui;
-}
+nivel4::~nivel4() {}

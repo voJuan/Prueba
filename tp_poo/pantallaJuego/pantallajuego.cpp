@@ -111,6 +111,12 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
     case 3:
         nivel = new nivel3(this);
         break;
+    case 4:
+        nivel = new nivel4(this);
+        break;
+    case 5:
+        nivel = new nivel5(this);
+        break;
     default:
         qWarning() << "Nivel no válido!";
         return;
