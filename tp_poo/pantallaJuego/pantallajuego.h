@@ -10,6 +10,7 @@
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
 #include "../niveles/nivel2.h"
+#include "../niveles/nivel3.h"
 #include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui {

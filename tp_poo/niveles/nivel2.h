@@ -19,6 +19,8 @@ public:
     void  setupDocumentos() override;
     void SetDoc() override;
     QString obtenerReglas() override;
+    int PasarNivel() override;
+    void SetDireccion() override;
     virtual void SetNivel();
     ~nivel2();
 

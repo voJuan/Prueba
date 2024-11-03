@@ -16,7 +16,8 @@ lectorFech(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento
 lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt")),
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
 lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
-lectorProp(new LectorArchivos(":/archivos.txt/Recursos/Archivos/proposito.txt"))
+lectorProp(new LectorArchivos(":/archivos.txt/Recursos/Archivos/proposito.txt")),
+lectorInt(new LectorArchivos(":/archivos.txt/Recursos/Archivos/integrantes.txt"))
 //lectorRegFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
 
 //personaje(new personajeAbst())
@@ -50,9 +51,10 @@ nivel1::~nivel1()
 void nivel1::SetDireccion(){
     if (this->nivel == 1) {
         this->direccion = ":/archivos.txt/Recursos/Archivos/nivel1.txt";
-    } else if (this->nivel == 2) {
-        this->direccion = ":/archivos.txt/Recursos/Archivos/nivel2.txt";
     }
+
+
+
     LeerTxtNivel(this->direccion);
 }
 
@@ -419,3 +421,6 @@ void nivel1::SetNivel(){
     this->nivel=1;
 }
 
+int nivel1::PasarNivel(){
+    return 2;
+}

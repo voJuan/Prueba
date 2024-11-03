@@ -42,7 +42,7 @@ public:
     virtual void setupDocumentos();
     void setupDragAndDrop();
     void LeerTxtNivel(QString direcc);
-    void SetDireccion();
+    virtual void SetDireccion();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
     QString obtenerLinea_Archivo(LectorArchivos *lector, const vector<int>& permitidas, bool generarFalso);
     bool eventFilter(QObject *obj, QEvent *event);
@@ -54,6 +54,7 @@ public:
     int NoDejarPasarPuntos();
     void GenerarPersonajes();
     virtual void SetDoc();
+    virtual int PasarNivel();
     int GetMultas();
     void SetMulta();
     virtual void SetNivel();
@@ -85,6 +86,7 @@ protected:
     LectorArchivos *lectorDurFake;
     LectorArchivos *lectorEstFake;
     LectorArchivos *lectorProp;
+    LectorArchivos *lectorInt;
     QString * nacionalidades;
     int topeNac;
 

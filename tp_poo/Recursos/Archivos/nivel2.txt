@@ -4,6 +4,6 @@ tipo_visita: 0,1
 duracion: 1,2
 estado_civil: 2,1
 proposito: 0,1
-tiempo: 60,1
-puntos: 100,1
+tiempo: 20,1
+puntos: 10,1
         

@@ -44,5 +44,7 @@
         <file>Recursos/Archivos/nivel1.txt</file>
         <file>Recursos/Archivos/nivel2.txt</file>
         <file>Recursos/Archivos/proposito.txt</file>
+        <file>Recursos/Archivos/nivel3.txt</file>
+        <file>Recursos/Archivos/integrantes.txt</file>
     </qresource>
 </RCC>

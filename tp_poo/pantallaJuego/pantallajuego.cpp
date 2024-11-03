@@ -72,7 +72,7 @@ void pantallajuego::verificarProgreso() {
 
     if (this->puntaje >= nivel->getPuntaje()) {
         this->puntaje = 0; // Reiniciar puntaje al pasar de nivel
-        this->numeroNivel = 2;
+        this->numeroNivel = nivel->PasarNivel();
         cambiarNivel(this->numeroNivel);  // Pasar al siguiente nivel
     } else {
         mostrarMensajePerdida();
@@ -107,6 +107,9 @@ void pantallajuego::cambiarNivel(int numeroNivel) {
         break;
     case 2:
         nivel = new nivel2(this);
+        break;
+    case 3:
+        nivel = new nivel3(this);
         break;
     default:
         qWarning() << "Nivel no válido!";
