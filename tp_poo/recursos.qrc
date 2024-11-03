@@ -49,11 +49,14 @@
         <file>Recursos/Archivos/refugiado.txt</file>
         <file>Recursos/Archivos/nivel1.txt</file>
         <file>Recursos/Archivos/registro_logs.txt</file>
+        <file>Recursos/Archivos/proposito.txt</file>
+        <file>Recursos/Archivos/vacunacion.txt</file>
+        <file>Recursos/Archivos/ocupacion.txt</file>
+        <file>Recursos/Archivos/integrantes.txt</file>
     </qresource>
     <qresource prefix="/sonidos">
         <file>Recursos/Sonidos/stamp.wav</file>
         <file>Recursos/Sonidos/backgroundInicioMusic.wav</file>
-
         <file>Recursos/Archivos/nivel2.txt</file>
         <file>Recursos/Archivos/proposito.txt</file>
         <file>Recursos/Archivos/nivel3.txt</file>
@@ -62,6 +65,5 @@
         <file>Recursos/Archivos/ocupacion.txt</file>
         <file>Recursos/Archivos/nivel5.txt</file>
         <file>Recursos/Archivos/vacunacion.txt</file>
-
     </qresource>
 </RCC>
