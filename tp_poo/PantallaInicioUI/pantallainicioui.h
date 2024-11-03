@@ -2,6 +2,7 @@
 #define PANTALLAINICIOUI_H
 
 #include <QWidget>
+#include <QSoundEffect>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class PantallaInicioUI;
@@ -17,10 +18,11 @@ public:
 signals:
     void iniciarJuegoClicked();
 private:
+    QSoundEffect *sonidoFondo;
     Ui::PantallaInicioUI *ui;
 protected:
 private slots:
-
+    void configurarSonidoFondo();
 };
 
 #endif // PANTALLAINICIOUI_H

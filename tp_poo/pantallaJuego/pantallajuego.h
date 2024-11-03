@@ -52,7 +52,7 @@ private slots:
     void mostrarMensajeMulta();
     void mostrarReglas();
     void ActualizarPuntaje(int puntos);
-    void configurarSonidoBoton(QString url);
+    void configurarSonidoBoton();
 
     void on_aceptar_clicked();
     void on_rechazar_clicked();

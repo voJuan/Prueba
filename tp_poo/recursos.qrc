@@ -43,4 +43,8 @@
         <file>Recursos/Archivos/refugiado.txt</file>
         <file>Recursos/Archivos/nivel1.txt</file>
     </qresource>
+    <qresource prefix="/sonidos">
+        <file>Recursos/Sonidos/stamp.wav</file>
+        <file>Recursos/Sonidos/backgroundInicioMusic.wav</file>
+    </qresource>
 </RCC>

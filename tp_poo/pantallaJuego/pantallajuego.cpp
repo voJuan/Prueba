@@ -14,6 +14,8 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
     ui->setupUi(this);
     agregarFuentes(":/archivos.txt/Recursos/Archivos/AtariSmall.ttf", ui->reglasTxt);
+    configurarSonidoBoton();
+
     ui->reglasTxt->hide();
 
 
@@ -128,9 +130,15 @@ void pantallajuego::activarBotones()
 void pantallajuego::on_aceptar_clicked()
 {
     cooldownBotones();
+    qDebug() << "Reproduciendo sonido...";
+    sonidoBoton->play();
+    if(!sonidoBoton->isPlaying()){
+        qDebug() << "NO SE ESTA REPRODUCIENDO";
+    }
     iniciarAnimacionPersonaje(ui->fondopersona->width());
     int puntos=this->nivel->DejarPasarPuntos();//verificar si coincide la accion de dejar pasar con el bool de personaje(true)
     ActualizarPuntaje(puntos);
+
 
 
 }
@@ -139,6 +147,7 @@ void pantallajuego::on_aceptar_clicked()
 void pantallajuego::on_rechazar_clicked()
 {
     cooldownBotones();
+    sonidoBoton->play();
     iniciarAnimacionPersonaje(-ui->fondopersona->width());
     int puntos=this->nivel->NoDejarPasarPuntos();//verificar si coincide la accion de dejar pasar con el bool de personaje(false)
     ActualizarPuntaje(puntos);
@@ -230,8 +239,8 @@ void pantallajuego::on_reglas_clicked()
     //QMessageBox::information(this, "REGLAS NIVEL 1:", "Nacionalidad permitida: argentino, brasilero y paraguayo\n Fecha de nacimiento: persona mayores de edad al 01/07/24\n Tipo de visita: trabajo\n Duración de la estancia: mas de 1 semana\n Estado civil: soltero.");
 }
 
-void pantallajuego::configurarSonidoBoton(QString url){
-        sonidoBoton->setSource(QUrl::fromLocalFile(url));
-        sonidoBoton->setVolume(1);
-        sonidoBoton->play();
+void pantallajuego::configurarSonidoBoton(){
+    static QUrl url = QString("qrc:/sonidos/Recursos/Sonidos/stamp.wav");
+    sonidoBoton->setSource(url);
+    sonidoBoton->setVolume(0.5);
 }
