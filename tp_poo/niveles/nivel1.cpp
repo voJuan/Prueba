@@ -204,32 +204,36 @@ void nivel1::SetDoc(){
         } while (std::find(documentosFalsos.begin(), documentosFalsos.end(), indiceFalso) != documentosFalsos.end());
         documentosFalsos.push_back(indiceFalso);
     }
-
+    QString parametroFalso;
     // Asignación de documentos (falsos o verdaderos según el índice)
     for (int i = 0; i < numDocumentos; ++i) {
         if (std::find(documentosFalsos.begin(), documentosFalsos.end(), i) != documentosFalsos.end()) {
             // Documento falso
             switch (i) {
             case 0:
-
-                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true));
-                fallos.push_back(obtenerLineaAleatoria(lectorNac));
+                parametroFalso = obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true);
+                this->nacionalidad->setText(parametroFalso);
+                fallos.push_back(parametroFalso);
                 break;
             case 1:
-                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true));
-                fallos.push_back(obtenerLineaAleatoria(lectorFech));
+                parametroFalso = obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true);
+                this->fecha_de_nacimiento->setText(parametroFalso);
+                fallos.push_back(parametroFalso);
                 break;
             case 2:
-                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true));
-                fallos.push_back(obtenerLineaAleatoria(lectorTipo));
+                parametroFalso = obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true);
+                this->tipo_visita->setText(parametroFalso);
+                fallos.push_back(parametroFalso);
                 break;
             case 3:
-                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true));
-                fallos.push_back(obtenerLineaAleatoria(lectorDur));
+                parametroFalso = obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true);
+                this->duracion->setText(parametroFalso);
+                fallos.push_back(parametroFalso);
                 break;
             case 4:
-                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true));
-                fallos.push_back(obtenerLineaAleatoria(lectorEst));
+                parametroFalso = obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true);
+                this->estado_civil->setText(parametroFalso);
+                fallos.push_back(parametroFalso);
                 break;
             }
         } else {
