@@ -53,6 +53,10 @@
         <file>Recursos/Archivos/vacunacion.txt</file>
         <file>Recursos/Archivos/ocupacion.txt</file>
         <file>Recursos/Archivos/integrantes.txt</file>
+        <file>Recursos/Archivos/nivel2.txt</file>
+        <file>Recursos/Archivos/nivel3.txt</file>
+        <file>Recursos/Archivos/nivel4.txt</file>
+        <file>Recursos/Archivos/nivel5.txt</file>
     </qresource>
     <qresource prefix="/sonidos">
         <file>Recursos/Sonidos/stamp.wav</file>
