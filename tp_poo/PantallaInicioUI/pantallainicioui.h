@@ -13,6 +13,7 @@ class PantallaInicioUI : public QWidget
 {
     Q_OBJECT
 public:
+    QSoundEffect *getMusicaFondo() {return this->sonidoFondo;}
     explicit PantallaInicioUI(QWidget *parent = nullptr);
     ~PantallaInicioUI();
 signals:
