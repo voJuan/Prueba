@@ -27,6 +27,7 @@
         <file>Recursos/Imagenes/Bolsonaro.png</file>
         <file>Recursos/Imagenes/bover.png</file>
         <file>Recursos/Imagenes/judio.png</file>
+        <file>Recursos/Imagenes/pngtree-old-paper-vector-ilustration-in-flat-style-png-image_4485682.png</file>
     </qresource>
     <qresource prefix="/archivos.txt">
         <file>Recursos/Imagenes/imagenes-personajes.txt</file>
@@ -47,6 +48,7 @@
         <file>Recursos/Archivos/diplomatico.txt</file>
         <file>Recursos/Archivos/refugiado.txt</file>
         <file>Recursos/Archivos/nivel1.txt</file>
+        <file>Recursos/Archivos/registro_logs.txt</file>
     </qresource>
     <qresource prefix="/sonidos">
         <file>Recursos/Sonidos/stamp.wav</file>

@@ -19,6 +19,7 @@
 #include "../personajes/personajeabst.h"
 #include <map>
 #include <vector>
+#include <QVector>
 #include <QString>
 #include <QStringList>
 #include <QIODevice>
@@ -51,6 +52,10 @@ public:
     virtual void SetDoc();
     int GetMultas();
     void SetMulta();
+    void escribirLog(const QString& mensaje);
+    void escribirLogs(QVector<QString> &mensajes);
+    void borrarLogs();
+    QVector<QString>& getFallos() {return this->fallos;}
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
@@ -74,7 +79,7 @@ protected:
     LectorArchivos *lectorTipoFake;
     LectorArchivos *lectorDurFake;
     LectorArchivos *lectorEstFake;
-
+    QVector<QString> fallos;
     QString * nacionalidades;
     int topeNac;
 

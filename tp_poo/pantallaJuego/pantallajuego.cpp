@@ -11,11 +11,11 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
 
 {
-
+    nivel->borrarLogs();
     ui->setupUi(this);
     agregarFuentes(":/archivos.txt/Recursos/Archivos/AtariSmall.ttf", ui->reglasTxt);
     configurarSonidoBoton();
-
+    ui->reglas->hide();
     ui->reglasTxt->hide();
 
 
@@ -129,6 +129,7 @@ void pantallajuego::activarBotones()
 //#### Llamar a funciones para actualizar puntaje y generar nuevos personajes ####
 void pantallajuego::on_aceptar_clicked()
 {
+    nivel->escribirLog("Registro de evento: Pulso Aceptar");
     cooldownBotones();
     qDebug() << "Reproduciendo sonido...";
     sonidoBoton->play();
@@ -137,6 +138,12 @@ void pantallajuego::on_aceptar_clicked()
     }
     iniciarAnimacionPersonaje(ui->fondopersona->width());
     int puntos=this->nivel->DejarPasarPuntos();//verificar si coincide la accion de dejar pasar con el bool de personaje(true)
+    if(puntos > 0){
+        nivel->escribirLog("Registro Evento: Acertaste");
+    }else{
+        nivel->escribirLog("Registro Evento: Pifiaste");
+        nivel->escribirLogs(nivel->getFallos());
+    }
     ActualizarPuntaje(puntos);
 
 
@@ -146,10 +153,18 @@ void pantallajuego::on_aceptar_clicked()
 // Llamar a funciones para actualizar puntaje y generar nuevos personajes ###
 void pantallajuego::on_rechazar_clicked()
 {
+    nivel->escribirLog("Registro de evento: Pulso Rechazar");
+
     cooldownBotones();
     sonidoBoton->play();
     iniciarAnimacionPersonaje(-ui->fondopersona->width());
     int puntos=this->nivel->NoDejarPasarPuntos();//verificar si coincide la accion de dejar pasar con el bool de personaje(false)
+    if(puntos > 0){
+        nivel->escribirLog("Registro Evento: Acertaste");
+    }else{
+        nivel->escribirLog("Registro Evento: Pifiaste");
+        nivel->escribirLogs(nivel->getFallos());
+    }
     ActualizarPuntaje(puntos);
 
 }
@@ -161,7 +176,7 @@ void pantallajuego::ActualizarPuntaje(int puntos){
     puntaje+=puntos;
     int multas=this->nivel->GetMultas();
     if(multas>this->MaxMulta && multas<4){
-    this->MaxMulta=multas;
+     this->MaxMulta=multas;
      mostrarMensajeMulta();
     }
     if((puntaje<0) || (multas==4)) {

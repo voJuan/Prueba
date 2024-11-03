@@ -25,6 +25,7 @@ void PantallaInicioUI::configurarSonidoFondo()
     static QUrl url = QString("qrc:/sonidos/Recursos/Sonidos/backgroundInicioMusic.wav");
     sonidoFondo->setSource(url);
     sonidoFondo->setVolume(0.5);
+    sonidoFondo->setLoopCount(QSoundEffect::Infinite);
 }
 
 
