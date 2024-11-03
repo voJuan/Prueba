@@ -218,7 +218,7 @@ void nivel4::SetDoc(){
 }
 
 int nivel4::PasarNivel(){
-    return -1;
+    return 5;
 }
 
 nivel4::~nivel4() {}

@@ -424,5 +424,5 @@ void nivel1::SetNivel(){
 }
 
 int nivel1::PasarNivel(){
-    return 5;
+    return 2;
 }
