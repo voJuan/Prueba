@@ -24,6 +24,7 @@
 #include <QStringList>
 #include <QIODevice>
 #include <QDebug>
+#include <algorithm>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class nivel1;
@@ -41,21 +42,27 @@ public:
    // virtual void mostrar_documentos();
     virtual void setupDocumentos();
     void setupDragAndDrop();
-    void LeerTxtNivel();
+    void LeerTxtNivel(QString direcc);
+    virtual void SetDireccion();
     QString obtenerLineaAleatoria(LectorArchivos *lector);
+    QString obtenerLinea_Archivo(LectorArchivos *lector, const vector<int>& permitidas, bool generarFalso);
     bool eventFilter(QObject *obj, QEvent *event);
     QString getTipoPersonaje();
-    QString obtenerReglas();
+    int getTiempo();
+    int getPuntaje();
+    virtual QString obtenerReglas();
     int DejarPasarPuntos();
     int NoDejarPasarPuntos();
     void GenerarPersonajes();
     virtual void SetDoc();
+    virtual int PasarNivel();
     int GetMultas();
     void SetMulta();
     void escribirLog(const QString& mensaje);
     void escribirLogs(QVector<QString> &mensajes);
     void borrarLogs();
     QVector<QString>& getFallos() {return this->fallos;}
+    virtual void SetNivel();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
    // void dropEvent(QDropEvent *event);
@@ -65,6 +72,10 @@ signals:
 protected:
     Ui::nivel1 *ui;
     int multa = 0;
+    int tiempo;
+    int puntaje;
+    int nivel;
+    QString direccion;
     map<QString,vector<int>> lineasValidas;
     personajeAbst *personaje;
     LectorArchivos *lectorReg;
@@ -80,6 +91,10 @@ protected:
     LectorArchivos *lectorDurFake;
     LectorArchivos *lectorEstFake;
     QVector<QString> fallos;
+    LectorArchivos *lectorProp;
+    LectorArchivos *lectorInt;
+    LectorArchivos *lectorOcup;
+    LectorArchivos *lectorVac;
     QString * nacionalidades;
     int topeNac;
 

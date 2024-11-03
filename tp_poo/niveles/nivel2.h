@@ -18,11 +18,15 @@ public:
     explicit nivel2(QWidget *parent = nullptr);
     void  setupDocumentos() override;
     void SetDoc() override;
+    QString obtenerReglas() override;
+    int PasarNivel() override;
+    void SetDireccion() override;
+    virtual void SetNivel();
     ~nivel2();
 
 private:
     Ui::nivel2 *ui;
-     QLabel* equipo;
+     QLabel* proposito;
 };
 
 #endif // NIVEL2_H

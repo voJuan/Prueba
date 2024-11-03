@@ -11,6 +11,9 @@
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
 #include "../niveles/nivel2.h"
+#include "../niveles/nivel3.h"
+#include "../niveles/nivel4.h"
+#include "../niveles/nivel5.h"
 #include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -37,7 +40,9 @@ private:
     int puntaje;
     int MaxMulta = 0;
     bool textovisible = false;
-
+    int numeroNivel;
+    int tiempoRestante;
+    QTimer *timerVisual;
     void anadirPersonaje(QWidget *parent);
     void textoVisible(QLabel *texto);
     void agregarFuentes(QString direccionFuente, QLabel *Texto);
@@ -48,6 +53,9 @@ public slots:
 private slots:
     void cooldownBotones();
     void activarBotones();
+    void actualizarTiempoPantalla();
+    void verificarProgreso();
+
     void mostrarMensajePerdida();
     void mostrarMensajeMulta();
     void mostrarReglas();

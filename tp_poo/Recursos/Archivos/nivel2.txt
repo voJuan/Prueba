@@ -1,0 +1,9 @@
+nacionalidad:  0,1
+fecha_de_nacimiento: 0,1      
+tipo_visita: 0,1
+duracion: 1,2
+estado_civil: 2,1
+proposito: 0,1
+tiempo: 20,1
+puntos: 10,1
+        

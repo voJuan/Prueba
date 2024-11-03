@@ -16,12 +16,12 @@ lectorFech(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento
 lectorTipo(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita.txt")),
 lectorDur(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion.txt")),
 lectorEst(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil.txt")),
+lectorProp(new LectorArchivos(":/archivos.txt/Recursos/Archivos/proposito.txt")),
+lectorInt(new LectorArchivos(":/archivos.txt/Recursos/Archivos/integrantes.txt")),
+lectorOcup(new LectorArchivos(":/archivos.txt/Recursos/Archivos/ocupacion.txt")),
+lectorVac(new LectorArchivos(":/archivos.txt/Recursos/Archivos/vacunacion.txt"))
 //lectorRegFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/reglas.txt")),
-lectorNacFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/nacionalidad_fake.txt")),
-lectorFechFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/fecha_nacimiento_fake.txt")),
-lectorTipoFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/tipo_visita_fake.txt")),
-lectorDurFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/duracion_fake.txt")),
-lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_fake.txt"))
+
 //personaje(new personajeAbst())
 {
    layout = new QVBoxLayout(this);
@@ -29,8 +29,8 @@ lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_
 
     nacionalidades = lectorNac->getArray();
     topeNac = lectorNac->getTopeArray();
-
-    LeerTxtNivel();
+    SetNivel();
+    SetDireccion();
     setupDocumentos();
     setupDragAndDrop();
     GenerarPersonajes();
@@ -39,19 +39,30 @@ lectorEstFake(new LectorArchivos(":/archivos.txt/Recursos/Archivos/estado_civil_
 
 nivel1::~nivel1()
 {
-    delete lectorReg;
-    delete lectorNac;
-    delete lectorFech;
-    delete lectorTipo;
-    delete lectorDur;
-    delete lectorEst;
-    delete ui;
+  //  delete lectorReg;
+    //delete lectorNac;
+    //delete lectorFech;
+   // delete lectorTipo;
+    //delete lectorDur;
+    //delete lectorEst;
+    //delete ui;
 
 }
 //############ funciones para documentos ###############################
 //       LEER TXT
-void nivel1::LeerTxtNivel(){
-    QFile archivo(":/archivos.txt/Recursos/Archivos/nivel1.txt");
+void nivel1::SetDireccion(){
+    if (this->nivel == 1) {
+        this->direccion = ":/archivos.txt/Recursos/Archivos/nivel1.txt";
+    }
+
+
+
+    LeerTxtNivel(this->direccion);
+}
+
+
+void nivel1::LeerTxtNivel(QString direcc){
+    QFile archivo(direcc);
     if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning("No se pudo abrir el archivo de reglas.");
         return;
@@ -172,11 +183,11 @@ void nivel1::SetDoc(){
 
     // Si el personaje puede pasar, todos los documentos son verdaderos
     if (this->personaje->getDejarPasar()) {
-        this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
-        this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
-        this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
-        this->duracion->setText(obtenerLineaAleatoria(lectorDur));
-        this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+        this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], false));
+        this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], false));
+        this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], false));
+        this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], false));
+        this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], false));
         return;
     }
 
@@ -200,49 +211,81 @@ void nivel1::SetDoc(){
             // Documento falso
             switch (i) {
             case 0:
-                this->nacionalidad->setText(obtenerLineaAleatoria(lectorNacFake));
-                fallos.push_back(obtenerLineaAleatoria(lectorNacFake));
+
+                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorNac));
                 break;
             case 1:
-                this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFechFake));
-                fallos.push_back(obtenerLineaAleatoria(lectorFechFake));
+                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorFech));
                 break;
             case 2:
-                this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipoFake));
-                fallos.push_back(obtenerLineaAleatoria(lectorTipoFake));
+                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorTipo));
                 break;
             case 3:
-                this->duracion->setText(obtenerLineaAleatoria(lectorDurFake));
-                fallos.push_back(obtenerLineaAleatoria(lectorDurFake));
+                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorDur));
                 break;
             case 4:
-                this->estado_civil->setText(obtenerLineaAleatoria(lectorEstFake));
-                fallos.push_back(obtenerLineaAleatoria(lectorEstFake));
+                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true));
+                fallos.push_back(obtenerLineaAleatoria(lectorEst));
                 break;
             }
         } else {
             // Documento verdadero
             switch (i) {
             case 0:
-                this->nacionalidad->setText(obtenerLineaAleatoria(lectorNac));
+                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], false));
                 break;
             case 1:
-                this->fecha_de_nacimiento->setText(obtenerLineaAleatoria(lectorFech));
+                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], false));
                 break;
             case 2:
-                this->tipo_visita->setText(obtenerLineaAleatoria(lectorTipo));
+                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], false));
                 break;
             case 3:
-                this->duracion->setText(obtenerLineaAleatoria(lectorDur));
+                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], false));
                 break;
             case 4:
-                this->estado_civil->setText(obtenerLineaAleatoria(lectorEst));
+                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], false));
                 break;
             }
         }
     }
 }
+// dado un puntero a LectorArchivos elegir una linea aleatoriamente
+QString nivel1::obtenerLinea_Archivo(LectorArchivos *lector, const vector<int>& permitidas, bool generarFalso) {
+    int tope = lector->getTopeArray();
+    QRandomGenerator *numRandom = QRandomGenerator::global();
+    int intentos = 0;
 
+    if (generarFalso) {
+        // Generar una línea que NO esté en el vector de permitidas
+        int indexFalso;
+        do {
+            indexFalso = numRandom->bounded(tope);  // Generar índice aleatorio
+            qDebug() << "Intento #" << intentos << " con indexFalso: " << indexFalso;
+            intentos++;
+            indexFalso++;
+            // Verificar si `indexFalso + 1` supera el tope y ajustarlo si es necesario
+            if (indexFalso >= tope) {
+                indexFalso = 0;  // Ajustar a un índice válido
+            }
+
+        } while (std::find(permitidas.begin(), permitidas.end(), indexFalso ) != permitidas.end());  // Repetir si está permitido
+
+        return lector->getArray()[indexFalso];
+    } else {
+        // Elegir una línea dentro de las permitidas
+        int indexPermitido = permitidas[numRandom->bounded(permitidas.size())] ;
+        return lector->getArray()[indexPermitido];
+    }
+}
+
+
+
+//
 
 
 
@@ -306,13 +349,20 @@ QString nivel1::getTipoPersonaje()
 }
 // generar personaje de forma aleatoria y llamar a la funcio para setear documentos
 void nivel1::GenerarPersonajes(){
-    personajeAbst *personaje;
-    personaje =  personajeAbst::crearPersonajeAleatorio();
-    this->personaje=personaje;
-    emit personajeCambiado(personaje->getTipo());
-    SetDoc();
+    personajeAbst *personaje = personajeAbst::crearPersonajeAleatorio();
+    this->personaje = personaje;
 
+    if (personaje != nullptr) {
+        emit personajeCambiado(personaje->getTipo());
+        SetDoc();
+    } else {
+        // Manejo del caso donde personaje es nullptr
+        //std::cerr << "Error: El personaje es un puntero nulo." << std::endl;
+        // Puedes añadir lógica adicional aquí si es necesario
+    }
 }
+
+
 //#####################################################################################
 //###################### logica para sumar puntos #####################################
 
@@ -390,8 +440,26 @@ int nivel1::GetMultas(){
     return this->multa;
 }
 //#######################################################################################
+//########################## get de tiempo nivel ########################################
+int nivel1::getTiempo(){
 
 
+    this->tiempo=this->lineasValidas["tiempo"][0];
+    return this->tiempo;
+}
 
+//#######################################################################################
+//#########################  get de puntaje #############################################
+int nivel1::getPuntaje(){
+    this->puntaje=this->lineasValidas["puntos"][0];
+    return this->puntaje;
+}
+//#######################################################################################
+void nivel1::SetNivel(){
 
+    this->nivel=1;
+}
 
+int nivel1::PasarNivel(){
+    return 2;
+}

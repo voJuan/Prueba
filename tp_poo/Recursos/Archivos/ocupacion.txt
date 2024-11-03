@@ -1,0 +1,22 @@
+Desarrollador de software
+Ingeniero de sistemas
+Analista de datos
+Administrador de redes
+Médico general
+Enfermero
+Dentista
+Fisioterapeuta
+Farmacéutico
+Profesor de primaria
+Profesor de secundaria
+Profesor universitario
+Tutor académico
+Investigador
+Artista visual
+Diseñador gráfico
+Escultor
+Fotógrafo
+Ingeniero civil
+Ingeniero eléctrico
+Ingeniero mecánico
+Ingeniero ambiental
