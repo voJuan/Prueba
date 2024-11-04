@@ -34,7 +34,7 @@ void MainWindow::cargarPartida() {
         QDataStream in(&archivo);
 
         partida partidaCargada;
-        in >> partidaCargada.tiempo >> partidaCargada.puntos >> partidaCargada.multas;
+        in >> partidaCargada.tiempo >> partidaCargada.puntos >> partidaCargada.multas >> partidaCargada.nivel;
         archivo.close();
 
         // Inicializar `pantallajuego` con los datos de la partida cargada

@@ -5,6 +5,7 @@ struct partida {
     int tiempo;
     int puntos;
     int multas;
+    int nivel=0;
 };
 
 #endif // PARTIDA_H
