@@ -21,14 +21,12 @@ public:
     QString obtenerReglas() override;
     int PasarNivel() override;
     void SetDireccion() override;
-    void escribirLogs() override;
     virtual void SetNivel();
     ~nivel2();
 
 private:
     Ui::nivel2 *ui;
      QLabel* proposito;
-    QSet<QString> fallos_nivel2;
 };
 
 #endif // NIVEL2_H

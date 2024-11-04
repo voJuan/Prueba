@@ -180,11 +180,6 @@ void nivel1::setupDocumentos()
 // elegir aleatoriamente que dato va a estar incorrecto
 void nivel1::SetDoc(){
     this->reglas->setText("DOCUMENTOS:");
-    this->nacionalidad->clear();
-    this->fecha_de_nacimiento->clear();
-    this->tipo_visita->clear();
-    this->duracion->clear();
-    this->estado_civil->clear();
 
     // Si el personaje puede pasar, todos los documentos son verdaderos
     if (this->personaje->getDejarPasar()) {
@@ -209,36 +204,26 @@ void nivel1::SetDoc(){
         } while (std::find(documentosFalsos.begin(), documentosFalsos.end(), indiceFalso) != documentosFalsos.end());
         documentosFalsos.push_back(indiceFalso);
     }
-    QString parametroFalso;
+
     // Asignación de documentos (falsos o verdaderos según el índice)
     for (int i = 0; i < numDocumentos; ++i) {
         if (std::find(documentosFalsos.begin(), documentosFalsos.end(), i) != documentosFalsos.end()) {
             // Documento falso
             switch (i) {
             case 0:
-                parametroFalso = obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true);
-                this->nacionalidad->setText(parametroFalso);
-                fallos_nivel1.insert(parametroFalso);
+                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true));
                 break;
             case 1:
-                parametroFalso = obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true);
-                this->fecha_de_nacimiento->setText(parametroFalso);
-                fallos_nivel1.insert(parametroFalso);
+                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true));
                 break;
             case 2:
-                parametroFalso = obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true);
-                this->tipo_visita->setText(parametroFalso);
-                fallos_nivel1.insert(parametroFalso);
+                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true));
                 break;
             case 3:
-                parametroFalso = obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true);
-                this->duracion->setText(parametroFalso);
-                fallos_nivel1.insert(parametroFalso);
+                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true));
                 break;
             case 4:
-                parametroFalso = obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true);
-                this->estado_civil->setText(parametroFalso);
-                fallos_nivel1.insert(parametroFalso);
+                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true));
                 break;
             }
         } else {
@@ -413,34 +398,6 @@ int nivel1::NoDejarPasarPuntos(){
 void nivel1::SetMulta(int mult){
     this->multa=mult;
 }
-
-void nivel1::escribirLogs()
-{
-    QFile archivo("registro_de_logs.txt");
-    archivo.open(QIODevice::Append | QIODevice::Text);
-    QTextStream salida(&archivo);
-    for(const auto& mensaje : this->fallos_nivel1){
-        salida << mensaje << Qt::endl;
-    }
-    archivo.close();
-    this->fallos_nivel1.clear();
-}
-
-void nivel1::escribirLog(const QString& mensaje)
-{
-    QFile archivo("registro_de_logs.txt");
-    archivo.open(QIODevice::Append | QIODevice::Text);
-    QTextStream salida(&archivo);
-    salida << mensaje << Qt::endl;
-    archivo.close();
-}
-
-void nivel1::borrarLogs()
-{
-    QFile archivo("registro_de_logs.txt");
-    archivo.open(QIODevice::WriteOnly | QIODevice::Text);
-    archivo.close();
-}
 // Get para saber cuantas multas hay acumuladas
 int nivel1::GetMultas(){
     return this->multa;
@@ -467,6 +424,5 @@ void nivel1::SetNivel(){
 }
 
 int nivel1::PasarNivel(){
-    this->fallos_nivel1.clear();
     return 2;
 }

@@ -4,11 +4,9 @@
 #include <QObject>
 #include <QWidget>
 #include <QLabel>
-#include <QFile>
 #include <QPropertyAnimation>
 #include <QVBoxLayout>
 #include <QVector>
-#include <QSet>
 #include <QRandomGenerator>
 #include "../LectordeArchivos/lectorarchivos.h"
 #include "../PersonajeUI/personajeui.h"
@@ -21,7 +19,6 @@
 #include "../personajes/personajeabst.h"
 #include <map>
 #include <vector>
-#include <QVector>
 #include <QString>
 #include <QStringList>
 #include <QIODevice>
@@ -60,10 +57,6 @@ public:
     virtual int PasarNivel();
     int GetMultas();
     void SetMulta(int mult);
-    void escribirLog(const QString& mensaje);
-    virtual void escribirLogs();
-    void borrarLogs();
-
     virtual void SetNivel();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
@@ -109,8 +102,7 @@ protected:
     QMouseEvent* mouseEvent;
     QMouseEvent* event;
     QVBoxLayout *layout;
-private:
-    QSet<QString> fallos_nivel1;
+
 };
 
 #endif // NIVEL1_H

@@ -3,7 +3,7 @@
  <class>pantallajuego</class>
  <widget class="QWidget" name="pantallajuego">
   <property name="windowModality">
-   <enum>Qt::WindowModality::NonModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -20,7 +20,7 @@
    </size>
   </property>
   <property name="contextMenuPolicy">
-   <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
+   <enum>Qt::PreventContextMenu</enum>
   </property>
   <property name="acceptDrops">
    <bool>false</bool>
@@ -121,25 +121,27 @@
 	border-image: url(:/recursos/imagenes/Recursos/Imagenes/radio.jpg);
 }</string>
      </property>
-     <widget class="QLabel" name="reglasTxt">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>10</y>
-        <width>251</width>
-        <height>231</height>
-       </rect>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>0</number>
       </property>
-      <property name="styleSheet">
-       <string notr="true">#reglasTxt{
-	border-image: url(:/recursos/imagenes/Recursos/Imagenes/pngtree-old-paper-vector-ilustration-in-flat-style-png-image_4485682.png);
-	
-}</string>
+      <property name="topMargin">
+       <number>35</number>
       </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;&gt;Nacionalidad permitida: argentino, brasilero y paraguayo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;&gt;Fecha de nacimiento: persona mayores de edad al 01/07/24&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;&gt;Tipo de visita: trabajo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;&gt;Duración de la estancia: mas de 1 semana&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;&gt;Estado civil: casado divorciado o viudo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <property name="rightMargin">
+       <number>0</number>
       </property>
-     </widget>
+      <property name="bottomMargin">
+       <number>155</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="reglasTxt">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Nacionalidad permitida: &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#448da3;&quot;&gt;argentino&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#1ab509;&quot;&gt;brasilero&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; y &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#b80404;&quot;&gt;paraguayo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Fecha de nacimiento: persona mayores de edad al &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;01/07/24&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Tipo de visita: &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#00065f;&quot;&gt;trabajo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Duración de la estancia: &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#0b005b;&quot;&gt;mas de 1 semana&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Estado civil: &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#00025e;&quot;&gt;casado divorciado o viudo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="1" column="3" rowspan="2">
@@ -253,28 +255,8 @@
           </property>
          </widget>
         </item>
-
         <item row="0" column="2">
          <widget class="QPushButton" name="guardar">
-
-        <item row="4" column="0">
-         <widget class="QPushButton" name="reglas">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>100</width>
-            <height>100</height>
-           </size>
-          </property>
-
           <property name="text">
            <string>guardar partida</string>
           </property>

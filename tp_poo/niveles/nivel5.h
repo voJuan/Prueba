@@ -19,7 +19,6 @@ public:
     virtual void SetNivel();
     int PasarNivel() override;
     void SetDireccion() override;
-    void escribirLogs() override;
     // int PasarNivel() override;
     ~nivel5();
 
@@ -29,7 +28,6 @@ private:
     QLabel* integrantes;
     QLabel* ocupacion;
     QLabel* vacunas;
-    QSet<QString> fallos_nivel5;
 };
 
 #endif // NIVEL5_H

@@ -1,3 +1,1 @@
 :/recursos/imagenes/Recursos/Imagenes/aldeano.png
-:/recursos/imagenes/Recursos/Imagenes/aldeana.png
-:/recursos/imagenes/Recursos/Imagenes/bover.png
