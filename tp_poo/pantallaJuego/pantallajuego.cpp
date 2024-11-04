@@ -40,6 +40,7 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
     this->tiempoRestante = nivel->getTiempo();
     timerVisual->start(1000);
+    connect(ui->guardar, &QPushButton::clicked, this, &pantallajuego::guardarPartida);
     //connect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
 
     // Obtén el tiempo del nivel y asignarlo a `tiempoRestante`
@@ -47,6 +48,22 @@ pantallajuego::pantallajuego(QWidget *parent) :
 
     // Comenzar a actualizar el tiempo visual en la pantalla cada segundo
      // Actualización cada segundo
+}
+
+void pantallajuego::cargarDatosPartida(const partida &par)
+{
+    this->tiempoRestante = par.tiempo;
+    this->puntaje = par.puntos;
+    int multas=par.multas;
+    this->nivel->SetMulta(multas);
+
+
+    // Actualizar los elementos visuales
+    ui->tiempoRestante->setText(QString::number(this->tiempoRestante));
+    ui->puntaje->setText(QString::number(this->puntaje));
+
+    this->numeroNivel=par.nivel;
+    cambiarNivel(this->numeroNivel);
 }
 
 pantallajuego::~pantallajuego()
@@ -85,6 +102,25 @@ void pantallajuego::verificarProgreso() {
         actualizarTiempoPantalla();
         timerVisual->start(1000);
         //connect(timerVisual, &QTimer::timeout, this, &pantallajuego::actualizarTiempoPantalla);
+    }
+}
+
+void pantallajuego::guardarPartida()
+{
+    partida partidaGuardada;
+    partidaGuardada.tiempo = this->tiempoRestante;
+    partidaGuardada.puntos = this->puntaje;
+    partidaGuardada.multas = this->nivel->GetMultas();
+    partidaGuardada.nivel=this->numeroNivel;
+
+    QFile archivo("partida_guardada.bin");
+    if (archivo.open(QIODevice::WriteOnly)) {
+        QDataStream out(&archivo);
+        out << partidaGuardada.tiempo << partidaGuardada.puntos << partidaGuardada.multas<<partidaGuardada.nivel;
+        archivo.close();
+        QMessageBox::information(this, "Guardado", "Partida guardada exitosamente.");
+    } else {
+        QMessageBox::warning(this, "Error", "No se pudo guardar la partida.");
     }
 }
 
@@ -259,7 +295,7 @@ void pantallajuego::ActualizarPuntaje(int puntos){
     }
     if((puntaje<0) || (multas==4)) {
         puntaje=0;
-        this->nivel->SetMulta();
+        this->nivel->SetMulta(0);
         mostrarMensajePerdida();
     }
     /*if(puntaje >=200 && this->numeroNivel==1){

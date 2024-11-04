@@ -410,8 +410,8 @@ int nivel1::NoDejarPasarPuntos(){
 //#######################################################################################
 // ########################### manejo de multas #########################################
 // Setear multa en 0
-void nivel1::SetMulta(){
-    this->multa=0;
+void nivel1::SetMulta(int mult){
+    this->multa=mult;
 }
 
 void nivel1::escribirLogs()

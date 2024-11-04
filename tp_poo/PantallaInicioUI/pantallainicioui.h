@@ -18,6 +18,7 @@ public:
     ~PantallaInicioUI();
 signals:
     void iniciarJuegoClicked();
+    void cargarPartidaClicked();
 private:
     QSoundEffect *sonidoFondo;
     Ui::PantallaInicioUI *ui;

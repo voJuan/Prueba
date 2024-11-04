@@ -40,6 +40,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         niveles/nivel3.h niveles/nivel3.cpp niveles/nivel3.ui
         niveles/nivel4.h niveles/nivel4.cpp niveles/nivel4.ui
         niveles/nivel5.h niveles/nivel5.cpp niveles/nivel5.ui
+        partida.h
 
     )
 # Define target properties for Android with Qt 6 as:

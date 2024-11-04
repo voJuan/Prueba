@@ -59,7 +59,7 @@ public:
     virtual void SetDoc();
     virtual int PasarNivel();
     int GetMultas();
-    void SetMulta();
+    void SetMulta(int mult);
     void escribirLog(const QString& mensaje);
     virtual void escribirLogs();
     void borrarLogs();
