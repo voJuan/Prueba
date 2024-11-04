@@ -21,6 +21,7 @@ public:
     virtual void SetNivel();
     int PasarNivel() override;
      void SetDireccion() override;
+    void escribirLogs() override;
    // int PasarNivel() override;
     ~nivel3();
 
@@ -28,6 +29,7 @@ private:
     Ui::nivel3 *ui;
     QLabel* proposito;
     QLabel* integrantes;
+    QSet<QString> fallos_nivel3;
 };
 
 #endif // NIVEL3_H

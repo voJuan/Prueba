@@ -22,6 +22,12 @@
         <file>Recursos/Imagenes/elChe.jpg</file>
         <file>Recursos/Imagenes/adorni.png</file>
         <file>Recursos/Imagenes/trump.png</file>
+        <file>Recursos/Imagenes/Castro.png</file>
+        <file>Recursos/Imagenes/aldeana.png</file>
+        <file>Recursos/Imagenes/Bolsonaro.png</file>
+        <file>Recursos/Imagenes/bover.png</file>
+        <file>Recursos/Imagenes/judio.png</file>
+        <file>Recursos/Imagenes/pngtree-old-paper-vector-ilustration-in-flat-style-png-image_4485682.png</file>
     </qresource>
     <qresource prefix="/archivos.txt">
         <file>Recursos/Imagenes/imagenes-personajes.txt</file>
@@ -42,6 +48,19 @@
         <file>Recursos/Archivos/diplomatico.txt</file>
         <file>Recursos/Archivos/refugiado.txt</file>
         <file>Recursos/Archivos/nivel1.txt</file>
+        <file>Recursos/Archivos/registro_logs.txt</file>
+        <file>Recursos/Archivos/proposito.txt</file>
+        <file>Recursos/Archivos/vacunacion.txt</file>
+        <file>Recursos/Archivos/ocupacion.txt</file>
+        <file>Recursos/Archivos/integrantes.txt</file>
+        <file>Recursos/Archivos/nivel2.txt</file>
+        <file>Recursos/Archivos/nivel3.txt</file>
+        <file>Recursos/Archivos/nivel4.txt</file>
+        <file>Recursos/Archivos/nivel5.txt</file>
+    </qresource>
+    <qresource prefix="/sonidos">
+        <file>Recursos/Sonidos/stamp.wav</file>
+        <file>Recursos/Sonidos/backgroundInicioMusic.wav</file>
         <file>Recursos/Archivos/nivel2.txt</file>
         <file>Recursos/Archivos/proposito.txt</file>
         <file>Recursos/Archivos/nivel3.txt</file>

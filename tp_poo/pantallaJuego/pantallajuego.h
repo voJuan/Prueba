@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QMessageBox>
 #include <QFontDatabase>
+#include <QSoundEffect>
 #include "../PersonajeUI/personajeui.h"
 #include "../niveles/nivel1.h"
 #include "../niveles/nivel2.h"
@@ -38,6 +39,7 @@ private:
     PersonajeUI *personaje;
     nivel1 *nivel;
     QVBoxLayout *layoutPersonaje;
+    QSoundEffect *sonidoBoton;
     int puntaje;
     int MaxMulta = 0;
     bool textovisible = false;
@@ -65,6 +67,7 @@ private slots:
     void mostrarMensajeMulta();
     void mostrarReglas();
     void ActualizarPuntaje(int puntos);
+    void configurarSonidoBoton();
 
     void on_aceptar_clicked();
     void on_rechazar_clicked();

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
+#include <QSoundEffect>
 #include "PantallaInicioUI/pantallainicioui.h"
 #include "pantallaJuego/pantallajuego.h"
 
@@ -28,5 +29,6 @@ private:
     void AnadirPantallas();
     void iraPantallaInicio();
     void iraPantallaJuego();
+    void stopMusica();
 };
 #endif // MAINWINDOW_H
