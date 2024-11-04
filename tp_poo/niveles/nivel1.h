@@ -4,9 +4,11 @@
 #include <QObject>
 #include <QWidget>
 #include <QLabel>
+#include <QFile>
 #include <QPropertyAnimation>
 #include <QVBoxLayout>
 #include <QVector>
+#include <QSet>
 #include <QRandomGenerator>
 #include "../LectordeArchivos/lectorarchivos.h"
 #include "../PersonajeUI/personajeui.h"
@@ -59,9 +61,8 @@ public:
     int GetMultas();
     void SetMulta();
     void escribirLog(const QString& mensaje);
-    void escribirLogs(QVector<QString> &mensajes);
+    virtual void escribirLogs();
     void borrarLogs();
-    QVector<QString>& getFallos() {return this->fallos;}
     virtual void SetNivel();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);
@@ -90,7 +91,6 @@ protected:
     LectorArchivos *lectorTipoFake;
     LectorArchivos *lectorDurFake;
     LectorArchivos *lectorEstFake;
-    QVector<QString> fallos;
     LectorArchivos *lectorProp;
     LectorArchivos *lectorInt;
     LectorArchivos *lectorOcup;
@@ -108,7 +108,8 @@ protected:
     QMouseEvent* mouseEvent;
     QMouseEvent* event;
     QVBoxLayout *layout;
-
+private:
+    QSet<QString> fallos_nivel1;
 };
 
 #endif // NIVEL1_H

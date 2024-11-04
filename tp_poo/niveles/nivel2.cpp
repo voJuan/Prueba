@@ -31,6 +31,18 @@ void nivel2::SetDireccion(){
     LeerTxtNivel(this->direccion);
 }
 
+void nivel2::escribirLogs()
+{
+    QFile archivo("registro_de_logs.txt");
+    archivo.open(QIODevice::Append | QIODevice::Text);
+    QTextStream salida(&archivo);
+    for(const auto& mensaje : this->fallos_nivel2){
+        salida << mensaje << Qt::endl;
+    }
+    archivo.close();
+    this->fallos_nivel2.clear();
+}
+
 QString nivel2::obtenerReglas(){
     QString reglasTexto = "";
 
@@ -113,6 +125,13 @@ void nivel2::SetDoc(){
     //this->proposito->setText("nivel2");
     this->reglas->setText("DOCUMENTOS:");
 
+    this->nacionalidad->clear();
+    this->fecha_de_nacimiento->clear();
+    this->tipo_visita->clear();
+    this->duracion->clear();
+    this->estado_civil->clear();
+    this->proposito->clear();
+
     // Si el personaje puede pasar, todos los documentos son verdaderos
     if (this->personaje->getDejarPasar()) {
         this->proposito->setText(obtenerLinea_Archivo(lectorProp, lineasValidas["proposito"], false));
@@ -146,32 +165,32 @@ void nivel2::SetDoc(){
             case 0:
                 parametroFalso = obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true);
                 this->nacionalidad->setText(parametroFalso);
-                fallos.push_back(parametroFalso);
+                fallos_nivel2.insert(parametroFalso);
                 break;
             case 1:
                 parametroFalso = obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true);
                 this->fecha_de_nacimiento->setText(parametroFalso);
-                fallos.push_back(parametroFalso);
+                fallos_nivel2.insert(parametroFalso);
                 break;
             case 2:
                 parametroFalso = obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true);
                 this->tipo_visita->setText(parametroFalso);
-                fallos.push_back(parametroFalso);
+                fallos_nivel2.insert(parametroFalso);
                 break;
             case 3:
                 parametroFalso = obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true);
                 this->duracion->setText(parametroFalso);
-                fallos.push_back(parametroFalso);
+                fallos_nivel2.insert(parametroFalso);
                 break;
             case 4:
                 parametroFalso = obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true);
                 this->estado_civil->setText(parametroFalso);
-                fallos.push_back(parametroFalso);
+                fallos_nivel2.insert(parametroFalso);
                 break;
             case 5:
                 parametroFalso = obtenerLinea_Archivo(lectorProp, lineasValidas["proposito"], true);
                 this->proposito->setText(parametroFalso);
-                fallos.push_back(parametroFalso);
+                fallos_nivel2.insert(parametroFalso);
                 break;
             }
         } else {
@@ -202,6 +221,7 @@ void nivel2::SetDoc(){
 
 }
 int nivel2::PasarNivel(){
+    this->fallos_nivel2.clear();
     return 3;
 }
 

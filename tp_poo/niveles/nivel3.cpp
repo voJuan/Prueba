@@ -24,6 +24,18 @@ void nivel3::SetDireccion(){
 
     LeerTxtNivel(this->direccion);
 }
+
+void nivel3::escribirLogs()
+{
+    QFile archivo("registro_de_logs.txt");
+    archivo.open(QIODevice::Append | QIODevice::Text);
+    QTextStream salida(&archivo);
+    for(const auto& mensaje : this->fallos_nivel3){
+        salida << mensaje << Qt::endl;
+    }
+    archivo.close();
+    this->fallos_nivel3.clear();
+}
 QString nivel3::obtenerReglas(){
     QString reglasTexto = "";
 
@@ -112,6 +124,14 @@ void nivel3::SetDoc(){
     //this->proposito->setText("nivel2");
     this->reglas->setText("DOCUMENTOS:");
 
+    this->nacionalidad->clear();
+    this->fecha_de_nacimiento->clear();
+    this->tipo_visita->clear();
+    this->duracion->clear();
+    this->estado_civil->clear();
+    this->proposito->clear();
+    this->integrantes->clear();
+
     // Si el personaje puede pasar, todos los documentos son verdaderos
     if (this->personaje->getDejarPasar()) {
         this->integrantes->setText(obtenerLinea_Archivo(lectorInt, lineasValidas["integrante"], false));
@@ -137,32 +157,46 @@ void nivel3::SetDoc(){
         } while (std::find(documentosFalsos.begin(), documentosFalsos.end(), indiceFalso) != documentosFalsos.end());
         documentosFalsos.push_back(indiceFalso);
     }
-
+    QString parametroFalso;
     // Asignación de documentos (falsos o verdaderos según el índice)
     for (int i = 0; i < numDocumentos; ++i) {
         if (std::find(documentosFalsos.begin(), documentosFalsos.end(), i) != documentosFalsos.end()) {
             // Documento falso
             switch (i) {
             case 0:
-                this->nacionalidad->setText(obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true));
+                parametroFalso = obtenerLinea_Archivo(lectorNac, lineasValidas["nacionalidad"], true);
+                this->nacionalidad->setText(parametroFalso);
+                fallos_nivel3.insert(parametroFalso);
                 break;
             case 1:
-                this->fecha_de_nacimiento->setText(obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true));
+                parametroFalso = obtenerLinea_Archivo(lectorFech, lineasValidas["fecha_de_nacimiento"], true);
+                this->fecha_de_nacimiento->setText(parametroFalso);
+                fallos_nivel3.insert(parametroFalso);
                 break;
             case 2:
-                this->tipo_visita->setText(obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true));
+                parametroFalso = obtenerLinea_Archivo(lectorTipo, lineasValidas["tipo_visita"], true);
+                this->tipo_visita->setText(parametroFalso);
+                fallos_nivel3.insert(parametroFalso);
                 break;
             case 3:
-                this->duracion->setText(obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true));
+                parametroFalso = obtenerLinea_Archivo(lectorDur, lineasValidas["duracion"], true);
+                this->duracion->setText(parametroFalso);
+                fallos_nivel3.insert(parametroFalso);
                 break;
             case 4:
-                this->estado_civil->setText(obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true));
+                parametroFalso = obtenerLinea_Archivo(lectorEst, lineasValidas["estado_civil"], true);
+                this->estado_civil->setText(parametroFalso);
+                fallos_nivel3.insert(parametroFalso);
                 break;
             case 5:
-                this->proposito->setText(obtenerLinea_Archivo(lectorProp, lineasValidas["proposito"], true));
+                parametroFalso = obtenerLinea_Archivo(lectorProp, lineasValidas["proposito"], true);
+                this->proposito->setText(parametroFalso);
+                fallos_nivel3.insert(parametroFalso);
                 break;
             case 6:
-                this->integrantes->setText(obtenerLinea_Archivo(lectorInt, lineasValidas["integrante"], true));
+                parametroFalso = obtenerLinea_Archivo(lectorInt, lineasValidas["integrante"], true);
+                this->integrantes->setText(parametroFalso);
+                fallos_nivel3.insert(parametroFalso);
                 break;
             }
         } else {
@@ -197,6 +231,7 @@ void nivel3::SetDoc(){
 }
 
 int nivel3::PasarNivel(){
+    this->fallos_nivel3.clear();
     return 4;
 }
 

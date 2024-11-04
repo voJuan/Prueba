@@ -219,7 +219,8 @@ void pantallajuego::on_aceptar_clicked()
         nivel->escribirLog("Registro Evento: Acertaste");
     }else{
         nivel->escribirLog("Registro Evento: Pifiaste");
-        nivel->escribirLogs(nivel->getFallos());
+        nivel->escribirLog("Errores: ");
+        nivel->escribirLogs();
     }
     ActualizarPuntaje(puntos);
 
@@ -240,7 +241,7 @@ void pantallajuego::on_rechazar_clicked()
         nivel->escribirLog("Registro Evento: Acertaste");
     }else{
         nivel->escribirLog("Registro Evento: Pifiaste");
-        nivel->escribirLogs(nivel->getFallos());
+        nivel->escribirLog("Error: Personaje con documentos autenticos");
     }
     ActualizarPuntaje(puntos);
 
