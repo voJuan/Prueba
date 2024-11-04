@@ -25,6 +25,7 @@ public:
     pantallajuego *pantallaJugar;
 private:
     Ui::MainWindow *ui;
+    void cargarPartida();
     void AnadirPantallas();
     void iraPantallaInicio();
     void iraPantallaJuego();
