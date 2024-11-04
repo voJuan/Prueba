@@ -37,7 +37,7 @@
 	border-image: url(:/recursos/imagenes/Recursos/Imagenes/carpincho.jpg);
 }</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,2">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,2">
       <property name="spacing">
        <number>100</number>
       </property>
@@ -63,6 +63,13 @@
         </property>
         <property name="text">
          <string>Iniciar Juego</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cargar">
+        <property name="text">
+         <string>Cargar Partida</string>
         </property>
        </widget>
       </item>

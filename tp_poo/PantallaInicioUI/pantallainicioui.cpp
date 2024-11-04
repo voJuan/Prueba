@@ -10,6 +10,7 @@ PantallaInicioUI::PantallaInicioUI(QWidget *parent)
     //Linea 10: conecta el boton IniciarJuegoBoton con el slot de iniciarJuegolicked() que cambiara a la pantalla donde se realizara el juego.
     connect(ui->SalirJuegoBoton, &QPushButton::clicked, qApp, &QApplication::quit);
     connect(ui->iniciarJuegoBoton, &QPushButton::clicked, this, &PantallaInicioUI::iniciarJuegoClicked);
+    connect(ui->cargar, &QPushButton::clicked, this, &PantallaInicioUI::cargarPartidaClicked);
 }
 
 PantallaInicioUI::~PantallaInicioUI()

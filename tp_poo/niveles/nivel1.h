@@ -56,7 +56,7 @@ public:
     virtual void SetDoc();
     virtual int PasarNivel();
     int GetMultas();
-    void SetMulta();
+    void SetMulta(int mult);
     virtual void SetNivel();
     // *personajeAbst crearPersonajeAleatorio();
    // void dragEnterEvent(QDragEnterEvent *event);

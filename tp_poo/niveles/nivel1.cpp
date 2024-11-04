@@ -395,8 +395,8 @@ int nivel1::NoDejarPasarPuntos(){
 //#######################################################################################
 // ########################### manejo de multas #########################################
 // Setear multa en 0
-void nivel1::SetMulta(){
-    this->multa=0;
+void nivel1::SetMulta(int mult){
+    this->multa=mult;
 }
 // Get para saber cuantas multas hay acumuladas
 int nivel1::GetMultas(){

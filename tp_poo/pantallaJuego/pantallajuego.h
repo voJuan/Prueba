@@ -14,6 +14,8 @@
 #include "../niveles/nivel4.h"
 #include "../niveles/nivel5.h"
 #include <QMessageBox>
+#include "../partida.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class pantallajuego;
@@ -26,6 +28,7 @@ class pantallajuego : public QWidget
 
 public:
     explicit pantallajuego(QWidget *parent = nullptr);
+    void cargarDatosPartida(const partida& partida);
     ~pantallajuego();
 signals:
 
@@ -53,6 +56,10 @@ private slots:
     void activarBotones();
     void actualizarTiempoPantalla();
     void verificarProgreso();
+
+    void guardarPartida();
+
+
 
     void mostrarMensajePerdida();
     void mostrarMensajeMulta();

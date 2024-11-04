@@ -16,6 +16,7 @@ public:
     ~PantallaInicioUI();
 signals:
     void iniciarJuegoClicked();
+    void cargarPartidaClicked();
 private:
     Ui::PantallaInicioUI *ui;
 protected:
